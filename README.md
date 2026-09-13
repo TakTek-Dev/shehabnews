@@ -154,6 +154,19 @@ every headline on its picture. Real stories and pictures from the front
 page; the sheet is `css/pages/hero-options.css`; a sticky bar jumps between
 the three. Nothing on `index.html` changes until one is chosen.
 
+## Search filters — `search.html`
+
+A filter bar above the results (`js/search.js`, `.sh-sf` in
+`css/pages/search.css`): sections — any number at once, one chip per section
+the results name, with its count — the kind (خبر / تقرير / تحليل / قصة), a
+date range (from / to, plus today, 7 days, 30 days, this year) and the sort.
+The state lives in the URL (`?q=…&sec=غزة,دولي&kind=report&from=2026-09-01&to=2026-09-13&sort=old`),
+so a filtered search can be shared and the backend can read the same
+parameters later. While a filter is on every batch shows and the pager steps
+aside; «امسح الفلاتر» puts the page back. On a phone the bar folds under one
+«الفلاتر» button that carries the number of active filters. Each result
+carries `data-sh-section` and a `<time data-sh-ago>` for the filters to read.
+
 ## Running it locally
 
 Serve the folder over plain HTTP; do not open the file by double-clicking it:

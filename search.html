@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://shehabnews.com/search.html">
 <meta name="theme-color" content="#1b5aa6">
 <script>(function(){try{var t=(localStorage.getItem("sh-type")||"").replace(/"/g,"");if(t==="sm"||t==="lg")document.documentElement.setAttribute("data-sh-type",t)}catch(e){}})()</script>
-<script>(function(){try{if(localStorage.getItem("sh-lang")==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";h.setAttribute("data-i18n-wait","");document.write('<script src="js/i18n-en.js?v=259"><\/script>');setTimeout(function(){h.removeAttribute("data-i18n-wait")},1500)}}catch(e){}})()</script>
+<script>(function(){try{if(localStorage.getItem("sh-lang")==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";h.setAttribute("data-i18n-wait","");document.write('<script src="js/i18n-en.js?v=261"><\/script>');setTimeout(function(){h.removeAttribute("data-i18n-wait")},1500)}}catch(e){}})()</script>
 <meta name="color-scheme" content="light">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
@@ -32,22 +32,22 @@
 <link rel="preload" href="assets/fonts/almarai-700-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/almarai-800-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/noto-naskh-arabic-arabic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css?v=259">
-<link rel="stylesheet" href="css/transition.css?v=259">
-<link rel="stylesheet" href="css/tokens.css?v=259">
-<link rel="stylesheet" href="css/base.css?v=259">
-<link rel="stylesheet" href="css/header.css?v=259">
-<link rel="stylesheet" href="css/widgets.css?v=259">
-<link rel="stylesheet" href="css/footer.css?v=259">
-<link rel="stylesheet" href="css/components.css?v=259">
-<link rel="stylesheet" href="css/chrome.css?v=259">
-<link rel="stylesheet" href="css/feed.css?v=259">
-<link rel="stylesheet" href="css/pages/search.css?v=259">
-<link rel="stylesheet" href="css/mark.css?v=259">
-<link rel="stylesheet" href="css/responsive.css?v=259">
-<link rel="stylesheet" href="css/brief.css?v=259">
-<link rel="stylesheet" href="css/type.css?v=259">
-<link rel="stylesheet" href="css/ltr.css?v=259">
+<link rel="stylesheet" href="css/fonts.css?v=261">
+<link rel="stylesheet" href="css/transition.css?v=261">
+<link rel="stylesheet" href="css/tokens.css?v=261">
+<link rel="stylesheet" href="css/base.css?v=261">
+<link rel="stylesheet" href="css/header.css?v=261">
+<link rel="stylesheet" href="css/widgets.css?v=261">
+<link rel="stylesheet" href="css/footer.css?v=261">
+<link rel="stylesheet" href="css/components.css?v=261">
+<link rel="stylesheet" href="css/chrome.css?v=261">
+<link rel="stylesheet" href="css/feed.css?v=261">
+<link rel="stylesheet" href="css/pages/search.css?v=261">
+<link rel="stylesheet" href="css/mark.css?v=261">
+<link rel="stylesheet" href="css/responsive.css?v=261">
+<link rel="stylesheet" href="css/brief.css?v=261">
+<link rel="stylesheet" href="css/type.css?v=261">
+<link rel="stylesheet" href="css/ltr.css?v=261">
 <script type="speculationrules">{"prerender": [{"where": {"and": [{"href_matches": "/*.html"}, {"not": {"href_matches": ["/live.html", "/reels.html", "/shorts.html", "/video-watch.html", "/now.html", "/map.html"]}}]}, "eagerness": "moderate"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "البحث", "description": "ابحث في أخبار وتقارير وصور وفيديوهات شهاب.", "url": "https://shehabnews.com/search.html", "publisher": {"@type": "NewsMediaOrganization", "name": "وكالة شهاب للأنباء", "url": "https://shehabnews.com/", "logo": {"@type": "ImageObject", "url": "https://shehabnews.com/assets/images/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://www.facebook.com/sahpp2023", "https://twitter.com/ShehabAgency", "https://www.instagram.com/shehabagency/", "https://www.youtube.com/channel/UChvBXfexWtP5gdGZespJnZw", "https://t.me/ShehabTelegram", "https://www.tiktok.com/@shehab_news"]}, "inLanguage": "ar"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://shehabnews.com/"}, {"@type": "ListItem", "position": 2, "name": "البحث", "item": "https://shehabnews.com/search.html"}]}]}</script>
 </head>
@@ -241,8 +241,43 @@
 
 <div data-screen-label="Search Body" class="sh-search-search-body__div-1">
   <div data-sh-pager-list class="sh-min0">
-
-    <a data-screen-label="Featured Result" href="article.html" class="sh-search-featured-result__a-1">
+  <section class="sh-sf" data-sh-sf data-screen-label="Search Filters" aria-label="تصفية النتائج">
+    <button type="button" class="sh-sf__toggle" data-sh-sf-toggle aria-expanded="true"><svg class="sh-i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#s-filter"></use></svg><span>الفلاتر</span><b data-sh-sf-n hidden></b></button>
+    <div class="sh-sf__row">
+      <span class="sh-sf__label" id="sh-sf-secs-l">القسم</span>
+      <div class="sh-sf__chips" role="group" aria-labelledby="sh-sf-secs-l" data-sh-sf-secs>
+        <button type="button" class="sh-sf__chip" data-sh-sf-all aria-pressed="true">الكل</button>
+      </div>
+    </div>
+    <div class="sh-sf__row">
+      <span class="sh-sf__label" id="sh-sf-kind-l">النوع</span>
+      <div class="sh-sf__chips" role="group" aria-labelledby="sh-sf-kind-l">
+        <button type="button" class="sh-sf__chip" data-sh-sf-kind="news" aria-pressed="false">خبر</button>
+        <button type="button" class="sh-sf__chip" data-sh-sf-kind="report" aria-pressed="false">تقرير</button>
+        <button type="button" class="sh-sf__chip" data-sh-sf-kind="analysis" aria-pressed="false">تحليل</button>
+        <button type="button" class="sh-sf__chip" data-sh-sf-kind="story" aria-pressed="false">قصة</button>
+      </div>
+    </div>
+    <div class="sh-sf__row sh-sf__row--dates">
+      <span class="sh-sf__label">التاريخ</span>
+      <label class="sh-sf__date">من <input type="date" data-sh-sf-from aria-label="من تاريخ"></label>
+      <label class="sh-sf__date">إلى <input type="date" data-sh-sf-to aria-label="إلى تاريخ"></label>
+      <div class="sh-sf__quick" role="group" aria-label="فترات جاهزة">
+        <button type="button" data-sh-sf-quick="1" aria-pressed="false">اليوم</button>
+        <button type="button" data-sh-sf-quick="7" aria-pressed="false">آخر 7 أيام</button>
+        <button type="button" data-sh-sf-quick="30" aria-pressed="false">آخر 30 يومًا</button>
+        <button type="button" data-sh-sf-quick="year" aria-pressed="false">هذا العام</button>
+      </div>
+      <button type="button" class="sh-sf__sort" data-sh-ssort aria-label="ترتيب النتائج">الترتيب: <strong>الأحدث</strong></button>
+    </div>
+    <div class="sh-sf__foot">
+      <span class="sh-sf__count"><b data-sh-search-count>13 نتيجة</b> لـ <span data-sh-search-term>«غزة»</span></span>
+      <span class="sh-sf__applied" data-sh-sf-applied hidden></span>
+      <button type="button" class="sh-sf__clear" data-sh-sf-clear hidden>امسح الفلاتر</button>
+    </div>
+  </section>
+  
+    <a data-screen-label="Featured Result" href="article.html" data-sh-section="غزة" class="sh-search-featured-result__a-1">
       <span>
         <span class="sh-search-featured-result__span-1">النتيجة الأبرز</span>
         <span class="sh-search-featured-result__span-2"><span class="sh-link">تقرير — غزة</span><time class="sh-meta__time" data-sh-ago="34"></time></span>
@@ -255,7 +290,7 @@
 
     
       <div data-sh-page="1">
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
           <span class="sh-meta"><span class="sh-link">عاجل — غزة</span><time class="sh-meta__time" data-sh-ago="59"></time></span>
           <span class="sh-search-search-body__span-1">4 شهداء بقصف مدفعي للاحتلال في جباليا شمال قطاع غزة</span>
@@ -265,7 +300,7 @@
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-4"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israeli%20airstrikes%20on%20Gaza%20Strip%20during%20Gaza%20War%2023-25.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
     
-      <a href="article.html" class="sh-search-search-body__a-1">
+      <a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
           <span class="sh-meta"><span class="sh-link">إنساني</span><time class="sh-meta__time" data-sh-ago="130"></time></span>
           <span class="sh-search-search-body__span-1">مرضى القطاع بلا علاج.. الاحتلال يواصل إغلاق معبر رفح لليوم العاشر</span>
@@ -275,7 +310,7 @@
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-5"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/UNRWA%20el-Sheikh%20Radwan%20health%20center%2C%20February%202024.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
     
-      <a href="article.html" class="sh-search-search-body__a-1">
+      <a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
           <span class="sh-meta"><span class="sh-link">إعمار</span><time class="sh-meta__time" data-sh-ago="162"></time></span>
           <span class="sh-search-search-body__span-1">بلدية غزة: فتح 60% من الطرق الرئيسية وإزالة أكثر من مليون طن ركام</span>
@@ -285,9 +320,9 @@
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-6"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Displaced%20Palestinians%20during%20their%20journey%20back%20to%20Gaza%20and%20the%20north%20via%20Al-Rasheed%20Street..jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
     
-      <a href="article.html" class="sh-search-search-body__a-1">
+      <a href="article.html" data-sh-section="رياضة" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">قصة</span><span class="sh-meta__time">أمس</span></span>
+          <span class="sh-meta"><span class="sh-link">قصة</span><time class="sh-meta__time" data-sh-ago="1500"></time></span>
           <span class="sh-search-search-body__span-1">رصاصة في الرأس وحلم في الركام.. قصة اللاعب محمد الذي أنهى الاحتلال مسيرته</span>
           <span class="sh-search-search-body__span-2">من ملاعب حي الشجاعية إلى سرير العلاج — شهاب توثق رحلة لاعب كرة قدم واعد غيّرت رصاصة قناص مساره إلى الأبد.</span>
           <span class="sh-search-search-body__span-3">قصة إنسانية — 6 دقائق قراءة</span>
@@ -295,9 +330,9 @@
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-7"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/What%20remains%20of%20the%20houses%20in%20Gaza%20after%20the%20airstrikes%20during%20the%20winter%20season.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
     
-      <a href="article.html" class="sh-search-search-body__a-1">
+      <a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">الميدان</span><span class="sh-meta__time">أمس</span></span>
+          <span class="sh-meta"><span class="sh-link">الميدان</span><time class="sh-meta__time" data-sh-ago="1700"></time></span>
           <span class="sh-search-search-body__span-1">توغل محدود لآليات الاحتلال شرق مدينة غزة تحت غطاء ناري</span>
           <span class="sh-search-search-body__span-2">آليات عسكرية توغلت مسافة محدودة شرق حي الشجاعية وسط إطلاق نار كثيف، قبل انسحابها باتجاه "الخط الأصفر".</span>
           <span class="sh-search-search-body__span-3">خبر — مراسل شهاب</span>
@@ -305,9 +340,9 @@
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-8"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Damage%20in%20Gaza%20Strip%20during%20the%20October%202023%20-%2029.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
     
-      <a href="article.html" class="sh-search-search-body__a-1">
+      <a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">إنساني</span><span class="sh-meta__time">قبل يومين</span></span>
+          <span class="sh-meta"><span class="sh-link">إنساني</span><time class="sh-meta__time" data-sh-ago="2900"></time></span>
           <span class="sh-search-search-body__span-1">خيام المواصي تغرق مجددًا.. منخفض جوي يفاقم معاناة النازحين</span>
           <span class="sh-search-search-body__span-2">مياه الأمطار غمرت عشرات الخيام في المواصي غربي خانيونس، ومناشدات لتوفير مستلزمات الإيواء قبل ذروة الشتاء.</span>
           <span class="sh-search-search-body__span-3">تقرير مصوّر — عدسة شهاب</span>
@@ -316,7 +351,7 @@
       </a>
 </div>
 <div data-sh-page="2" class="sh-search-search-body__div-2">
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
           <span class="sh-meta"><span class="sh-link">تقرير — المواصي</span><time class="sh-meta__time" data-sh-ago="1640"></time></span>
           <span class="sh-search-search-body__span-1">عائلات في المواصي تعيد نصب الخيام للمرة الرابعة هذا الشتاء</span>
@@ -325,7 +360,7 @@
         </span>
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-4"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israeli%20airstrikes%20on%20Gaza%20Strip%20during%20Gaza%20War%2023-25.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
           <span class="sh-meta"><span class="sh-link">خبر — رفح</span><time class="sh-meta__time" data-sh-ago="1835"></time></span>
           <span class="sh-search-search-body__span-1">تعليق مؤقت لتوزيع الطرود الغذائية في رفح لأسباب لوجستية</span>
@@ -334,36 +369,36 @@
         </span>
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-4"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israeli%20airstrikes%20on%20Gaza%20Strip%20during%20Gaza%20War%2023-25.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="البيانات" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">تقرير — خرائط</span><span class="sh-meta__time">قبل يومين</span></span>
+          <span class="sh-meta"><span class="sh-link">تقرير — خرائط</span><time class="sh-meta__time" data-sh-ago="23040"></time></span>
           <span class="sh-search-search-body__span-1">كيف تغيّر خط الانسحاب في جنوب القطاع خلال شهر؟</span>
           <span class="sh-search-search-body__span-2">قراءة بصرية تقارن مواقع الانتشار المعلنة بين مطلع الشهر ونهايته اعتمادًا على صور جوية.</span>
           <span class="sh-search-search-body__span-3">تقرير — وحدة البيانات</span>
         </span>
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-4"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israeli%20airstrikes%20on%20Gaza%20Strip%20during%20Gaza%20War%2023-25.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">خبر — صحة</span><span class="sh-meta__time">قبل يومين</span></span>
+          <span class="sh-meta"><span class="sh-link">خبر — صحة</span><time class="sh-meta__time" data-sh-ago="44640"></time></span>
           <span class="sh-search-search-body__span-1">الصحة: 32 حالة بتر بين الأطفال منذ سريان وقف إطلاق النار</span>
           <span class="sh-search-search-body__span-2">الوزارة أشارت إلى نقص مستمر في أطقم الجراحة التخصصية داخل مستشفيات الشمال.</span>
           <span class="sh-search-search-body__span-3">خبر — مراسل شهاب</span>
         </span>
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-4"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israeli%20airstrikes%20on%20Gaza%20Strip%20during%20Gaza%20War%2023-25.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="دولي" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">تحليل — سياسة</span><span class="sh-meta__time">هذا الأسبوع</span></span>
+          <span class="sh-meta"><span class="sh-link">تحليل — سياسة</span><time class="sh-meta__time" data-sh-ago="66240"></time></span>
           <span class="sh-search-search-body__span-1">ما الذي يعنيه تمديد آلية المراقبة الدولية ثلاثة أشهر؟</span>
           <span class="sh-search-search-body__span-2">قراءة في بنود التمديد وصلاحيات فريق التحقق، وما تغيّر عن الصيغة الأولى للاتفاق.</span>
           <span class="sh-search-search-body__span-3">تحليل — مكتب شهاب</span>
         </span>
         <span class="sh-tile sh-tile--16x9"><span class="sh-search-search-body__span-4"><img class="sh-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israeli%20airstrikes%20on%20Gaza%20Strip%20during%20Gaza%20War%2023-25.jpg?width=600" alt="" loading="lazy" decoding="async"></span></span>
       </a>
-<a href="article.html" class="sh-search-search-body__a-1">
+<a href="article.html" data-sh-section="غزة" class="sh-search-search-body__a-1">
         <span>
-          <span class="sh-meta"><span class="sh-link">تقرير — اقتصاد</span><span class="sh-meta__time">هذا الأسبوع</span></span>
+          <span class="sh-meta"><span class="sh-link">تقرير — اقتصاد</span><time class="sh-meta__time" data-sh-ago="97920"></time></span>
           <span class="sh-search-search-body__span-1">أسواق مؤقتة ونقص حاد في السيولة.. الاقتصاد المحلي بعد الحرب</span>
           <span class="sh-search-search-body__span-2">التجار يتحدثون عن اعتماد شبه كامل على التحويلات الرقمية مع غياب النقد الورقي.</span>
           <span class="sh-search-search-body__span-3">تقرير — مراسل شهاب</span>
@@ -374,7 +409,7 @@
 
     
 
-    <p class="sh-search__empty" data-sh-search-empty hidden>لا نتائج مطابقة للفلاتر. جرّب «الكل» أو وسّع الفترة.</p>
+    <p class="sh-search__empty" data-sh-search-empty hidden>لا نتائج مطابقة للفلاتر. جرّب «الكل» أو وسّع الفترة. <button type="button" class="sh-sf__clear" data-sh-sf-clear>امسح الفلاتر</button></p>
     <nav data-sh-pager data-screen-label="Pagination" class="sh-search-pagination__nav-1">
       <a href="search.html?q=غزة&amp;page=1" data-sh-prev-page class="sh-search-pagination__a-1">السابق</a>
       <a data-sh-goto="1" href="search.html?q=غزة&amp;page=1" class="sh-search-pagination__a-2">1</a>
@@ -708,18 +743,18 @@
 </dialog>
 <!-- /sh:footer -->
 </div>
-<script src="js/ui.js?v=259" defer></script>
-<script src="js/lang.js?v=259" defer></script>
-<script src="js/chrome.js?v=259" defer></script>
-<script src="js/feed.js?v=259" defer></script>
-<script src="js/app.js?v=259" defer></script>
-<script src="js/responsive.js?v=259" defer></script>
-<script src="js/widgets.js?v=259" defer></script>
-<script src="js/livebox.js?v=259" defer></script>
-<script src="js/brief.js?v=259" defer></script>
-<script src="js/searchbox.js?v=259" defer></script>
-<script src="js/push.js?v=259" defer></script>
-<script src="js/pwa.js?v=259" defer></script>
-<script src="js/search.js?v=259" defer></script>
+<script src="js/ui.js?v=261" defer></script>
+<script src="js/lang.js?v=261" defer></script>
+<script src="js/chrome.js?v=261" defer></script>
+<script src="js/feed.js?v=261" defer></script>
+<script src="js/app.js?v=261" defer></script>
+<script src="js/responsive.js?v=261" defer></script>
+<script src="js/widgets.js?v=261" defer></script>
+<script src="js/livebox.js?v=261" defer></script>
+<script src="js/brief.js?v=261" defer></script>
+<script src="js/searchbox.js?v=261" defer></script>
+<script src="js/push.js?v=261" defer></script>
+<script src="js/pwa.js?v=261" defer></script>
+<script src="js/search.js?v=261" defer></script>
 </body>
 </html>

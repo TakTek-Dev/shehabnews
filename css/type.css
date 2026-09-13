@@ -2,7 +2,7 @@
    every content font-size again under html[data-sh-type="sm"] (×0.92, floor
    12px) and ="lg" (×1.12). The chrome is not here on purpose. */
 
-/* ---- sm ×0.92 (594 rules) ---- */
+/* ---- sm ×0.92 (603 rules) ---- */
 html[data-sh-type="sm"] .sh-page{font-size:12.88px}
 html[data-sh-type="sm"] .sh-more{font-size:12px}
 html[data-sh-type="sm"] .sh-section__title.sh-section__title--sm{font-size:12.88px}
@@ -460,6 +460,14 @@ html[data-sh-type="sm"] .sh-search-search-closing__span-1{font-size:15.64px}
 html[data-sh-type="sm"] .sh-search-search-closing__span-2{font-size:12px}
 html[data-sh-type="sm"] .sh-search-search-closing__a-1{font-size:12px}
 html[data-sh-type="sm"] .sh-search-may-interest-you__span-3{font-size:13.8px}
+html[data-sh-type="sm"] .sh-sf__label{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__chip{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__date{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__date input{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__quick button{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__sort{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__foot{font-size:12px}
+html[data-sh-type="sm"] .sh-sf__clear{font-size:12px}
 html[data-sh-type="sm"] .sh-sections-section-map__span-9{font-size:31.28px}
 html[data-sh-type="sm"] .sh-sections-section-map__span-12{font-size:15.64px}
 html[data-sh-type="sm"] .sh-sections-section-map__span-14{font-size:20.24px}
@@ -559,6 +567,7 @@ html[data-sh-type="sm"] .sh-video-watch-also__span-10{font-size:13.8px}
 }
 @media (max-width:900px){
   html[data-sh-type="sm"] .sh-say__quote{font-size:17.48px}
+  html[data-sh-type="sm"] .sh-ho__bar-t{font-size:13.8px}
   html[data-sh-type="sm"] .sh-ho__title{font-size:17.48px}
   html[data-sh-type="sm"] .sh-h1__lead-t{font-size:calc(clamp(19px,5.4vw,24px) * 0.92)}
   html[data-sh-type="sm"] .sh-h1__t{font-size:13.34px}
@@ -610,7 +619,7 @@ html[data-sh-type="sm"] .sh-video-watch-also__span-10{font-size:13.8px}
   html[data-sh-type="sm"] .sh-reels__fdek{font-size:12.42px}
 }
 
-/* ---- lg ×1.12 (864 rules) ---- */
+/* ---- lg ×1.12 (873 rules) ---- */
 html[data-sh-type="lg"] .sh-page{font-size:15.68px}
 html[data-sh-type="lg"] .sh-more{font-size:13.44px}
 html[data-sh-type="lg"] .sh-doc__num.sh-doc__num--sm{font-size:12.32px}
@@ -1261,6 +1270,14 @@ html[data-sh-type="lg"] .sh-search-search-closing__span-2{font-size:14.56px}
 html[data-sh-type="lg"] .sh-search-search-closing__a-1{font-size:14.56px}
 html[data-sh-type="lg"] .sh-search-may-interest-you__span-2{font-size:12.88px}
 html[data-sh-type="lg"] .sh-search-may-interest-you__span-3{font-size:16.8px}
+html[data-sh-type="lg"] .sh-sf__label{font-size:13.44px}
+html[data-sh-type="lg"] .sh-sf__chip{font-size:13.44px}
+html[data-sh-type="lg"] .sh-sf__date{font-size:13.44px}
+html[data-sh-type="lg"] .sh-sf__date input{font-size:14px}
+html[data-sh-type="lg"] .sh-sf__quick button{font-size:13.44px}
+html[data-sh-type="lg"] .sh-sf__sort{font-size:13.44px}
+html[data-sh-type="lg"] .sh-sf__foot{font-size:14px}
+html[data-sh-type="lg"] .sh-sf__clear{font-size:13.44px}
 html[data-sh-type="lg"] .sh-sections-section-map__span-3{font-size:12.88px}
 html[data-sh-type="lg"] .sh-sections-section-map__span-9{font-size:38.08px}
 html[data-sh-type="lg"] .sh-sections-section-map__span-10{font-size:12.88px}
@@ -1435,6 +1452,7 @@ html[data-sh-type="lg"] .sh-video-watch-also__span-10{font-size:16.8px}
 }
 @media (max-width:900px){
   html[data-sh-type="lg"] .sh-say__quote{font-size:21.28px}
+  html[data-sh-type="lg"] .sh-ho__bar-t{font-size:16.8px}
   html[data-sh-type="lg"] .sh-ho__title{font-size:21.28px}
   html[data-sh-type="lg"] .sh-h1__lead-t{font-size:calc(clamp(19px,5.4vw,24px) * 1.12)}
   html[data-sh-type="lg"] .sh-h1__t{font-size:16.24px}

@@ -119,6 +119,10 @@ html[dir="ltr"] .sh-coverage-coverage-hero__section-1::before{background:linear-
 /* ---- css/pages/files.css ---- */
 html[dir="ltr"] .sh-fl-hero__scrim{background:linear-gradient(to right,rgba(10,26,51,.96) 0%,rgba(10,26,51,.88) 36%,rgba(10,26,51,.42) 60%,rgba(10,26,51,.16) 100%),linear-gradient(to top,rgba(10,26,51,.55) 0%,rgba(10,26,51,0) 45%),linear-gradient(to left,rgba(10,26,51,1) 0%,rgba(10,26,51,0) 12%)}
 
+/* ---- css/pages/hero-options.css ---- */
+html[dir="ltr"] .sh-ho__tab{padding:0 10px 0 14px}
+html[dir="ltr"] .sh-h2::before{inset:0 50vw) - calc(50%}
+
 /* ---- css/pages/index.css ---- */
 html[dir="ltr"] .sh-index-hero__a-1{border-left:1px solid rgba(255,255,255,.22);border-right:0}
 html[dir="ltr"] .sh-index-hero__span-3{left:0;right:auto}
@@ -158,9 +162,6 @@ html[dir="ltr"] .sh-live-sched__item{padding:11px 6px 11px 8px}
 /* ---- css/pages/reels.css ---- */
 html[dir="ltr"] .sh-reels-grid__play{right:50%;left:auto;margin:-20px -20px 0 0}
 html[dir="ltr"] .sh-reels-grid__play .sh-i{margin-right:2px;margin-left:0}
-
-/* ---- css/pages/search.css ---- */
-html[dir="ltr"] .sh-search-featured-result__a-1{margin:0 0 4px -20px}
 
 /* ---- css/pages/sections.css ---- */
 html[dir="ltr"] .sh-sections-media-desks__i-1{transform:translateX(-1px)}
