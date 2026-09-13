@@ -64,12 +64,12 @@ class DemoFeed:
         'مصادر طبية: ارتفاع عدد شهداء قصف جباليا إلى 5',
         'الأونروا تطالب بتحقيق مستقل في استهداف تجمعات الأطفال',
     ]
-    TOP = [   # the same five the page ships, with the parts feed.js swaps
-        {'t': 'لبنان: ارتفاع حصيلة العدوان الإسرائيلي إلى 4350 شهيدًا و12310 جرحى', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Beirut%20skyline.jpg?width=400', 'by': 'محمد مصطفى شاهين', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2026/07/ngA17.jpg', 'date': '5 سبتمبر 2026'},
-        {'t': 'نعيم: هدم مقر الأونروا بالقدس جريمة حرب وانتهاك صارخ للقانون الدولي', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalandia%20checkpoint.jpg?width=400', 'by': 'هلال نصار', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2022/12/A5qYA.png', 'date': '5 سبتمبر 2026'},
-        {'t': 'قناة عبرية: وفد أمريكي يوبخ مسؤولًا إسرائيليًا بسبب عنف المستوطنين بالضفة', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Knesset%20Building%20%28South%20Side%29.JPG?width=400', 'by': 'د. إياد القرا', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2022/11/EX8f6.png', 'date': '5 سبتمبر 2026'},
-        {'t': 'عُمان ترجح إعلان ممر مؤقت في هرمز قريبًا', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Strait%20of%20hormuz.jpg?width=400', 'by': 'د. إياد القرا', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2022/11/EX8f6.png', 'date': '5 سبتمبر 2026'},
-        {'t': 'قوات الاحتلال تفرج عن القيادي رأفت ناصيف من طولكرم', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Tulkarm%202.jpg?width=400', 'by': 'د. أميرة فؤاد النحال', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2024/10/1Shl3.jpg', 'date': '5 سبتمبر 2026'},
+    TOP = [   # five stories rotate through the rows the page ships (three on the homepage), with the parts feed.js swaps
+        {'t': 'لبنان: ارتفاع حصيلة العدوان الإسرائيلي إلى 4350 شهيدًا و12310 جرحى', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Beirut%20skyline.jpg?width=500', 'by': 'محمد مصطفى شاهين', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2026/07/ngA17.jpg', 'date': '5 سبتمبر 2026'},
+        {'t': 'نعيم: هدم مقر الأونروا بالقدس جريمة حرب وانتهاك صارخ للقانون الدولي', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalandia%20checkpoint.jpg?width=500', 'by': 'هلال نصار', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2022/12/A5qYA.png', 'date': '5 سبتمبر 2026'},
+        {'t': 'قناة عبرية: وفد أمريكي يوبخ مسؤولًا إسرائيليًا بسبب عنف المستوطنين بالضفة', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Knesset%20Building%20%28South%20Side%29.JPG?width=500', 'by': 'د. إياد القرا', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2022/11/EX8f6.png', 'date': '5 سبتمبر 2026'},
+        {'t': 'عُمان ترجح إعلان ممر مؤقت في هرمز قريبًا', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Strait%20of%20hormuz.jpg?width=500', 'by': 'د. إياد القرا', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2022/11/EX8f6.png', 'date': '5 سبتمبر 2026'},
+        {'t': 'قوات الاحتلال تفرج عن القيادي رأفت ناصيف من طولكرم', 'img': 'https://commons.wikimedia.org/wiki/Special:FilePath/Tulkarm%202.jpg?width=500', 'by': 'د. أميرة فؤاد النحال', 'avatar': 'https://shehabnews.com/thumb/300x300/uploads/images/2024/10/1Shl3.jpg', 'date': '5 سبتمبر 2026'},
     ]
     LIVE = {'title': 'شهاب مباشر — بث من غزة', 'href': 'live.html'}
 

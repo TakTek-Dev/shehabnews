@@ -136,7 +136,7 @@ JS: `ui, chrome, feed, app, responsive, widgets, brief, searchbox, push, pwa` ث
 | `update` | `{"id": "u123", "t": "العنوان", "cat": "غزة", "href": "/post/…", "at": ISO}` | كل `[data-sh-feed="updates"]` (رئيسية، تغطية، الآن) |
 | `ticker` | `{"t": "…", "href": "…", "at": ISO}` | شريط العاجل (يتقدّم للأول، سقف 12) |
 | `breaking` | `{"id": "b123", "t": "…", "href": "…", "at": ISO}` | الشريط الأحمر + توست + إعلان `aria-live` + إشعار محلي لو مفعّل. يُبعت **مرة واحدة** لكل خبر (الـid هو اللي يمنع التكرار وبيتحفظ في `sessionStorage` عند الإغلاق) |
-| `top` | `{"items": [{"t": "…", "href": "…"}, …5]}` | «الأبرز الآن» (بيستبدل النصوص بالترتيب) |
+| `top` | `{"items": [{"t": "…", "href": "…", "img": "…", "by": "…", "avatar": "…", "date": "…"}, …]}` | «أبرز الأخبار» (بيملى الصفوف الموجودة بالترتيب: 3 في الرئيسية، 5 في now) |
 | `live-state` | `{"on_air": bool, "viewers": int, "title": "…", "href": "…"}` | زر البث، الشريط المرصوف، عدّاد المشاهدين في live/now |
 | `story` | `{"id": "163540", "t": "نص التحديث", "at": ISO}` | بانر «تحدّث هذا الخبر» في `article[data-sh-story="163540"]` |
 | `incident` | Feature GeoJSON كاملة (§4.7) | الخريطة تضيف النقطة فورًا (مقترح، غير مُنفَّذ على السيرفر التجريبي) |
@@ -208,7 +208,7 @@ FeatureCollection؛ كل Feature:
 ### 5.2 الرئيسية
 - عمود «آخر التحديثات»: `<div class="sh-index-hero__div-8" data-sh-feed="updates" data-sh-feed-max="6">` وبداخله `<template data-sh-feed-tpl>` بصف واحد فيه `{href}`, `{cat}`, `{t}` و`<time data-sh-time-slot>` (الـJS يبدّل `data-sh-time-slot` بـ`datetime`). الصفوف الأولى تُطبع من السيرفر بنفس الماركب.
 - قائمة التغطية الحية: نفس الشيء على `.sh-index-live-coverage__div-10` مع `data-sh-feed-head` على الفاصل الأول (يفضل ثابتًا فوق).
-- «الأبرز الآن»: `<ol data-sh-feed="top">` بخمسة `<a>`.
+- «أبرز الأخبار» (بلا عنوان ظاهر؛ الاسم في `aria-label` على الـ`aside`): `<ol data-sh-feed="top">` بثلاثة صفوف، كل صف `<a>` فيه `[data-sh-top-img]` و`[data-sh-top-t]` و`[data-sh-top-by]` و`[data-sh-top-face]` و`[data-sh-top-date]`. على الديسكتوب العنوان وحده فوق الصورة؛ سطر الكاتب والتاريخ بيظهر في صفوف الموبايل.
 - «محاور اليوم»: `<template data-sh-hub-source>` فيه كل أخبار اليوم كـ`<a data-sh-item data-sh-cat="فلسطين" data-sh-time="09:31 م" data-sh-image="…" data-sh-credit="…" href="…">العنوان</a>`، وكل محور `<a data-sh-hub data-sh-filter="فلسطين|القدس|غزة" data-sh-cover="…">`. (`data-sh-time` هنا `HH:MM م` لأن `app.js::hubs` بيرتّب بيها؛ يقبل غيابها.)
 - «ملفات خاصة»: `article.sh-binder` + `[data-sh-binder-inside]` (الوثائق مخفية بالماركب؛ `app.js::binders` يقرأها). «ملفات شهاب» الأكورديون: `div.sh-file[data-sh-state="open|live|closed|upcoming"]`.
 - الفيديو: `[data-sh-vid]` + قائمة `[data-sh-vid-item data-sh-src data-sh-poster data-sh-chip data-sh-meta]`.

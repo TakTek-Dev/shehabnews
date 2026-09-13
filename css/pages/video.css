@@ -1,123 +1,175 @@
-/* شهاب — video (مكتبة الفيديو): the lead video with what plays next and the
-   live channel beside it; the agency's programmes with their latest clip;
-   the library in two orders. Every item on the page is a distinct video. */
-a{transition:color .16s ease,opacity .16s ease,border-color .16s ease,background .16s ease,gap .16s ease}
-img,video{display:block}
+/* شهاب — video (الفيديو): Shehab's video library laid out the way the big
+   Arabic channels lay theirs (skynewsarabia.com/video) — the editor's picks as
+   one large picture with four beside it, the latest videos, the most watched
+   on the page's one navy band, then a sliding row for each programme. Every
+   picture is the video's own poster from shehabnews.com, whole, in a 16:9
+   frame (DESIGN.md, Whole Photograph Rule); every label is Shehab's own — a
+   section of the site or the name of a programme. */
+a{transition:color .16s ease}
+img{display:block}
 
-.sh-vh-sec{margin-top:48px}
-/* the duration plate and the meta line every tile shares */
-.sh-vh-len{position:absolute;bottom:8px;inset-inline-start:8px;z-index:2;padding:2px 7px;background:var(--color-scrim);color:#fff;font-family:var(--sh-font);font-size:11.5px;font-weight:800;line-height:1.5;font-variant-numeric:tabular-nums}
-.sh-vh-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-family:var(--sh-font);font-size:11.5px;color:var(--sh-mute)}
-.sh-vh-cat{font-weight:800;color:var(--sh-blue)}
-.sh-vh-chip{display:inline-flex;align-items:center;padding:3px 9px;background:var(--sh-blue);color:#fff;font-weight:800;line-height:1.5}
+/* ---- the head: where the reader is, the title, and the programmes below ---- */
+.sh-vx-head{padding-top:22px}
+.sh-vx-crumbs{display:flex;align-items:center;gap:9px;font-family:var(--sh-font);font-size:13px;color:var(--sh-mute)}
+.sh-vx-crumbs a{color:var(--sh-mute)}
+@media (hover:hover){.sh-vx-crumbs a:hover{color:var(--sh-blue)}}
+.sh-vx-crumbs span{color:var(--sh-navy);font-weight:700}
+.sh-vx-head__row{display:flex;align-items:center;justify-content:space-between;gap:6px 32px;flex-wrap:wrap;margin-top:8px}
+.sh-vx-title{margin:0;font-family:var(--sh-font);font-size:clamp(28px,3vw,34px);font-weight:700;line-height:1.35;color:var(--sh-navy)}
+.sh-vx-rail{display:flex;align-items:center;gap:0 22px;flex-wrap:wrap;min-width:0}
+.sh-vx-rail a{display:inline-flex;align-items:center;gap:8px;min-height:40px;font-family:var(--sh-font);font-size:14px;font-weight:700;color:var(--sh-ink-2);white-space:nowrap}
+@media (hover:hover){.sh-vx-rail a:hover{color:var(--sh-blue)}}
+.sh-vx-rail a:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-vx-rail__dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--sh-red);animation:sh-pulse 1.4s ease-in-out infinite}
 
-/* ---- the lead: the video to watch now, what plays next, the live channel ---- */
-.sh-vh-lead{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:32px;margin-top:28px;align-items:stretch}
-.sh-vh-feat{display:block;align-self:start;min-width:0;color:var(--sh-ink)}
-.sh-vh-feat__pic{position:relative;display:block;aspect-ratio:16/9;background:var(--sh-navy-2);overflow:hidden}
-.sh-vh-feat__pic img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-/* the one round control, on a picture: the homepage's disc (css/pages/index.css .sh-vid__big) */
-.sh-vh-disc{position:absolute;inset:0;z-index:2;margin:auto;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--sh-blue);color:#fff;font-size:18px;box-shadow:0 6px 18px rgba(10,26,51,.45);transition:transform .2s ease,background .2s ease}
-.sh-vh-disc .sh-i{margin-inline-start:-3px}
-.sh-vh-feat__body{display:flex;flex-direction:column;gap:8px;padding-top:14px}
-.sh-vh-feat__t{margin:0;font-family:var(--sh-font);font-size:clamp(20px,1.9vw,26px);font-weight:800;line-height:1.45;color:var(--sh-navy);text-wrap:balance;transition:color .16s ease}
+/* ---- the section heads: the blade and the name, nothing else ---- */
+.sh-vx-sec{margin-top:52px;scroll-margin-top:calc(var(--sh-compact-h,100px) + 26px)}
+.sh-vx-sec__t{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-family:var(--sh-font);font-size:22px;font-weight:700;line-height:1.45;color:var(--sh-navy)}
+
+/* ---- the one round control, always on a picture (DESIGN.md, Square Rule):
+   the 56px blue stage disc on the lead, the hairline disc on the navy scrim
+   everywhere else (reels.css .sh-reels-grid__play) ---- */
+.sh-vx-play{position:absolute;inset:0;z-index:2;margin:auto;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.85);background:rgba(10,26,51,.5);color:#fff;display:grid;place-items:center;font-size:12px;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.sh-vx-play .sh-i{translate:1px 0}   /* the triangle's optical centre, the same way in both directions */
+.sh-vx-pick--lead .sh-vx-play{width:56px;height:56px;border:0;background:var(--sh-blue);font-size:18px;box-shadow:0 6px 18px rgba(10,26,51,.45)}
+
+/* ---- a picture with its title on it: the picks and the programme rows.
+   The veil is navy at an opacity (DESIGN.md, Navy Veil Rule). ---- */
+.sh-vx-pick,.sh-vx-slide{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:var(--sh-navy-2);color:#fff;isolation:isolate}
+@media (hover:hover){a.sh-vx-pick:hover,a.sh-vx-slide:hover{color:#fff}}   /* base.css a:hover would paint the title blue on the veil */
+.sh-vx-pick__pic,.sh-vx-slide__pic{position:absolute;inset:0;display:block}
+.sh-vx-pick__pic img,.sh-vx-slide__pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sh-vx-pick__pic::after,.sh-vx-slide__pic::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,26,51,.94) 0%,rgba(10,26,51,.6) 34%,rgba(10,26,51,0) 66%)}
+.sh-vx-pick__body,.sh-vx-slide__body{position:absolute;inset-inline:0;bottom:0;z-index:2;display:flex;flex-direction:column;gap:4px;padding:12px 16px 14px}
+.sh-vx-pick__t,.sh-vx-slide__t{font-family:var(--sh-font);font-size:15px;font-weight:700;line-height:1.55;color:#fff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-wrap:pretty}
+.sh-vx-pick__m,.sh-vx-slide__m{display:flex;flex-wrap:wrap;gap:0 8px;font-family:var(--sh-font);font-size:12px;line-height:1.6;color:var(--sh-on-dark-72);font-variant-numeric:tabular-nums}
+.sh-vx-pick__m > * + *::before,.sh-vx-slide__m > * + *::before{content:"·";margin-inline-end:8px;color:var(--sh-on-dark-55)}
+.sh-vx-chip{position:absolute;top:12px;inset-inline-start:12px;z-index:2;padding:2px 9px;background:var(--sh-blue);color:#fff;font-family:var(--sh-font);font-size:12px;font-weight:700;line-height:1.6}
 @media (hover:hover){
-  .sh-vh-feat:hover .sh-vh-feat__pic img{transform:scale(1.03)}
-  .sh-vh-feat:hover .sh-vh-disc{transform:scale(1.06);background:var(--color-brand-blue-deep)}
-  .sh-vh-feat:hover .sh-vh-feat__t{color:var(--sh-blue)}
+  .sh-vx-pick:hover .sh-vx-pick__pic img,.sh-vx-slide:hover .sh-vx-slide__pic img{transform:scale(1.04)}
+  .sh-vx-pick:hover .sh-vx-play,.sh-vx-slide:hover .sh-vx-play{background:var(--sh-blue);border-color:var(--sh-blue)}
+  .sh-vx-pick--lead:hover .sh-vx-play{transform:scale(1.06);background:var(--color-brand-blue-deep)}
 }
-.sh-vh-side{display:flex;flex-direction:column;min-width:0}
-.sh-vh-side__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:4px}
-.sh-vh-row{display:grid;grid-template-columns:128px minmax(0,1fr);gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
-.sh-vh-row__pic{position:relative;display:block;aspect-ratio:16/9;background:var(--sh-navy-2);overflow:hidden}
-.sh-vh-row__pic img{width:100%;height:100%;object-fit:cover}
-.sh-vh-row__pic .sh-vh-len{bottom:4px;inset-inline-start:4px;padding:1px 5px}
-.sh-vh-row__body{display:flex;flex-direction:column;gap:5px;min-width:0}
-.sh-vh-row__t{font-family:var(--sh-font);font-size:14px;font-weight:700;line-height:1.55;color:var(--sh-navy);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .16s ease}
-@media (hover:hover){.sh-vh-row:hover .sh-vh-row__t{color:var(--sh-blue)}}
-/* the live channel: the navy card opens the stream in place (js/livebox.js).
-   On a wide screen it takes whatever height the lead leaves in the column,
-   the picture growing to fill it, so the two columns end on one line. */
-.sh-vh-live{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(96px,1fr) auto;gap:10px;margin-top:16px;padding:12px;background:var(--sh-navy);color:#fff}
-@media (hover:hover){a.sh-vh-live:hover{color:#fff;background:var(--sh-navy-2)}}   /* a:hover would paint the label blue on navy */
-.sh-vh-live:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
-.sh-vh-live__pic{position:relative;display:block;min-height:96px;background:var(--sh-navy-2);overflow:hidden}
-.sh-vh-live__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sh-vh-live__badge{position:absolute;top:5px;inset-inline-start:5px;z-index:2;display:inline-flex;align-items:center;gap:5px;padding:1px 6px;background:var(--sh-red);color:#fff;font-family:var(--sh-font);font-size:11.5px;font-weight:800;line-height:1.5}
-.sh-vh-live__dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:sh-pulse 1.4s ease-in-out infinite}
-.sh-vh-live__body{display:flex;flex-direction:column;gap:3px;min-width:0}
-.sh-vh-live__t{font-family:var(--sh-font);font-size:14px;font-weight:800;line-height:1.5}
-.sh-vh-live__m{font-size:12px;line-height:1.6;color:var(--sh-on-dark-72)}
-.sh-vh-live__v{font-family:var(--sh-font);font-size:11.5px;color:var(--sh-sky);font-variant-numeric:tabular-nums}
-.sh-vh-live__v b{font-weight:800}
-.sh-vh-live[data-off-air] .sh-vh-live__badge{background:var(--sh-on-dark-30)}
-.sh-vh-live[data-off-air] .sh-vh-live__dot{animation:none;opacity:.6}
-.sh-vh-live[data-off-air] .sh-vh-live__v{display:none}
+.sh-vx-pick:focus-visible,.sh-vx-slide:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
 
-/* ---- the programmes: the real posters, each with its latest clip ---- */
-.sh-vh-progs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
-.sh-vh-prog{display:flex;flex-direction:column;gap:5px;min-width:0;color:var(--sh-ink)}
-.sh-vh-prog__art{display:block;aspect-ratio:4/3;margin-bottom:7px;overflow:hidden;background:var(--sh-navy-2)}
-.sh-vh-prog__art img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-vh-prog__name{margin:0;font-family:var(--sh-font);font-size:16px;font-weight:800;line-height:1.4;color:var(--sh-navy);transition:color .16s ease}
-.sh-vh-prog__t{font-family:var(--sh-font);font-size:13.5px;font-weight:700;line-height:1.6;color:var(--sh-ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.sh-vh-prog__m{display:flex;flex-wrap:wrap;gap:4px 10px;font-family:var(--sh-font);font-size:11.5px;color:var(--sh-mute)}
-@media (hover:hover){.sh-vh-prog:hover .sh-vh-prog__art img{transform:scale(1.04)}.sh-vh-prog:hover .sh-vh-prog__name{color:var(--sh-blue)}}
+/* ---- the editor's picks: one large picture and four beside it, every frame
+   16:9. With a 12px gap, the lead column is half the row less a ninth of the
+   gap — then the lead's height is exactly two small frames and a gap, so both
+   sides end on one line and nothing is cropped to make them. ---- */
+.sh-vx-picks{display:grid;grid-template-columns:calc(50% - 1.333px) repeat(2,minmax(0,1fr));gap:12px;align-items:start;margin-top:18px}
+.sh-vx-pick--lead{grid-row:1 / span 2}
+.sh-vx-pick--lead .sh-vx-pick__body{gap:8px;padding:24px 28px 26px}
+.sh-vx-pick--lead .sh-vx-pick__t{font-size:clamp(20px,2vw,28px);line-height:1.45;-webkit-line-clamp:3;text-wrap:balance}
+.sh-vx-pick--lead .sh-vx-pick__m{font-size:13px}
+.sh-vx-pick--lead .sh-vx-chip{top:18px;inset-inline-start:18px;font-size:13px}
 
-/* ---- the library: one grid, two orders (js/app.js tabs) ---- */
-.sh-vh-lib{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 16px}
-.sh-vh-lib__t{grid-column:1;margin:0}
-.sh-vh-tabs{grid-column:2;display:flex;gap:2px}
-.sh-vh-tab{min-height:36px;padding:0 14px;border:0;border-bottom:2px solid transparent;background:none;color:var(--sh-mute);font-family:var(--sh-font);font-size:13px;font-weight:800;cursor:pointer;transition:color .16s ease,border-color .16s ease}
-.sh-vh-tab[aria-selected="true"]{color:var(--sh-navy);border-bottom-color:var(--sh-blue)}
-@media (hover:hover){.sh-vh-tab:hover{color:var(--sh-navy)}}
-.sh-vh-tab:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
-.sh-vh-empty,.sh-vh-grid{grid-column:1 / -1}
-.sh-vh-empty{margin-top:14px}
-.sh-vh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px;margin-top:16px}
-.sh-vh-card{display:flex;flex-direction:column;gap:8px;min-width:0;color:var(--sh-ink)}
-.sh-vh-card__pic{position:relative;display:block;aspect-ratio:16/9;margin-bottom:4px;background:var(--sh-navy-2);overflow:hidden}
-.sh-vh-card__pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-vh-card__t{font-family:var(--sh-font);font-size:15px;font-weight:700;line-height:1.6;color:var(--sh-navy);text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .16s ease}
-.sh-vh-rank{position:absolute;top:0;inset-inline-start:0;z-index:2;min-width:30px;height:26px;padding:0 8px;display:grid;place-items:center;background:var(--sh-navy);color:#fff;font-family:var(--sh-font);font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums}
-@media (hover:hover){.sh-vh-card:hover .sh-vh-card__pic img{transform:scale(1.04)}.sh-vh-card:hover .sh-vh-card__t{color:var(--sh-blue)}}
-.sh-vh-feat:focus-visible,.sh-vh-row:focus-visible,.sh-vh-prog:focus-visible,.sh-vh-card:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
+/* ---- the latest videos, and the most watched on navy: a picture, the title,
+   and under it where it comes from and when (no kicker above a title) ---- */
+.sh-vx-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px;margin:0;padding:0;list-style:none}
+.sh-vx-grid > li{min-width:0}
+.sh-vx-card{display:flex;flex-direction:column;gap:6px;min-width:0;height:100%;color:var(--sh-ink)}
+.sh-vx-card__pic{position:relative;display:block;aspect-ratio:16/9;margin-bottom:6px;overflow:hidden;background:var(--sh-navy-2)}
+.sh-vx-card__pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.sh-vx-card__t{font-family:var(--sh-font);font-size:16px;font-weight:700;line-height:1.6;color:var(--sh-navy);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-wrap:pretty;transition:color .16s ease}
+.sh-vx-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;font-family:var(--sh-font);font-size:12px;line-height:1.7;color:var(--sh-mute);font-variant-numeric:tabular-nums}
+.sh-vx-meta b{font-weight:700;color:var(--sh-blue)}
+.sh-vx-meta > * + *::before{content:"·";margin-inline-end:8px;color:var(--sh-mute-2)}
+@media (hover:hover){
+  .sh-vx-card:hover .sh-vx-card__pic img{transform:scale(1.04)}
+  .sh-vx-card:hover .sh-vx-card__t{color:var(--sh-blue)}
+  .sh-vx-card:hover .sh-vx-play{background:var(--sh-blue);border-color:var(--sh-blue)}
+}
+.sh-vx-card:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
+
+/* the page's one navy band (DESIGN.md, One Band Rule): drawn from inside the
+   container, so its columns stay on the page's lines */
+.sh-vx-band{margin-top:56px;padding:36px 0 48px;background:var(--sh-navy);color:#fff;box-shadow:0 0 0 100vmax var(--sh-navy);clip-path:inset(0 -100vmax)}
+.sh-vx-band .sh-vx-sec__t{color:#fff}
+@media (hover:hover){.sh-vx-band a.sh-vx-card:hover{color:#fff}}
+.sh-vx-band .sh-vx-card__t{color:#fff}
+.sh-vx-band .sh-vx-meta{color:var(--sh-on-dark-60)}
+.sh-vx-band .sh-vx-meta b{color:var(--sh-sky)}
+.sh-vx-band .sh-vx-meta > * + *::before{color:var(--sh-on-dark-30)}
+@media (hover:hover){.sh-vx-band .sh-vx-card:hover .sh-vx-card__t{color:var(--sh-sky)}}
+.sh-vx-band .sh-vx-card:focus-visible{outline-color:var(--sh-sky)}
+.sh-vx-rank{position:absolute;top:0;inset-inline-start:0;z-index:2;min-width:36px;height:30px;padding:0 9px;display:grid;place-items:center;background:var(--sh-blue);color:#fff;font-family:var(--sh-font);font-size:14px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+
+/* ---- a programme: its episodes on one row that slides (js/videohub.js).
+   The track is a native scroller, so a finger or a trackpad moves it too; the
+   two buttons and the page marks are for the pointer and the keyboard. ---- */
+.sh-vx-car__stage{position:relative}
+.sh-vx-car__track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 32px) / 3);gap:16px;margin:0;padding:0;list-style:none;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none}
+.sh-vx-car__track::-webkit-scrollbar{display:none}
+.sh-vx-car__track > li{min-width:0;scroll-snap-align:start}
+.sh-vx-car__btn{position:absolute;top:50%;z-index:3;display:grid;place-items:center;width:40px;height:56px;margin-top:-28px;padding:0;border:0;background:rgba(10,26,51,.84);color:#fff;font-size:15px;cursor:pointer;transition:background .16s ease,opacity .2s ease}
+.sh-vx-car__btn--prev{inset-inline-start:0}
+.sh-vx-car__btn--next{inset-inline-end:0}
+@media (hover:hover){.sh-vx-car__btn:hover{background:var(--sh-blue)}}
+.sh-vx-car__btn:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-vx-car__btn[disabled]{opacity:0;pointer-events:none}
+html[dir="ltr"] .sh-vx-car__btn .sh-i{transform:scaleX(-1)}   /* forward points the way the row reads */
+.sh-vx-car__dots{display:flex;justify-content:center;gap:2px;min-height:24px;margin-top:10px}
+.sh-vx-car__dot{position:relative;width:26px;height:24px;padding:0;border:0;background:none;cursor:pointer}
+.sh-vx-car__dot::before{content:"";position:absolute;inset:10px 4px;background:var(--color-border);transition:background .16s ease}
+.sh-vx-car__dot[aria-current="true"]::before{background:var(--sh-blue)}
+@media (hover:hover){.sh-vx-car__dot:hover::before{background:var(--sh-mute-2)}.sh-vx-car__dot[aria-current="true"]:hover::before{background:var(--sh-blue)}}
+.sh-vx-car__dot:focus-visible{outline:2px solid var(--sh-blue);outline-offset:0}
+.sh-vx-car__track:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
 
 /* ---- narrower screens ---- */
 @media (max-width:1024px){
-  .sh-vh-lead{grid-template-columns:minmax(0,1fr);gap:18px}
-  .sh-vh-live{flex:none;grid-template-columns:128px minmax(0,1fr);grid-template-rows:auto;align-items:center;gap:12px}
-  .sh-vh-live__pic{min-height:0;aspect-ratio:16/9}
-  /* five programmes become a rail that scrolls sideways, each one snapping to the start */
-  .sh-vh-progs{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(200px,30%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
-  .sh-vh-prog{scroll-snap-align:start}
-  .sh-vh-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sh-vx-picks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sh-vx-pick--lead{grid-column:1 / -1;grid-row:auto}
+  .sh-vx-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+  .sh-vx-car__track{grid-auto-columns:calc((100% - 16px) / 2)}
 }
-@media (max-width:760px){
-  .sh-vh-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
-  .sh-vh-card__t{font-size:14px}
-}
+@media (hover:none){.sh-vx-car__btn{display:none}}
 @media (max-width:640px){
-  .sh-vh-sec{margin-top:36px}
-  .sh-vh-lead{margin-top:18px}
-  .sh-vh-feat__t{font-size:clamp(18px,5.2vw,22px)}
-  .sh-vh-row,.sh-vh-live{grid-template-columns:112px minmax(0,1fr)}
-  .sh-vh-progs{grid-auto-columns:40%;gap:14px}   /* the third poster peeks past the edge: the rail reads as one that scrolls */
-  .sh-vh-prog__t{-webkit-line-clamp:3}
-  .sh-vh-lib{grid-template-columns:minmax(0,1fr)}
-  .sh-vh-tabs{grid-column:1;margin-top:6px}
-  /* the library reads as a list on a phone: picture beside the title */
-  .sh-vh-grid{grid-template-columns:minmax(0,1fr);gap:0;margin-top:6px}
-  .sh-vh-card{display:grid;grid-template-columns:132px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:12px;row-gap:4px;align-items:start;padding:12px 0;border-bottom:1px solid var(--color-border-soft)}
-  .sh-vh-card__pic{grid-column:1;grid-row:1 / span 2;margin:0}
-  .sh-vh-card .sh-vh-meta{grid-column:2;grid-row:1}
-  .sh-vh-card__t{grid-column:2;grid-row:2;font-size:14px}
+  .sh-vx-head{padding-top:16px}
+  .sh-vx-head__row{margin-top:4px}
+  /* the programmes stay on one line and slide under the thumb */
+  .sh-vx-rail{flex-wrap:nowrap;width:100%;overflow-x:auto;scrollbar-width:none;gap:0 18px}
+  .sh-vx-rail::-webkit-scrollbar{display:none}
+  .sh-vx-sec{margin-top:40px}
+  .sh-vx-sec__t{font-size:20px;margin-bottom:12px}
+  .sh-vx-picks{grid-template-columns:minmax(0,1fr);gap:0;margin-top:12px}
+  .sh-vx-pick--lead{margin-bottom:6px}
+  .sh-vx-pick--lead .sh-vx-pick__body{padding:14px 16px 16px;gap:6px}
+  .sh-vx-pick--lead .sh-vx-pick__t{font-size:20px}
+  .sh-vx-pick--lead .sh-vx-chip{top:12px;inset-inline-start:12px;font-size:12px}
+  .sh-vx-pick--lead .sh-vx-play{width:48px;height:48px;font-size:15px}
+  /* on a phone the four smaller picks, the latest and the most watched read
+     as rows: the picture beside its title */
+  .sh-vx-pick:not(.sh-vx-pick--lead){display:grid;grid-template-columns:132px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:12px;row-gap:4px;align-items:start;aspect-ratio:auto;padding:10px 0;overflow:visible;background:none;color:var(--sh-ink)}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-pick__pic{position:relative;inset:auto;grid-column:1;grid-row:1 / span 2;aspect-ratio:16/9;overflow:hidden;background:var(--sh-navy-2)}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-pick__pic::after{content:none}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-chip{position:static;grid-column:2;grid-row:1;justify-self:start;padding:0;background:none;color:var(--sh-blue);font-size:12px}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-pick__body{position:static;grid-column:2;grid-row:2;padding:0;gap:2px}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-pick__t{color:var(--sh-navy);font-size:14px;-webkit-line-clamp:3}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-pick__m{color:var(--sh-mute)}
+  .sh-vx-pick:not(.sh-vx-pick--lead) .sh-vx-play{width:30px;height:30px;font-size:10px}
+  .sh-vx-grid{grid-template-columns:minmax(0,1fr);gap:0}
+  .sh-vx-card{display:grid;grid-template-columns:132px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:12px;row-gap:4px;align-items:start;padding:10px 0}
+  .sh-vx-card__pic{grid-column:1;grid-row:1 / span 2;margin:0}
+  .sh-vx-card__t{grid-column:2;grid-row:1;font-size:14px}
+  .sh-vx-card .sh-vx-meta{grid-column:2;grid-row:2}
+  .sh-vx-card .sh-vx-play{width:30px;height:30px;font-size:10px}
+  .sh-vx-rank{min-width:28px;height:24px;padding:0 6px;font-size:12px}
+  .sh-vx-band{margin-top:44px;padding:28px 0 32px}
+  /* a programme row shows one episode and the edge of the next */
+  .sh-vx-car__track{grid-auto-columns:80%;gap:12px}
+  .sh-vx-slide__body{padding:10px 12px 12px}
+  .sh-vx-slide__t{font-size:14px}
+  .sh-vx-car__dots{display:none}
 }
-@media (pointer:coarse){.sh-vh-tab{min-height:44px}}
+@media (max-width:640px) and (hover:hover){
+  a.sh-vx-pick:not(.sh-vx-pick--lead):hover{color:var(--sh-ink)}
+  .sh-vx-pick:not(.sh-vx-pick--lead):hover .sh-vx-pick__t{color:var(--sh-blue)}
+}
 @media (prefers-reduced-motion:reduce){
-  .sh-vh-feat__pic img,.sh-vh-prog__art img,.sh-vh-card__pic img,.sh-vh-disc,.sh-vh-tab,.sh-vh-feat__t,.sh-vh-row__t,.sh-vh-prog__name,.sh-vh-card__t{transition:none}
-  .sh-vh-feat:hover .sh-vh-feat__pic img,.sh-vh-feat:hover .sh-vh-disc,.sh-vh-prog:hover .sh-vh-prog__art img,.sh-vh-card:hover .sh-vh-card__pic img{transform:none}
-  .sh-vh-live__dot{animation:none}
+  .sh-vx-rail__dot{animation:none}
+  .sh-vx-pick__pic img,.sh-vx-slide__pic img,.sh-vx-card__pic img,.sh-vx-play,.sh-vx-card__t,.sh-vx-car__btn,.sh-vx-car__dot::before{transition:none}
+  .sh-vx-pick:hover .sh-vx-pick__pic img,.sh-vx-slide:hover .sh-vx-slide__pic img,.sh-vx-card:hover .sh-vx-card__pic img,.sh-vx-pick--lead:hover .sh-vx-play{transform:none}
 }
 
 /* A press has to answer on a touch screen, where :hover never fires: the ground

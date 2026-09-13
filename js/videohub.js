@@ -1,22 +1,103 @@
-/* شهاب — مكتبة الفيديو (video.html).
+/* شهاب — الفيديو (video.html): the programme rows.
 
-   The live card beside the lead video keeps its viewers in step with the feed
-   (the same live-state the docked bar and the live modal read), and says so
-   when the channel is off air. The library's tabs are js/app.js tabs(), the
-   times js/ui.js, and the card opens the stream through js/livebox.js.
-
-   Hooks: [data-sh-vh-live] the card, [data-sh-vh-viewers] its count. */
+   Each [data-sh-car] is a native horizontal scroller ([data-sh-car-track]) with
+   two buttons ([data-sh-car-prev] / [data-sh-car-next]) and a strip of page
+   marks ([data-sh-car-dots]). A page is as many episodes as the row shows at
+   once: the buttons move one page, a mark jumps to its page, and both follow
+   the scroller when a finger or a trackpad moves it instead. The row reads the
+   way the page does — in Arabic "next" travels left, where scrollLeft runs
+   negative — and a reader who asked for less motion gets the jump, not the
+   glide. The pictures, the times and the live link need nothing from here. */
 (function () {
   'use strict';
-  var card = document.querySelector('[data-sh-vh-live]');
-  if (!card) return;
-  var num = card.querySelector('[data-sh-vh-viewers]');
-  function fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-  function paint(e) {
-    var d = (e && e.detail) || {};
-    if (num && typeof d.viewers === 'number') num.textContent = fmt(d.viewers);
-    if (typeof d.on_air === 'boolean') card.toggleAttribute('data-off-air', !d.on_air);
-  }
-  document.addEventListener('sh-feed:live-state', paint);
-  document.addEventListener('sh-feed:hello', paint);
+  var cars = document.querySelectorAll('[data-sh-car]');
+  if (!cars.length) return;
+  var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+  Array.prototype.forEach.call(cars, function (car) {
+    var track = car.querySelector('[data-sh-car-track]');
+    var prev = car.querySelector('[data-sh-car-prev]');
+    var next = car.querySelector('[data-sh-car-next]');
+    var dots = car.querySelector('[data-sh-car-dots]');
+    if (!track || !track.children.length) return;
+    var items = track.children;
+    var pages = 0, current = -1, queued = false;
+
+    function forward() { return getComputedStyle(track).direction === 'rtl' ? -1 : 1; }
+    // one episode's width and the gap after it, measured rather than assumed
+    function slot() {
+      var a = items[0].getBoundingClientRect();
+      if (items.length < 2) return a.width || 1;
+      return Math.abs(items[1].getBoundingClientRect().left - a.left) || a.width || 1;
+    }
+    function gap() { return parseFloat(getComputedStyle(track).columnGap) || 0; }
+    function perView() { return Math.max(1, Math.round((track.clientWidth + gap()) / slot())); }
+    function room() { return Math.max(0, track.scrollWidth - track.clientWidth); }
+    function at() { return Math.abs(track.scrollLeft); }
+    function pageAt() {
+      var x = at(), end = room();
+      if (end - x <= 2) return pages - 1;
+      return Math.min(pages - 1, Math.round(x / (perView() * slot())));
+    }
+    function go(page) {
+      page = Math.max(0, Math.min(pages - 1, page));
+      var x = Math.min(page * perView() * slot(), room());
+      track.scrollTo({ left: forward() * x, behavior: still && still.matches ? 'auto' : 'smooth' });
+    }
+    function label(i) {
+      return document.documentElement.lang === 'en'
+        ? 'Page ' + (i + 1) + ' of ' + pages
+        : 'الصفحة ' + (i + 1) + ' من ' + pages;
+    }
+
+    function build() {
+      var n = Math.max(1, Math.ceil(items.length / perView()));
+      if (n === pages) return;
+      pages = n;
+      current = -1;
+      if (!dots) return;
+      dots.textContent = '';
+      if (pages < 2) return;
+      for (var i = 0; i < pages; i++) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'sh-vx-car__dot';
+        b.setAttribute('data-sh-car-page', String(i));
+        b.setAttribute('aria-label', label(i));
+        dots.appendChild(b);
+      }
+    }
+
+    function paint() {
+      queued = false;
+      var x = at(), end = room();
+      if (prev) prev.disabled = x <= 2;
+      if (next) next.disabled = end - x <= 2;
+      var page = pageAt();
+      if (page === current) return;
+      current = page;
+      if (!dots) return;
+      Array.prototype.forEach.call(dots.children, function (d, i) {
+        d.setAttribute('aria-current', i === page ? 'true' : 'false');
+      });
+    }
+    function schedule() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(paint);
+    }
+
+    if (prev) prev.addEventListener('click', function () { go(pageAt() - 1); });
+    if (next) next.addEventListener('click', function () { go(pageAt() + 1); });
+    if (dots) dots.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-sh-car-page]');
+      if (b) go(parseInt(b.getAttribute('data-sh-car-page'), 10));
+    });
+    track.addEventListener('scroll', schedule, { passive: true });
+
+    function refresh() { build(); current = -1; paint(); }
+    if (window.ResizeObserver) new ResizeObserver(refresh).observe(track);
+    else window.addEventListener('resize', refresh);
+    refresh();
+  });
 })();
