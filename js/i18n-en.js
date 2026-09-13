@@ -1045,6 +1045,7 @@ window.SH_I18N_EN = {
   "بيانات تقنية أساسية يرسلها متصفحك عند الزيارة، مثل نوع المتصفح والجهاز والصفحات التي زرتها.": "Basic technical data your browser sends when you visit, such as browser type, device and the pages you viewed.",
   "بيت حانون": "Beit Hanoun",
   "بيت لحم": "Bethlehem",
+  "بيروت": "Beirut",
   "تأسّست شهاب في يناير 2007 لتغطية الشأن الفلسطيني بالعربية، وبدأت من الخبر المكتوب قبل أن تصبح غرفة أخبار كاملة تعمل على مدار الساعة.": "Shehab was founded in January 2007 to cover Palestinian affairs in Arabic. It began with written news and grew into a full newsroom working around the clock.",
   "تأكيد صغير — داخل الصفحة": "A small confirmation, inside the page",
   "تابع التغطية الحية": "Follow the live coverage",
