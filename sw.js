@@ -12,13 +12,13 @@
    locally) and opens its url on click. Update flow: the page posts
    SKIP_WAITING when the reader accepts the new version. */
 'use strict';
-var VERSION = 'sh-256';
+var VERSION = 'sh-257';
 var SHELL = [
   'index.html', 'offline.html', 'manifest.webmanifest',
   'css/fonts.css', 'css/transition.css', 'css/tokens.css', 'css/base.css', 'css/header.css', 'css/widgets.css',
   'css/footer.css', 'css/components.css', 'css/chrome.css', 'css/feed.css', 'css/mark.css', 'css/responsive.css',
   'css/brief.css', 'css/ltr.css', 'css/pages/index.css',
-  'js/ui.js', 'js/lang.js', 'js/i18n-en.js', 'js/chrome.js', 'js/feed.js', 'js/app.js', 'js/responsive.js', 'js/widgets.js', 'js/brief.js',
+  'js/ui.js', 'js/lang.js', 'js/i18n-en.js', 'js/chrome.js', 'js/feed.js', 'js/app.js', 'js/responsive.js', 'js/widgets.js', 'js/livebox.js', 'js/brief.js',
   'js/push.js', 'js/searchbox.js',
   'assets/images/icons.svg', 'assets/images/logo-white.png', 'assets/images/favicon.svg', 'assets/images/icon-192.png',
   'assets/images/mark-sheen.svg', 'assets/images/mark-arrow.svg',

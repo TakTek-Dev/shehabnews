@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://shehabnews.com/about.html">
 <meta name="theme-color" content="#1b5aa6">
 <script>(function(){try{var t=(localStorage.getItem("sh-type")||"").replace(/"/g,"");if(t==="sm"||t==="lg")document.documentElement.setAttribute("data-sh-type",t)}catch(e){}})()</script>
-<script>(function(){try{if(localStorage.getItem("sh-lang")==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";h.setAttribute("data-i18n-wait","");document.write('<script src="js/i18n-en.js?v=256"><\/script>');setTimeout(function(){h.removeAttribute("data-i18n-wait")},1500)}}catch(e){}})()</script>
+<script>(function(){try{if(localStorage.getItem("sh-lang")==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";h.setAttribute("data-i18n-wait","");document.write('<script src="js/i18n-en.js?v=257"><\/script>');setTimeout(function(){h.removeAttribute("data-i18n-wait")},1500)}}catch(e){}})()</script>
 <meta name="color-scheme" content="light">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
@@ -32,22 +32,22 @@
 <link rel="preload" href="assets/fonts/almarai-700-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/almarai-800-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/noto-naskh-arabic-arabic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css?v=256">
-<link rel="stylesheet" href="css/transition.css?v=256">
-<link rel="stylesheet" href="css/tokens.css?v=256">
-<link rel="stylesheet" href="css/base.css?v=256">
-<link rel="stylesheet" href="css/header.css?v=256">
-<link rel="stylesheet" href="css/widgets.css?v=256">
-<link rel="stylesheet" href="css/footer.css?v=256">
-<link rel="stylesheet" href="css/components.css?v=256">
-<link rel="stylesheet" href="css/chrome.css?v=256">
-<link rel="stylesheet" href="css/feed.css?v=256">
-<link rel="stylesheet" href="css/pages/about.css?v=256">
-<link rel="stylesheet" href="css/mark.css?v=256">
-<link rel="stylesheet" href="css/responsive.css?v=256">
-<link rel="stylesheet" href="css/brief.css?v=256">
-<link rel="stylesheet" href="css/type.css?v=256">
-<link rel="stylesheet" href="css/ltr.css?v=256">
+<link rel="stylesheet" href="css/fonts.css?v=257">
+<link rel="stylesheet" href="css/transition.css?v=257">
+<link rel="stylesheet" href="css/tokens.css?v=257">
+<link rel="stylesheet" href="css/base.css?v=257">
+<link rel="stylesheet" href="css/header.css?v=257">
+<link rel="stylesheet" href="css/widgets.css?v=257">
+<link rel="stylesheet" href="css/footer.css?v=257">
+<link rel="stylesheet" href="css/components.css?v=257">
+<link rel="stylesheet" href="css/chrome.css?v=257">
+<link rel="stylesheet" href="css/feed.css?v=257">
+<link rel="stylesheet" href="css/pages/about.css?v=257">
+<link rel="stylesheet" href="css/mark.css?v=257">
+<link rel="stylesheet" href="css/responsive.css?v=257">
+<link rel="stylesheet" href="css/brief.css?v=257">
+<link rel="stylesheet" href="css/type.css?v=257">
+<link rel="stylesheet" href="css/ltr.css?v=257">
 <script type="speculationrules">{"prerender": [{"where": {"and": [{"href_matches": "/*.html"}, {"not": {"href_matches": ["/live.html", "/reels.html", "/shorts.html", "/video-watch.html", "/now.html", "/map.html"]}}]}, "eagerness": "moderate"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "AboutPage", "name": "من نحن", "url": "https://shehabnews.com/about.html", "mainEntity": {"@type": "NewsMediaOrganization", "name": "وكالة شهاب للأنباء", "url": "https://shehabnews.com/", "logo": {"@type": "ImageObject", "url": "https://shehabnews.com/assets/images/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://www.facebook.com/sahpp2023", "https://twitter.com/ShehabAgency", "https://www.instagram.com/shehabagency/", "https://www.youtube.com/channel/UChvBXfexWtP5gdGZespJnZw", "https://t.me/ShehabTelegram", "https://www.tiktok.com/@shehab_news"]}}]}</script>
 </head>
@@ -88,7 +88,7 @@
       <div class="sh-header__inner">
         <div class="sh-masthead">
           <div class="sh-masthead__lead">
-            <a href="live.html" class="sh-live" data-sh-live-link><svg class="sh-i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#s-tower-broadcast"></use></svg><span data-i18n="live">بث مباشر</span></a>
+            <a href="live.html" class="sh-live" data-sh-live-link data-sh-live-open><svg class="sh-i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#s-tower-broadcast"></use></svg><span data-i18n="live">بث مباشر</span></a>
             <a href="now.html" class="sh-nowlink" data-sh-now-link><span class="sh-nowlink__dot" aria-hidden="true"></span><span data-i18n="now">الآن</span></a>
           </div>
           <a href="index.html" class="sh-masthead__logo" aria-label="شهاب — الرئيسية" data-i18n-aria="logo">
@@ -136,7 +136,7 @@
               <div class="sh-drop sh-nav__drop">
                 <span class="sh-nav__drop-rule"></span>
                 <a href="video.html" class="sh-nav__drop-link" data-i18n="nav.video">الفيديو</a>
-                <a href="live.html" class="sh-nav__drop-link" data-i18n="nav.livestream">البث المباشر</a>
+                <a href="live.html" class="sh-nav__drop-link" data-sh-live-open data-i18n="nav.livestream">البث المباشر</a>
                 <a href="reels.html" class="sh-nav__drop-link" data-i18n="nav.reels">ريلز شهاب</a>
                 <a href="shorts.html" class="sh-nav__drop-link" data-i18n="nav.shorts">شورتس</a>
                 <a href="photos.html" class="sh-nav__drop-link" data-i18n="nav.photos">الصور</a>
@@ -455,11 +455,11 @@
   </div>
 </footer>
 <aside class="sh-livedock" data-sh-livedock hidden aria-label="البث المباشر الآن" data-i18n-aria="dock.aria">
-  <a href="live.html" class="sh-livedock__thumb" style="background-image:url(assets/images/live-poster.webp)" aria-hidden="true" tabindex="-1"><span class="sh-livedock__badge" data-i18n="dock.live">مباشر</span></a>
+  <a href="live.html" class="sh-livedock__thumb" data-sh-live-open aria-hidden="true" tabindex="-1"><img src="assets/images/live-poster.webp" alt="" loading="lazy" decoding="async"><span class="sh-livedock__badge" data-i18n="dock.live">مباشر</span><span class="sh-livedock__play"><i><svg class="sh-i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#s-play"></use></svg></i></span></a>
   <span class="sh-livedock__body">
     <span class="sh-livedock__kicker" data-i18n="dock.onair">على الهواء الآن</span>
-    <a href="live.html" class="sh-livedock__title" data-sh-livedock-title data-i18n="dock.title">شهاب مباشر — بث من غزة</a>
-    <span class="sh-livedock__meta" data-i18n="dock.watching"><b data-sh-livedock-viewers></b> يشاهدون · <a href="live.html" data-i18n="dock.watch">شاهد البث</a></span>
+    <a href="live.html" class="sh-livedock__title" data-sh-live-open data-sh-livedock-title data-i18n="dock.title">شهاب مباشر — بث من غزة</a>
+    <span class="sh-livedock__meta" data-i18n="dock.watching"><b data-sh-livedock-viewers></b> يشاهدون · <a href="live.html" data-sh-live-open data-i18n="dock.watch">شاهد البث</a></span>
   </span>
   <button type="button" class="sh-livedock__close" data-sh-livedock-close aria-label="إغلاق" data-i18n-aria="ticker.close"><svg class="sh-i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#s-xmark"></use></svg></button>
 </aside>
@@ -476,16 +476,17 @@
 </dialog>
 <!-- /sh:footer -->
 </div>
-<script src="js/ui.js?v=256" defer></script>
-<script src="js/lang.js?v=256" defer></script>
-<script src="js/chrome.js?v=256" defer></script>
-<script src="js/feed.js?v=256" defer></script>
-<script src="js/app.js?v=256" defer></script>
-<script src="js/responsive.js?v=256" defer></script>
-<script src="js/widgets.js?v=256" defer></script>
-<script src="js/brief.js?v=256" defer></script>
-<script src="js/searchbox.js?v=256" defer></script>
-<script src="js/push.js?v=256" defer></script>
-<script src="js/pwa.js?v=256" defer></script>
+<script src="js/ui.js?v=257" defer></script>
+<script src="js/lang.js?v=257" defer></script>
+<script src="js/chrome.js?v=257" defer></script>
+<script src="js/feed.js?v=257" defer></script>
+<script src="js/app.js?v=257" defer></script>
+<script src="js/responsive.js?v=257" defer></script>
+<script src="js/widgets.js?v=257" defer></script>
+<script src="js/livebox.js?v=257" defer></script>
+<script src="js/brief.js?v=257" defer></script>
+<script src="js/searchbox.js?v=257" defer></script>
+<script src="js/push.js?v=257" defer></script>
+<script src="js/pwa.js?v=257" defer></script>
 </body>
 </html>

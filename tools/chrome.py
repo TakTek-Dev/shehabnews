@@ -22,7 +22,7 @@ import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-V = '256'
+V = '257'
 SITE = 'https://shehabnews.com/'
 ORG = 'وكالة شهاب للأنباء'
 OG_IMG = SITE + 'assets/images/og-default.jpg'
@@ -59,7 +59,7 @@ PAGES = {
     'saved':       ('المحفوظات', 'المواد التي حفظتها لتقرأها لاحقًا.', 'page', None),
 }
 NO_CHROME = {'shorts', 'offline', 'system-states'}   # immersive / standalone pages keep their own frame
-CORE_SCRIPTS = ['js/ui.js', 'js/lang.js', 'js/chrome.js', 'js/feed.js', 'js/app.js', 'js/responsive.js', 'js/widgets.js', 'js/brief.js', 'js/searchbox.js', 'js/push.js', 'js/pwa.js']
+CORE_SCRIPTS = ['js/ui.js', 'js/lang.js', 'js/chrome.js', 'js/feed.js', 'js/app.js', 'js/responsive.js', 'js/widgets.js', 'js/livebox.js', 'js/brief.js', 'js/searchbox.js', 'js/push.js', 'js/pwa.js']
 PRELOAD_FONTS = ['assets/fonts/almarai-400-arabic.woff2', 'assets/fonts/almarai-700-arabic.woff2',
                  'assets/fonts/almarai-800-arabic.woff2', 'assets/fonts/noto-naskh-arabic-arabic.woff2']
 NO_PRERENDER = ['/live.html', '/reels.html', '/shorts.html', '/video-watch.html', '/now.html', '/map.html']

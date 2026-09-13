@@ -127,6 +127,22 @@ phone. The homepage came down from 9.1MB to about 1.2MB. View Transitions
 replaced the transition curtain, which is now opt-in through
 `<html data-sh-veil>`. Zero `href="#"` on the route pages.
 
+## The live stream — a modal, not a page
+
+Every «بث مباشر» entry — the masthead button, the nav's «البث المباشر» and the
+docked live bar at the foot of every page — opens the stream in place
+(`js/livebox.js`): a navy-veiled modal with the same Vidstack player, sources
+and live/DVR logic as `live.html`, folded into a bar of two lines. The `href`
+stays as the no-JS fallback, and on `live.html` itself nothing is intercepted.
+
+- The vendor (three sheets, two scripts) is fetched on the first open only,
+  so a page that never opens the stream pays nothing for it.
+- Escape closes, Tab stays inside, focus returns to the opener; closing
+  removes the player so the stream stops pulling.
+- `#live` in any page's URL opens it on load — that is what «نسخ رابط البث»
+  copies — and the feed's `live-state` keeps the title and viewers fresh.
+- Styles live in `css/feed.css` (`.sh-livebox`), next to the dock.
+
 ## Running it locally
 
 Serve the folder over plain HTTP; do not open the file by double-clicking it:
