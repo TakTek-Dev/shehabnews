@@ -133,21 +133,25 @@
 
   /* ------------------------------------------------------------- scenes -- */
   /* the sticky picture pane follows the reading: the last [data-sh-scene-at]
-     above the viewport's upper half names the picture; CSS does the crossfade */
+     above the viewport's upper half names the picture; CSS does the crossfade.
+     It turns by hand too — the discs on the stage ([data-sh-pane-prev/next]),
+     the blades under it ([data-sh-pane-go]) and the arrow keys while the pane
+     has the focus — and a picture turned by hand holds until the reading
+     moves to another chapter. */
   function scenes() {
     var pane = document.querySelector('[data-sh-pane]');
     if (!pane || !art) return;
     var ats = [].slice.call(art.querySelectorAll('[data-sh-scene-at]'));
     var num = pane.querySelector('[data-sh-pane-n]');
     var shots = [].slice.call(pane.querySelectorAll('.sh-pane__shot'));
-    if (!ats.length) return;
+    var marks = [].slice.call(pane.querySelectorAll('[data-sh-pane-go]'));
+    var live = document.querySelector('[data-sh-announce]');
+    if (!ats.length || !shots.length) return;
+    var order = shots.map(function (s) { return s.getAttribute('data-sh-shot'); });
     var mq = window.matchMedia('(min-width: 1000px)');
-    var cur = null, ticking = false;
-    function paint() {
-      ticking = false;
-      if (!mq.matches) return;
-      var line = window.innerHeight * 0.45, n = ats[0].getAttribute('data-sh-scene-at');
-      ats.forEach(function (el) { if (el.getBoundingClientRect().top < line) n = el.getAttribute('data-sh-scene-at'); });
+    var EN = document.documentElement.dir === 'ltr';
+    var cur = null, ticking = false, held = null, heldAt = null;
+    function show(n, byHand) {
       if (n === cur) return;
       cur = n;
       pane.setAttribute('data-scene', n);
@@ -157,7 +161,39 @@
         if (on) { s.removeAttribute('tabindex'); s.removeAttribute('aria-hidden'); }
         else { s.setAttribute('tabindex', '-1'); s.setAttribute('aria-hidden', 'true'); }
       });
+      marks.forEach(function (b) { b.setAttribute('aria-current', String(b.getAttribute('data-sh-pane-go') === n)); });
+      if (byHand && live) live.textContent = EN ? 'Picture ' + n + ' of ' + order.length : 'الصورة ' + n + ' من ' + order.length;
     }
+    // the picture the reading names right now
+    function reading() {
+      var line = window.innerHeight * 0.45, n = ats[0].getAttribute('data-sh-scene-at');
+      ats.forEach(function (el) { if (el.getBoundingClientRect().top < line) n = el.getAttribute('data-sh-scene-at'); });
+      return n;
+    }
+    function paint() {
+      ticking = false;
+      if (!mq.matches) return;
+      var n = reading();
+      if (held !== null) { if (n === heldAt) return; held = null; }
+      show(n);
+    }
+    function turn(step) {
+      var i = order.indexOf(cur), k = (i + step + order.length) % order.length;
+      held = order[k]; heldAt = reading();
+      show(held, true);
+    }
+    pane.addEventListener('click', function (e) {
+      var b;
+      if (e.target.closest('[data-sh-pane-next]')) { e.preventDefault(); turn(1); }
+      else if (e.target.closest('[data-sh-pane-prev]')) { e.preventDefault(); turn(-1); }
+      else if ((b = e.target.closest('[data-sh-pane-go]'))) { e.preventDefault(); held = b.getAttribute('data-sh-pane-go'); heldAt = reading(); show(held, true); }
+    });
+    // forward is leftward on this RTL page, rightward in English
+    pane.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      turn((e.key === 'ArrowLeft') !== EN ? 1 : -1);
+    });
     function tick() { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }
     window.addEventListener('scroll', tick, { passive: true });
     window.addEventListener('resize', tick);
