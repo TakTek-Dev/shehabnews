@@ -25,7 +25,7 @@
     'live': 'Live',
     'now': 'Now',
     'brief': 'Audio brief',
-    'search.ph': 'Search Shehab',
+    'search.ph': 'Search Shehab', 'sx.results': 'results',
     'search.btn': 'Search',
     'logo': 'Shehab — Home',
     // nav

@@ -21,7 +21,9 @@
    [data-sh-sf-quick="1|7|30|year"], [data-sh-ssort], [data-sh-sf-applied],
    [data-sh-sf-clear]; [data-sh-pager-list] > [data-sh-page] >
    a.sh-search-search-body__a-1, each result carrying data-sh-section and a
-   <time data-sh-ago> (or datetime). */
+   <time data-sh-ago> (or datetime). Under the results, [data-sh-sx-year] links
+   carry the query to the archive and [data-sh-sx-q] marks the topic being
+   read; the rail's height goes to --sh-rail-h for its pinning. */
 (function () {
   'use strict';
   var root = document.querySelector('[data-sh-search-page]');
@@ -37,7 +39,7 @@
   var params = new URLSearchParams(location.search);
   var q = (params.get('q') || '').trim();
   var input = root.querySelector('[data-sh-search-q]');
-  var term = root.querySelector('[data-sh-search-term]');
+  var terms = root.querySelectorAll('[data-sh-search-term]');
   var count = root.querySelector('[data-sh-search-count]');
   var list = root.querySelector('[data-sh-pager-list]');
   var items = list ? [].slice.call(list.querySelectorAll('a.sh-search-search-body__a-1, a.sh-search-featured-result__a-1')) : [];
@@ -51,7 +53,7 @@
 
   if (input && q) input.value = q;
   var shownQ = q || (input && input.value) || 'غزة';
-  if (term) term.textContent = '«' + shownQ + '»';
+  [].forEach.call(terms, function (el) { el.textContent = '«' + shownQ + '»'; });
   document.title = (q ? 'نتائج البحث عن «' + q + '»' : 'البحث') + ' | وكالة شهاب للأنباء';
 
   /* each result names its section (data-sh-section); its kind comes from the
@@ -246,6 +248,17 @@
   }
   if (foldBtn) foldBtn.addEventListener('click', function () { fold(bar.hasAttribute('data-collapsed')); });
   if (narrow && narrow.addEventListener) narrow.addEventListener('change', function () { fold(active()); });
+
+  /* ---- the years take the query to the archive; the topic being read is
+     marked in «الأكثر بحثًا»; the rail tells its CSS how tall it is ---- */
+  if (q) [].forEach.call(root.querySelectorAll('[data-sh-sx-year]'), function (a) {
+    a.href = 'archive.html?q=' + encodeURIComponent(q) + '&year=' + a.getAttribute('data-sh-sx-year');
+  });
+  [].forEach.call(root.querySelectorAll('[data-sh-sx-q]'), function (a) {
+    if (a.getAttribute('data-sh-sx-q') === shownQ) a.setAttribute('aria-current', 'true');
+  });
+  var rail = root.querySelector('.sh-search-search-rail__aside-1');
+  if (rail && window.ResizeObserver) new ResizeObserver(function () { rail.style.setProperty('--sh-rail-h', rail.offsetHeight + 'px'); }).observe(rail);
 
   read();
   fold(active());

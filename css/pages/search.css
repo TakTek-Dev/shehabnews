@@ -47,50 +47,12 @@ input::placeholder{color:var(--sh-mute)}
 .sh-search-pagination__span-1{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--sh-mute)}
 .sh-search-pagination__a-3{display:inline-flex;align-items:center;gap:7px;color:var(--sh-blue);padding:8px 14px}
 @media (hover:hover){.sh-search-pagination__a-3:hover{gap:11px}}
-.sh-search-search-rail__aside-1{align-self:start;position:sticky;top:24px}
-.sh-search-search-rail__div-1{display:flex;flex-wrap:wrap;gap:0 18px;padding-top:12px;font-size:12px;font-weight:700;font-family:var(--sh-font)}
-.sh-search-search-rail__div-2{display:flex;align-items:center;justify-content:space-between;background:var(--sh-navy);color:#fff;padding:10px 14px}
-.sh-search-search-rail__h2-1{gap:9px}
-.sh-search-search-rail__span-1{width:6px;height:6px;background:var(--sh-red);border-radius:50%;animation:sh-pulse 1.6s ease-in-out infinite}
-.sh-search-search-rail__a-1{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--sh-sky);font-weight:700}
-@media (hover:hover){.sh-search-search-rail__a-1:hover{color:#fff}}
-.sh-search-search-rail__div-3{border-inline-start:1px solid var(--sh-hair-4);margin-inline-start:2px}
-.sh-search-search-rail__span-2{color:var(--sh-red);font-weight:700}
-.sh-search-search-rail__a-2{display:block;padding:13px 0;border-bottom:1px solid var(--color-border-soft)}
-@media (hover:hover){.sh-search-search-rail__a-2:hover{color:var(--sh-blue)}}
-.sh-search-search-rail__span-3{display:block;font-size:11.5px;color:var(--sh-blue);font-weight:700}
-.sh-search-search-rail__span-4{display:block;font-family:var(--sh-font);font-size:13px;font-weight:700;line-height:1.7;margin-top:5px;color:var(--sh-ink)}
-.sh-search-search-by-date__section-1{margin-top:44px;padding-top:26px;border-top:1px solid var(--sh-hair-2)}
-.sh-search-search-by-date__div-1{display:flex;align-items:baseline;justify-content:space-between}
-.sh-search-search-by-date__div-2{position:relative;margin-top:28px}
-.sh-search-search-by-date__span-1{position:absolute;top:9px;inset-inline:0;height:1px;background:var(--sh-hair-2)}
-.sh-search-search-by-date__span-2{position:absolute;top:6px;inset-inline-start:0;width:7px;height:7px;background:var(--sh-blue);transform:rotate(45deg)}
-.sh-search-search-by-date__div-3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 28px}
-.sh-search-search-by-date__span-3{position:absolute;top:5px;inset-inline-start:0}
-.sh-search-search-by-date__span-4{display:block;font-family:var(--sh-font);font-size:26px;font-weight:800;color:var(--sh-navy);line-height:.9;font-variant-numeric:tabular-nums}
-/* the page head is the one navy band on this page; the strip is a tinted block */
-.sh-search-discovery-strip__section-1{position:relative;background:var(--color-surface-soft);color:var(--sh-ink);margin-top:44px;padding:30px 32px 34px;overflow:hidden}
-.sh-search-discovery-strip__span-1{display:none}
-.sh-search-discovery-strip__span-2{display:none}
-.sh-search-discovery-strip__div-1{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
-.sh-search-discovery-strip__span-3{display:none}
-.sh-search-discovery-strip__h2-1{margin:8px 0 0}
-.sh-search-discovery-strip__span-4{font-size:11.5px;color:var(--sh-mute)}
-/* the shared eyebrow is sky for dark grounds; on the tint it takes the pointer
-   blue, and drops the tracking the type contract forbids */
-.sh-search-discovery-strip__section-1 .sh-eyebrow{color:var(--sh-blue)}
-.sh-search-discovery-strip__div-2{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 28px;margin-top:24px}
-.sh-search-discovery-strip__a-1{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--color-border-soft);color:var(--sh-ink)}
-@media (hover:hover){.sh-search-discovery-strip__a-1:hover{color:var(--sh-blue)}}
-.sh-search-discovery-strip__span-5{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:15px;font-weight:800}
-.sh-search-discovery-strip__span-6{font-size:11.5px;color:var(--sh-mute);font-variant-numeric:tabular-nums}
-.sh-search-search-closing__div-1{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;margin-top:44px;padding:26px 0;}
-.sh-search-search-closing__div-2{display:flex;align-items:flex-start;gap:14px}
-.sh-search-search-closing__span-1{display:block;font-family:var(--sh-font);font-size:17px;font-weight:800;color:var(--sh-navy)}
-.sh-search-search-closing__span-2{display:block;font-family:var(--sh-serif);font-size:13px;color:var(--sh-ink-2);margin-top:5px;line-height:1.8}
-.sh-search-search-closing__a-1{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--color-border);color:var(--sh-navy);font-family:var(--sh-font);font-size:13px;font-weight:800;padding:11px 26px}
-@media (hover:hover){.sh-search-search-closing__a-1:hover{background:var(--sh-navy);color:#fff;border-color:var(--sh-navy);gap:18px}}
-.sh-search-may-interest-you__section-1{padding:36px 0 48px;margin-top:36px;border-top:1px solid var(--sh-hair-2)}
+/* the rail pins under the compact header (the Sticky Offset Rule); a rail
+   taller than the window pins by its foot instead — js/search.js writes its
+   height to --sh-rail-h — so its last widget is never out of reach */
+.sh-search-search-rail__aside-1{align-self:start;position:sticky;top:min(calc(var(--sh-compact-h,100px) + 26px),calc(100vh - var(--sh-rail-h,0px) - 24px))}
+@media (max-width:1024px){.sh-search-search-rail__aside-1{position:static}}
+.sh-search-may-interest-you__section-1{margin-top:48px;padding:0 0 40px}   /* the title and its mark carry the section: no rule, one gap */
 .sh-search-may-interest-you__div-1{display:flex;align-items:baseline;justify-content:space-between}
 .sh-search-may-interest-you__a-1{color:var(--sh-blue)}
 @media (hover:hover){.sh-search-may-interest-you__a-1:hover{color:var(--sh-blue)}}
@@ -105,7 +67,6 @@ input::placeholder{color:var(--sh-mute)}
 .sh-search-may-interest-you__span-4 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .sh-search-may-interest-you__span-5{position:absolute;inset:0}
 .sh-search-may-interest-you__span-5 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-.sh-rail__link[aria-pressed="true"]{background:var(--sh-blue);color:#fff}
 .sh-search__empty{margin:24px 0;padding:38px 22px;text-align:center;background:var(--color-surface-soft);font-family:var(--sh-font);font-weight:700;color:var(--sh-mute)}
 .sh-search__empty[hidden]{display:none}
 
@@ -118,7 +79,6 @@ input::placeholder{color:var(--sh-mute)}
   }
 }
 
-@media (prefers-reduced-motion:reduce){.sh-search-search-rail__span-1{animation:none}}
 
 /* A press has to answer on a touch screen, where :hover never fires: the ground
    steps to navy for as long as the control is held. No transform and no radius —
@@ -194,3 +154,63 @@ body[data-sh-page="search"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):a
   .sh-sf__chip,.sh-sf__quick button,.sh-sf__sort,.sh-sf__clear,.sh-sf__date input{min-height:44px}
 }
 @media (pointer:coarse){.sh-sf__chip,.sh-sf__quick button,.sh-sf__sort,.sh-sf__clear,.sh-sf__date input{min-height:44px}}
+
+/* ---- the rail's sections: the header nav's own names and links as tinted
+   tiles, two to a row; navy under the pointer ---- */
+.sh-sr__all{padding:0;color:var(--sh-blue);font-size:11.5px}
+.sh-sr__secs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 0;padding:0;list-style:none}
+.sh-sr__sec{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:0 12px;background:var(--color-surface-soft);color:var(--sh-navy);font-family:var(--sh-font);font-size:13px;font-weight:800;line-height:1.3;transition:background .16s ease,color .16s ease}
+.sh-sr__sec .sh-more__arrow{color:var(--sh-blue);transition:color .16s ease}
+@media (hover:hover){a.sh-sr__sec:hover{background:var(--sh-navy);color:#fff}a.sh-sr__sec:hover .sh-more__arrow{color:#fff}}   /* a:hover would paint the label blue on navy */
+.sh-sr__sec:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+
+/* ---- the rail's files: the real cover, the title, the month of the last addition ---- */
+.sh-sr__file{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
+.sh-sr__file:last-child{border-bottom:0}
+.sh-sr__cover{position:relative;display:block;aspect-ratio:16/10;background:var(--sh-navy-2);overflow:hidden}
+.sh-sr__cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.sh-sr__fbody{display:flex;flex-direction:column;gap:4px;min-width:0}
+.sh-sr__ftitle{font-family:var(--sh-font);font-size:13.5px;font-weight:800;line-height:1.55;color:var(--sh-navy);text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .16s ease}
+.sh-sr__fmeta{font-family:var(--sh-font);font-size:11.5px;color:var(--sh-mute);font-variant-numeric:tabular-nums}
+@media (hover:hover){.sh-sr__file:hover .sh-sr__ftitle{color:var(--sh-blue)}.sh-sr__file:hover .sh-sr__cover img{transform:scale(1.04)}}
+.sh-sr__file:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+
+/* ---- under the results: the query across the years beside what readers search
+   for most — two columns on the body grid's own tracks, so the edges are the
+   results' and the rail's. A bar is its year's count against the largest
+   year (--v in the markup); rows are 40px in both columns so they line up. ---- */
+.sh-sx{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px 56px;margin-top:48px;align-items:start}
+.sh-sx__col{min-width:0}
+.sh-sx__head{align-items:center;min-height:38px;padding-bottom:6px}
+.sh-sx__head .sh-section__title{flex:1 1 auto;min-width:0}
+.sh-sx__meta{font-family:var(--sh-font);font-size:12px;color:var(--sh-mute);white-space:nowrap}
+.sh-sx__meta b{color:var(--sh-navy);font-weight:800;font-variant-numeric:tabular-nums}
+.sh-sx__more{padding:0;color:var(--sh-blue)}
+.sh-sx__years,.sh-sx__qs{margin:0;padding:0;list-style:none}
+.sh-sx__yr{display:grid;grid-template-columns:112px minmax(0,1fr) 88px;align-items:center;gap:16px;min-height:40px;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
+.sh-sx__y{font-family:var(--sh-font);font-size:16px;font-weight:800;color:var(--sh-navy);font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .16s ease}
+.sh-sx__y small{margin-inline-start:6px;font-size:11.5px;font-weight:700;color:var(--sh-mute)}
+.sh-sx__track{display:block;height:8px;background:var(--color-border-soft)}
+.sh-sx__fill{display:block;width:var(--v,0);height:100%;background:var(--sh-navy);transition:background .16s ease}
+.sh-sx__n{font-family:var(--sh-font);font-size:12px;color:var(--sh-mute);text-align:end;white-space:nowrap}
+.sh-sx__n b{color:var(--sh-navy);font-weight:800;font-variant-numeric:tabular-nums}
+@media (hover:hover){.sh-sx__yr:hover .sh-sx__y,.sh-sx__yr:hover .sh-sx__n b{color:var(--sh-blue)}.sh-sx__yr:hover .sh-sx__fill{background:var(--sh-blue)}}
+.sh-sx__qs{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+.sh-sx__q{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:40px;border-bottom:1px solid var(--color-border-soft);font-family:var(--sh-font);font-size:13.5px;font-weight:800;color:var(--sh-navy)}
+.sh-sx__q b{font-size:11.5px;font-weight:700;color:var(--sh-mute);font-variant-numeric:tabular-nums}
+.sh-sx__q[aria-current="true"],.sh-sx__q[aria-current="true"] b{color:var(--sh-blue)}
+@media (hover:hover){.sh-sx__q:hover{color:var(--sh-blue)}}
+.sh-sx__yr:focus-visible,.sh-sx__q:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+@media (max-width:1024px){.sh-sx{grid-template-columns:minmax(0,1fr);gap:32px}}
+@media (max-width:640px){
+  .sh-sx{margin-top:36px}
+  .sh-sx__head{flex-wrap:wrap;gap:2px 12px}
+  .sh-sx__head .sh-section__title{flex-basis:100%}
+  .sh-sx__yr{grid-template-columns:96px minmax(0,1fr) 64px;gap:12px}
+  .sh-sx__y{font-size:15px}
+}
+@media (pointer:coarse){.sh-sx__yr,.sh-sx__q,.sh-sr__sec{min-height:44px}}
+@media (prefers-reduced-motion:reduce){
+  .sh-sr__sec,.sh-sr__sec .sh-more__arrow,.sh-sr__cover img,.sh-sr__ftitle,.sh-sx__y,.sh-sx__fill{transition:none}
+  .sh-sr__file:hover .sh-sr__cover img{transform:none}
+}
