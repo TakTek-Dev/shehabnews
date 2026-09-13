@@ -238,3 +238,10 @@ html[dir="rtl"] .sh-progress{transform-origin:right center}
   body{background:#fff;color:#000}
   a{color:inherit;text-decoration:none}
 }
+
+/* the reader's size is the site's size: css/type.css scales the labels and
+   headings by rule, and the long-form text follows the same attribute through
+   --reader-scale, with a little more headroom at «كبير» -- this is the one page
+   a reader stays on. */
+html[data-sh-type="sm"]{--reader-scale:.92}
+html[data-sh-type="lg"]{--reader-scale:1.2}

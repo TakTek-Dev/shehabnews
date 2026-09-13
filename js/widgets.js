@@ -5,6 +5,7 @@
      <span data-sh-weather data-sh-city="jerusalem" data-sh-cities="jerusalem,gaza,ramallah"></span>
      <span data-sh-fx data-sh-pairs="USD:ILS,EUR:ILS,JOD:ILS,USD:EGP,XAU:USD"></span>
 
+   وحجم الخط: <span data-sh-textsize></span> شيب في التوب-بار، و<div data-sh-textsize data-sh-variant="row"></div> صف في قائمة الموبايل.
    الشكل: data-sh-variant="chip" (الافتراضي للطقس: أيقونة ودرجة، والضغط بيفتح
    لوحة بالتفاصيل و3 أيام وتبديل المدينة) أو "card" (بطاقة كاملة للأعمدة
    الجانبية). للعملات: "ticker" (شريط متحرّك — في RTL بيتحرّك لليمين، بيقف
@@ -342,12 +343,94 @@
     setInterval(function () { load(true); }, FX_TTL);
   }
 
+  /* ============================================================ type size */
+  /* Three sizes for the whole site. The choice is one attribute on <html>,
+     data-sh-type="sm|lg" (medium is its absence), set by the <head> prelude
+     before the first paint and made true by css/type.css, which tools/type.py
+     generates from every content font-size. This is only the control: a chip
+     with a sheet in the topbar, and a row inside the phone menu. */
+  var TYPE_STEPS = [['sm', 'صغير'], ['md', 'متوسط'], ['lg', 'كبير']];
+  function typeGet() { var t = store('sh-type'); return t === 'sm' || t === 'lg' ? t : 'md'; }
+  function typeSet(t) {
+    if (t === 'md') document.documentElement.removeAttribute('data-sh-type');
+    else document.documentElement.setAttribute('data-sh-type', t);
+    store('sh-type', t);
+    document.dispatchEvent(new CustomEvent('sh-type:change', { detail: { size: t } }));
+  }
+  function typeWord(t) { return TYPE_STEPS.filter(function (s) { return s[0] === t; })[0][1]; }
+
+  function typeSize(el) {
+    var variant = el.getAttribute('data-sh-variant') || 'chip';
+    var open = false;
+    el.classList.add('sh-ts', 'sh-ts--' + variant);
+
+    function opts() {
+      var cur = typeGet();
+      return '<div class="sh-ts__opts" role="group" aria-label="حجم الخط">' + TYPE_STEPS.map(function (s) {
+        return '<button type="button" class="sh-ts__opt sh-ts__opt--' + s[0] + '" data-size="' + s[0] + '" aria-pressed="' + (s[0] === cur) + '">' + s[1] + '</button>';
+      }).join('') + '</div>';
+    }
+    function render() {
+      if (variant === 'row') {
+        el.innerHTML = '<span class="sh-ts__lbl">حجم الخط</span>' + opts();
+        return;
+      }
+      var word = typeWord(typeGet());
+      el.innerHTML = '<button type="button" class="sh-ts__btn" aria-haspopup="dialog" aria-expanded="' + open + '" aria-label="حجم الخط: ' + word + '" title="حجم الخط">' +
+        '<b class="sh-ts__a">أ</b><b class="sh-ts__a sh-ts__a--sm">أ</b></button>' +
+        '<div class="sh-ts__pop" role="dialog" aria-label="حجم الخط"' + (open ? '' : ' hidden') + '>' +
+        '<div class="sh-ts__pophead"><span class="sh-ts__title">حجم الخط</span><button type="button" class="sh-ts__close" aria-label="إغلاق">' + ShUI.icon('xmark', 'solid') + '</button></div>' +
+        opts() + '<div class="sh-ts__foot"><span>يسري على الموقع كله</span><span>يُحفظ على هذا الجهاز</span></div></div>';
+    }
+    function setOpen(v) {
+      open = v;
+      var pop = el.querySelector('.sh-ts__pop'), btn = el.querySelector('.sh-ts__btn');
+      if (pop) {
+        pop.hidden = !v;
+        var narrow = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+        pop.style.top = v && narrow && btn ? Math.round(btn.getBoundingClientRect().bottom + 8) + 'px' : '';
+        if (v && btn) {
+          var br = btn.getBoundingClientRect(), pr = pop.getBoundingClientRect();
+          pop.style.setProperty('--sh-ts-notch', Math.max(12, Math.min(pr.width - 24, Math.round(pr.right - (br.left + br.width / 2) - 6))) + 'px');
+        }
+      }
+      if (btn) btn.setAttribute('aria-expanded', String(v));
+      el.toggleAttribute('data-open', v);
+      var bar = el.closest('.sh-topbar');
+      if (bar) bar.toggleAttribute('data-ts-open', v);
+    }
+    el.addEventListener('click', function (e) {
+      var o = e.target.closest('.sh-ts__opt');
+      if (o) {
+        // the change event re-renders every control on the page, this one included;
+        // the rebuilt sheet detaches this click's target, so keep it from the document
+        e.stopPropagation();
+        typeSet(o.getAttribute('data-size'));
+        var again = el.querySelector('.sh-ts__opt[aria-pressed="true"]');
+        if (again) again.focus();
+        return;
+      }
+      if (e.target.closest('.sh-ts__close')) { setOpen(false); var b = el.querySelector('.sh-ts__btn'); if (b) b.focus(); return; }
+      if (e.target.closest('.sh-ts__btn')) setOpen(!open);
+    });
+    document.addEventListener('sh-type:change', function () { render(); if (variant !== 'row') setOpen(open); });
+    if (variant !== 'row') {
+      document.addEventListener('click', function (e) { if (open && !el.contains(e.target)) setOpen(false); });
+      document.addEventListener('keydown', function (e) { if (open && e.key === 'Escape') { setOpen(false); var b = el.querySelector('.sh-ts__btn'); if (b) b.focus(); } });
+    }
+    render();
+  }
+
   /* ================================================================ boot */
   function boot() {
     document.querySelectorAll('[data-sh-weather]').forEach(weather);
     document.querySelectorAll('[data-sh-fx]').forEach(fx);
+    // the <head> prelude has normally done this before the first paint; make it true regardless
+    var t0 = typeGet(), h0 = document.documentElement;
+    if (t0 !== 'md' && h0.getAttribute('data-sh-type') !== t0) h0.setAttribute('data-sh-type', t0);
+    document.querySelectorAll('[data-sh-textsize]').forEach(typeSize);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 
-  window.ShWidgets = { weather: weather, fx: fx, cities: CITIES, currencies: CUR };
+  window.ShWidgets = { weather: weather, fx: fx, typeSize: typeSize, typeSet: typeSet, typeGet: typeGet, cities: CITIES, currencies: CUR };
 })();

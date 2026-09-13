@@ -69,6 +69,23 @@ server, load `css/ltr.css`, and feed the page text from the CMS — at which poi
 `js/i18n-en.js` is no longer needed for the body and the chrome dictionary in
 `js/lang.js` is enough.
 
+## Type size
+
+Three sizes for the whole site — small, medium, large — from the «أ أ» chip at the
+tool end of the topbar (a row inside the phone menu below 640px), and from the
+article's own أ+ / أ- which step the same three. The choice is one attribute,
+`<html data-sh-type="sm|lg">` (medium is its absence), kept in
+`localStorage['sh-type']` and set by a `<head>` prelude before the first paint.
+
+`css/type.css` makes it true and is **generated**: `python tools/type.py` reads every
+content font-size in `css/components.css`, `css/gallery.css` and `css/pages/*.css`
+and writes it again under the attribute at ×0.92 and ×1.12 — nothing in the theme is
+converted to `rem`. The chrome (masthead, topbar, nav, ticker, footer, player,
+toolbars) does not scale: the reader's text grows and the interface stays put. Small
+never goes below 12px, and on phones the `tools/a11y.py` floor still wins. Long-form
+text on the article page follows the same attribute through `--reader-scale`
+(1.2 at large). Run `tools/type.py` before `tools/chrome.py` after any CSS change.
+
 ### The new layers
 
 | File | Role |

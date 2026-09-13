@@ -21,6 +21,7 @@ html[dir="ltr"] .sh-ticker__tag{padding:6px 22px 6px 14px}
 /* ---- css/widgets.css ---- */
 html[dir="ltr"] .sh-wx__pop{direction:ltr}
 html[dir="ltr"] .sh-fx__pop{direction:ltr}
+html[dir="ltr"] .sh-ts__pop{direction:ltr}
 
 /* ---- css/footer.css ---- */
 html[dir="ltr"] .sh-footer__rule{left:0;right:0}

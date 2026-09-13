@@ -2,7 +2,7 @@
 
      progress   a 3px bar under the header that fills as the reader scrolls
                 (CSS scroll-driven animation where supported, rAF otherwise)
-     reader     the toolbar in the intro: حجم الخط (٣ درجات على --reader-scale،
+     reader     the toolbar in the intro: حجم الخط (نفس الثلاث درجات اللي في التوب-بار،
                 محفوظة)، استمع (يسلّم فقرات المقال لمشغّل الموجز js/brief.js)،
                 حفظ (المحفوظات في localStorage، صفحة saved.html)، طباعة
      zoom       the lead figure opens in PhotoSwipe (js/gallery.js handles the
@@ -36,30 +36,40 @@
   }
 
   /* ---------------------------------------------------------- font size -- */
-  var SCALES = [0.92, 1, 1.12, 1.26];
+  /* The toolbar's أ+ / أ- step the same three sizes the topbar control offers
+     -- small, medium, large -- on the same attribute and the same stored key,
+     so the site has one type size and not a reader-only second one. The dek
+     and the body take it through --reader-scale, which css/pages/article.css
+     derives from the attribute, with a little more headroom at «كبير». */
+  var TYPE = ['sm', 'md', 'lg'], TYPE_PCT = { sm: '92%', md: '100%', lg: '120%' };
   function fontSize() {
     var bar = document.querySelector('[data-sh-reader]');
     if (!bar) return;
-    var i = store('sh-reader-scale');
-    if (typeof i !== 'number' || !SCALES[i]) i = 1;
-    function apply() {
-      document.documentElement.style.setProperty('--reader-scale', String(SCALES[i]));
+    function current() { var t = store('sh-type'); return t === 'sm' || t === 'lg' ? t : 'md'; }
+    function paint() {
+      var t = current(), i = TYPE.indexOf(t);
       bar.querySelectorAll('[data-sh-font]').forEach(function (b) {
         var k = b.getAttribute('data-sh-font');
-        b.disabled = (k === '-' && i === 0) || (k === '+' && i === SCALES.length - 1);
+        b.disabled = (k === '-' && i === 0) || (k === '+' && i === TYPE.length - 1);
       });
       var lbl = bar.querySelector('[data-sh-font-label]');
-      if (lbl) lbl.textContent = Math.round(SCALES[i] * 100) + '%';
+      if (lbl) lbl.textContent = TYPE_PCT[t];
     }
     bar.addEventListener('click', function (e) {
       var b = e.target.closest('[data-sh-font]');
       if (!b) return;
-      var k = b.getAttribute('data-sh-font');
-      i = k === '+' ? Math.min(SCALES.length - 1, i + 1) : k === '-' ? Math.max(0, i - 1) : 1;
-      store('sh-reader-scale', i);
-      apply();
+      var i = TYPE.indexOf(current()), k = b.getAttribute('data-sh-font');
+      var t = TYPE[k === '+' ? Math.min(TYPE.length - 1, i + 1) : k === '-' ? Math.max(0, i - 1) : 1];
+      if (window.ShWidgets && ShWidgets.typeSet) ShWidgets.typeSet(t);
+      else {
+        if (t === 'md') document.documentElement.removeAttribute('data-sh-type');
+        else document.documentElement.setAttribute('data-sh-type', t);
+        store('sh-type', t);
+      }
+      paint();
     });
-    apply();
+    document.addEventListener('sh-type:change', paint);
+    paint();
   }
 
   /* ------------------------------------------------------------- listen -- */

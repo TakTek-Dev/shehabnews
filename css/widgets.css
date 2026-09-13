@@ -173,12 +173,70 @@
 .sh-fx--card .sh-fx__chg--flat{color:var(--sh-on-dark-60)}
 .sh-fx--card .sh-fx__foot{border-top-color:rgba(255,255,255,.12);color:var(--sh-on-dark-60)}
 
+/* ------------------------------------------------------------ type size */
+/* the third chip in the topbar's tool end: two alefs, and a sheet with three
+   choices. The choice itself is one attribute on <html>; css/type.css does
+   the rest. On the phone the chip yields to a row inside the menu. */
+.sh-ts{font-family:var(--sh-font)}
+.sh-ts--chip{position:relative;display:inline-flex;align-items:center}
+.sh-ts__btn{position:relative}
+.sh-ts__btn::before{content:"";position:absolute;inset-block:-13px;inset-inline:0}
+.sh-ts__btn{
+  display:inline-flex;align-items:baseline;gap:1px;padding:3px 9px;border:0;background:rgba(255,255,255,.06);color:#fff;
+  font-family:var(--sh-font);line-height:1;cursor:pointer;transition:background .16s ease;
+}
+.sh-ts[data-open] .sh-ts__btn{background:rgba(255,255,255,.14)}@media (hover:hover){.sh-ts__btn:hover{background:rgba(255,255,255,.14)}}
+.sh-ts__btn:focus-visible{outline:2px solid var(--sh-sky);outline-offset:1px}
+.sh-ts__a{font-size:14px;font-weight:800}
+.sh-ts__a--sm{font-size:10px;opacity:.75}
+.sh-ts__pop{
+  position:absolute;top:calc(100% + 10px);inset-inline-end:0;z-index:60;width:240px;max-width:calc(100vw - 24px);
+  background:#fff;color:var(--sh-ink);border:1px solid var(--color-border);border-top:3px solid var(--sh-blue);
+  box-shadow:0 22px 44px -18px rgba(10,26,51,.45);padding:12px 14px 10px;direction:rtl;text-align:start;font-size:12px;
+}
+.sh-ts__pop::before{content:"";position:absolute;top:-9px;inset-inline-start:var(--sh-ts-notch,16px);width:12px;height:12px;background:var(--sh-blue);transform:rotate(45deg)}
+.sh-ts__pop[hidden]{display:none}
+.sh-ts__pophead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.sh-ts__title{font-size:13px;font-weight:800;color:var(--sh-navy)}
+.sh-ts__close{width:26px;height:26px;border:0;background:var(--color-surface-soft);color:var(--sh-navy);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px;transition:background .16s ease,color .16s ease}
+@media (hover:hover){.sh-ts__close:hover{background:var(--sh-blue);color:#fff}}
+.sh-ts__close:focus-visible{outline:2px solid var(--sh-blue);outline-offset:1px}
+/* three equal choices; the chosen one is filled -- navy speaks */
+.sh-ts__opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.sh-ts__opt{
+  min-height:40px;padding:6px 4px;border:1px solid var(--color-border);background:#fff;color:var(--sh-ink-2);
+  font-family:var(--sh-font);font-weight:800;cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease;
+}
+.sh-ts__opt--sm{font-size:11.5px}
+.sh-ts__opt--md{font-size:13px}
+.sh-ts__opt--lg{font-size:15px}
+@media (hover:hover){.sh-ts__opt:hover{background:var(--color-surface-blue);border-color:var(--sh-sky);color:var(--sh-navy)}}
+.sh-ts__opt[aria-pressed="true"]{background:var(--sh-navy);border-color:var(--sh-navy);color:#fff}
+.sh-ts__opt:focus-visible{outline:2px solid var(--sh-blue);outline-offset:1px}
+.sh-ts__foot{display:flex;justify-content:space-between;gap:10px;margin-top:10px;padding-top:8px;border-top:1px solid var(--color-border-soft);font-size:10.5px;color:var(--sh-mute)}
+
+/* the phone menu's row: label and the same three choices, on navy */
+.sh-ts--row{display:none}
+@media (max-width:900px){
+  /* header nav > div is forced into a column by responsive.css (layered, !important),
+     so the row is a column on purpose: the label, then the three choices */
+  .sh-ts--row{display:flex;width:100%;padding:12px 0 6px;border-block-start:1px solid rgba(255,255,255,.12);color:#fff}
+  .sh-ts__lbl{font-size:13px;font-weight:800;white-space:nowrap;margin-bottom:8px}
+  .sh-ts--row .sh-ts__opts{width:100%;gap:4px}
+  .sh-ts--row .sh-ts__opt{min-height:36px;border-color:rgba(255,255,255,.3);background:transparent;color:#fff}
+  .sh-ts--row .sh-ts__opt[aria-pressed="true"]{background:#fff;border-color:#fff;color:var(--sh-navy)}
+  .sh-ts--row .sh-ts__opt:focus-visible{outline-color:var(--sh-sky)}
+}
+@media (max-width:640px){
+  .sh-ts--chip{display:none}   /* the bar is full at phone widths; the menu row carries it */
+}
+
 /* ------------------------------------------------------------ in the topbar */
 .sh-topbar__meta .sh-wx{margin-inline-start:2px}
 .sh-topbar__meta .sh-fx{margin-inline-start:2px}
-.sh-topbar[data-wx-open],.sh-topbar[data-fx-open]{z-index:20}   /* above .sh-header__body (z 3) while a sheet is open */
+.sh-topbar[data-wx-open],.sh-topbar[data-fx-open],.sh-topbar[data-ts-open]{z-index:20}   /* above .sh-header__body (z 3) while a sheet is open */
 @media (max-width:900px){
-  .sh-wx__pop,.sh-fx__pop{position:fixed;inset-inline:12px;width:auto;max-width:none;margin-top:0}   /* top set by js from the chip */
+  .sh-wx__pop,.sh-fx__pop,.sh-ts__pop{position:fixed;inset-inline:12px;width:auto;max-width:none;margin-top:0}   /* top set by js from the chip */
 }
 @media (max-width:640px){
   /* the phone topbar is one row: clock, weather, rates, rss, language. The

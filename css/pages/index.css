@@ -122,6 +122,10 @@ a{transition:color .16s ease,opacity .16s ease,border-color .16s ease}
 /* the column is exactly the photograph tall; when the new-updates button takes a
    place in it, the oldest row gives its place up instead of every row shrinking */
 .sh-lc__list:has(.sh-feed-pill) .sh-lc__row:nth-last-of-type(2){border-bottom:0}
+/* at the large type size the six rows want 7px more than the photograph gives
+   them; four pixels off each row's padding is what it takes, and nothing else on
+   the page needed a hand */
+html[data-sh-type="lg"] .sh-lc__row{padding:5px 0}
 .sh-lc__list:has(.sh-feed-pill) .sh-lc__row:last-of-type{display:none}
 @media (hover:hover){.sh-lc__row:hover{color:var(--sh-blue)}}
 .sh-lc__row:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
