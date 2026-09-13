@@ -1,6 +1,6 @@
-/* شهاب — ودجت الطقس (.sh-wx) وشريط العملات (.sh-fx). المنطق في js/widgets.js.
-   بيعيشوا في التوب-بار (كحلي، 12px) لكن كلاهما له شكل بطاقة (--card) للأعمدة
-   الجانبية. الأرقام لاتينية جدولية LTR، والشريط في RTL بيتحرّك لليمين. */
+/* شهاب — ودجت الطقس (.sh-wx) وودجت العملات (.sh-fx). المنطق في js/widgets.js.
+   الاتنين شيب في التوب-بار (كحلي، 12px) بيفتح لوحة على الورق، ولكل واحد شكل
+   بطاقة (--card) للأعمدة الجانبية. الأرقام لاتينية جدولية LTR. */
 
 /* ------------------------------------------------------------ weather chip */
 .sh-wx{position:relative;display:inline-flex;align-items:center;font-family:var(--sh-font)}
@@ -87,64 +87,108 @@
 .sh-wx--card .sh-wx__foot{border-top-color:rgba(255,255,255,.12);color:var(--sh-on-dark-60)}
 .sh-wx__skel{display:block;height:80px;background:rgba(255,255,255,.06)}
 
-/* ------------------------------------------------------------ fx ticker */
-.sh-fx{font-family:var(--sh-font);font-variant-numeric:tabular-nums}
+/* ------------------------------------------------------------ fx chip */
+/* the rates are a chip beside the weather: one pair, still, chosen by the
+   reader; the sheet under it carries all of them with the day's change */
+.sh-fx{position:relative;display:inline-flex;align-items:center;font-family:var(--sh-font);font-variant-numeric:tabular-nums}
 .sh-fx[hidden]{display:none}
-.sh-fx--ticker{flex:1 1 0;min-width:0;margin:0 22px;align-self:stretch;display:flex;align-items:center}
-/* the ticker is a third flex child in a row sized for two: it must take the
-   leftover space only (flex-basis 0), and its siblings must not shrink — a
-   squeezed date box wraps to three lines and blows the 34px bar open */
-.sh-topbar__inner > .sh-topbar__meta,
-.sh-topbar__inner > .sh-topbar__links{flex:none;white-space:nowrap}
-.sh-fx__viewport{
-  width:100%;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to right,transparent,#000 24px,#000 calc(100% - 24px),transparent);
-  mask-image:linear-gradient(to right,transparent,#000 24px,#000 calc(100% - 24px),transparent);
+.sh-fx__btn{position:relative}
+.sh-fx__btn::before{content:"";position:absolute;inset-block:-13px;inset-inline:0}   /* a 44px target on a 34px bar */
+.sh-fx__btn{
+  display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:0;background:rgba(255,255,255,.06);color:#fff;
+  font-family:var(--sh-font);font-size:12px;font-weight:700;line-height:1;cursor:pointer;transition:background .16s ease;
 }
-.sh-fx__track{display:inline-flex;white-space:nowrap;animation:sh-fx-marquee var(--sh-fx-dur,40s) linear infinite;will-change:transform}
-.sh-fx__set{display:inline-flex;gap:0}
-.sh-fx__viewport:hover .sh-fx__track,.sh-fx__viewport:focus-within .sh-fx__track{animation-play-state:paused}
-/* RTL: the set starts at the right edge and overflows leftwards, so the loop
-   moves rightwards — new items enter from the left, one set width per cycle */
-@keyframes sh-fx-marquee{from{transform:translateX(0)}to{transform:translateX(50%)}}
-.sh-fx[data-static] .sh-fx__track{animation:none}
-.sh-fx[data-static] .sh-fx__set[aria-hidden]{display:none}
-.sh-fx[data-static] .sh-fx__viewport{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:none;mask-image:none}
-.sh-fx[data-static] .sh-fx__viewport::-webkit-scrollbar{display:none}
-@media (prefers-reduced-motion:reduce){.sh-fx__track{animation:none}}
-.sh-fx__item{display:inline-flex;align-items:center;gap:6px;padding:0 18px 0 0;font-size:11.5px;line-height:1;white-space:nowrap}
-.sh-fx__set .sh-fx__item:last-child{border-inline-end:0}
-.sh-fx__pair{color:var(--sh-on-dark-72);font-weight:700}
-.sh-fx__val{font-weight:800;color:#fff;direction:ltr;unicode-bidi:isolate}
-.sh-fx__chg{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:700;direction:ltr;unicode-bidi:isolate}
+.sh-fx[data-open] .sh-fx__btn{background:rgba(255,255,255,.14)}@media (hover:hover){.sh-fx__btn:hover{background:rgba(255,255,255,.14)}}
+.sh-fx__btn:focus-visible{outline:2px solid var(--sh-sky);outline-offset:1px}
+.sh-fx__btn > .sh-i{font-size:12px;color:var(--sh-sky)}
+.sh-fx__code{font-size:10.5px;font-weight:700;letter-spacing:.02em;color:var(--sh-on-dark-72);direction:ltr;unicode-bidi:isolate}
+.sh-fx__t{font-weight:800;direction:ltr;unicode-bidi:isolate}
+.sh-fx__tick{display:inline-flex;align-items:center}
+.sh-fx__tick .sh-i{font-size:9px}
+.sh-fx__tick--up{color:#93c3ab}
+.sh-fx__tick--down{color:#d59d9d}
+.sh-fx__btn--skel{opacity:.5;cursor:default}
+.sh-fx__btn--skel .sh-fx__t{letter-spacing:.1em}
+
+/* the sheet: the weather popover's paper, rule and notch */
+.sh-fx__pop{
+  position:absolute;top:calc(100% + 10px);inset-inline-start:0;z-index:60;width:320px;max-width:calc(100vw - 24px);
+  background:#fff;color:var(--sh-ink);border:1px solid var(--color-border);border-top:3px solid var(--sh-blue);
+  box-shadow:0 22px 44px -18px rgba(10,26,51,.45);padding:12px 14px 10px;direction:rtl;text-align:start;font-size:12px;
+}
+.sh-fx__pop::before{content:"";position:absolute;top:-9px;inset-inline-start:var(--sh-fx-notch,16px);width:12px;height:12px;background:var(--sh-blue);transform:rotate(45deg)}
+.sh-fx__pop[hidden]{display:none}
+.sh-fx__pophead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.sh-fx__pop .sh-fx__title{font-size:13px;color:var(--sh-navy)}
+.sh-fx__pop .sh-fx__title .sh-i{color:var(--sh-blue);font-size:11px}
+.sh-fx__close{width:26px;height:26px;border:0;background:var(--color-surface-soft);color:var(--sh-navy);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px;transition:background .16s ease,color .16s ease}
+@media (hover:hover){.sh-fx__close:hover{background:var(--sh-blue);color:#fff}}
+.sh-fx__close:focus-visible{outline:2px solid var(--sh-blue);outline-offset:1px}
+/* the chosen pair, large, on the tint band edge to edge */
+.sh-fx__lead{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;margin:0 -14px;padding:12px 14px;background:var(--color-surface-blue)}
+.sh-fx__big{font-size:28px;font-weight:800;line-height:1;color:var(--sh-navy);direction:ltr;unicode-bidi:isolate}
+.sh-fx__leadname{display:flex;flex-direction:column;gap:3px;font-size:13px;font-weight:800;color:var(--sh-navy);min-width:0}
+.sh-fx__leadname small,.sh-fx__name small{font-size:10.5px;font-weight:700;color:var(--sh-mute);direction:ltr;unicode-bidi:isolate;text-align:start}
+.sh-fx__leadchg{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:12px}
+.sh-fx__since{font-size:10.5px;font-weight:700;color:var(--sh-mute)}
+/* every pair as a row; pressing one moves it to the chip */
+.sh-fx__rows{display:flex;flex-direction:column;padding-top:4px}
+.sh-fx__row{
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;width:100%;padding:8px 2px;
+  border:0;border-bottom:1px solid var(--color-border-soft);background:none;color:var(--sh-ink);text-align:start;
+  font-family:var(--sh-font);font-size:12px;cursor:pointer;transition:background .16s ease;
+}
+.sh-fx__row:last-child{border-bottom:0}
+@media (hover:hover){.sh-fx__row:hover{background:var(--color-surface-soft)}}
+.sh-fx__row:focus-visible{outline:2px solid var(--sh-blue);outline-offset:-2px}
+.sh-fx__row[aria-pressed="true"]{color:var(--sh-blue)}
+.sh-fx__row[aria-pressed="true"] .sh-fx__name{font-weight:800}
+.sh-fx__name{display:flex;align-items:baseline;gap:7px;font-weight:700;min-width:0}
+.sh-fx__val{font-weight:800;direction:ltr;unicode-bidi:isolate}
+.sh-fx__pop .sh-fx__val{color:var(--sh-navy)}
+.sh-fx__row[aria-pressed="true"] .sh-fx__val{color:var(--sh-blue)}
+.sh-fx__chg{display:inline-flex;align-items:center;justify-content:flex-end;gap:3px;min-width:58px;font-size:11.5px;font-weight:700;direction:ltr;unicode-bidi:isolate}
 .sh-fx__chg .sh-i{font-size:10px}
-.sh-fx__chg--up{color:#93c3ab}
-.sh-fx__chg--down{color:#d59d9d}
-.sh-fx__chg--flat{color:var(--sh-on-dark-60)}
+/* the change reads in the desks' own muted olive and red on paper; on navy
+   (the card) the two lighter tints below */
+.sh-fx__chg--up{color:var(--color-desk-land)}
+.sh-fx__chg--down{color:var(--color-desk-war)}
+.sh-fx__chg--flat{color:var(--sh-mute)}
+.sh-fx__foot{display:flex;justify-content:space-between;gap:10px;margin-top:8px;padding-top:8px;border-top:1px solid var(--color-border-soft);font-size:10.5px;color:var(--sh-mute)}
 .sh-fx__skel{display:block;height:12px;width:60%;max-width:420px;background:rgba(255,255,255,.08)}
 
-/* card variant */
+/* card variant (sidebars): the same rows on navy, no button/sheet */
 .sh-fx--card{display:block;background:var(--sh-navy);color:#fff;padding:14px 16px 12px}
 .sh-fx--card .sh-fx__head{margin-bottom:6px}
 .sh-fx__title{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:800}
 .sh-fx__title .sh-i{color:var(--sh-sky);font-size:12px}
 .sh-fx--card .sh-fx__list{display:block}
-.sh-fx--card .sh-fx__item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;padding:9px 0;border:0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12.5px;white-space:normal}
+.sh-fx--card .sh-fx__item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12.5px}
 .sh-fx--card .sh-fx__item:last-child{border-bottom:0}
-.sh-fx--card .sh-fx__chg{min-width:64px;justify-content:flex-end}
-.sh-fx--card .sh-fx__foot{display:flex;justify-content:space-between;gap:10px;margin-top:8px;font-size:10.5px;color:var(--sh-on-dark-60)}
-.sh-fx--ticker .sh-fx__foot{display:none}
+.sh-fx--card .sh-fx__pair{color:var(--sh-on-dark-72);font-weight:700}
+.sh-fx--card .sh-fx__val{color:#fff}
+.sh-fx--card .sh-fx__chg{min-width:64px}
+.sh-fx--card .sh-fx__chg--up{color:#93c3ab}
+.sh-fx--card .sh-fx__chg--down{color:#d59d9d}
+.sh-fx--card .sh-fx__chg--flat{color:var(--sh-on-dark-60)}
+.sh-fx--card .sh-fx__foot{border-top-color:rgba(255,255,255,.12);color:var(--sh-on-dark-60)}
 
 /* ------------------------------------------------------------ in the topbar */
 .sh-topbar__meta .sh-wx{margin-inline-start:2px}
-.sh-topbar[data-wx-open]{z-index:20}   /* above .sh-header__body (z 3) while the panel is open */
+.sh-topbar__meta .sh-fx{margin-inline-start:2px}
+.sh-topbar[data-wx-open],.sh-topbar[data-fx-open]{z-index:20}   /* above .sh-header__body (z 3) while a sheet is open */
 @media (max-width:900px){
-  /* the topbar row itself never wrapped (only its two children do); the ticker
-     needs a full-width second row under clock + links */
-  .sh-topbar__inner{flex-wrap:wrap;row-gap:0}
-  .sh-fx--ticker{order:3;flex-basis:100%;margin:0;min-height:26px;border-top:1px solid rgba(255,255,255,.1)}
-  .sh-wx__pop{position:fixed;inset-inline:12px;width:auto;max-width:none;margin-top:0}   /* top set by js from the chip */
+  .sh-wx__pop,.sh-fx__pop{position:fixed;inset-inline:12px;width:auto;max-width:none;margin-top:0}   /* top set by js from the chip */
 }
 @media (max-width:640px){
-  .sh-fx__item{padding:0 10px}
+  /* the phone topbar is one row: clock, weather, rates, rss, language. The
+     pair's code is the part the chip can spare -- the sheet still names it */
+  .sh-fx__code{display:none}
+}
+@media (max-width:340px){
+  /* at 320 the row cannot hold all five; rather than spill item by item into
+     three ragged rows, the bar breaks once: the readings, then the links */
+  .sh-topbar__inner{flex-wrap:wrap;height:auto;min-height:34px;padding-block:2px}
+  .sh-topbar__meta,.sh-topbar__links{flex:none;flex-wrap:nowrap}
+  .sh-topbar__links{margin-inline-start:auto}
 }

@@ -3,7 +3,7 @@
    مكوّنان مستقلّان بلا مكتبات، بيشتغلوا على أي عنصر في أي صفحة:
 
      <span data-sh-weather data-sh-city="jerusalem" data-sh-cities="jerusalem,gaza,ramallah"></span>
-     <div  data-sh-fx data-sh-pairs="USD:ILS,EUR:ILS,JOD:ILS,USD:EGP,XAU:USD" data-sh-speed="70"></div>
+     <span data-sh-fx data-sh-pairs="USD:ILS,EUR:ILS,JOD:ILS,USD:EGP,XAU:USD"></span>
 
    الشكل: data-sh-variant="chip" (الافتراضي للطقس: أيقونة ودرجة، والضغط بيفتح
    لوحة بالتفاصيل و3 أيام وتبديل المدينة) أو "card" (بطاقة كاملة للأعمدة
@@ -228,53 +228,118 @@
   }
 
   function fx(el) {
-    var variant = el.getAttribute('data-sh-variant') || 'ticker';
+    var variant = el.getAttribute('data-sh-variant') || 'chip';
     var pairs = (el.getAttribute('data-sh-pairs') || 'USD:ILS,EUR:ILS,JOD:ILS,USD:EGP,GBP:ILS,SAR:ILS,XAU:USD').split(',')
       .map(function (s) { var p = s.trim().toUpperCase().split(':'); return p.length === 2 ? p : null; }).filter(Boolean);
-    var speed = parseFloat(el.getAttribute('data-sh-speed')) || 26;   // px/s — reading pace, not a stock crawl
+    if (!pairs.length) { el.hidden = true; return; }
+    var keys = pairs.map(function (p) { return p.join(':'); });
+    // the pair the chip shows: the reader's last choice, else the first one listed
+    var lead = store('sh-fx-lead');
+    if (keys.indexOf(lead) < 0) lead = keys[0];
     el.classList.add('sh-fx', 'sh-fx--' + variant);
     el.setAttribute('data-sh-state', 'loading');
-    el.setAttribute('role', 'region');
-    el.setAttribute('aria-label', 'أسعار العملات');
 
-    function item(p, d) {
+    var open = false, data = null;
+
+    function quote(p, d) {
       var v = pairRate(d.rates, p[0], p[1]);
-      if (v == null) return '';
+      if (v == null) return null;
       var pv = d.prev ? pairRate(d.prev, p[0], p[1]) : null;
       var chg = pv ? (v - pv) / pv * 100 : null;
       var dir = chg == null ? 'flat' : Math.abs(chg) < 0.005 ? 'flat' : chg > 0 ? 'up' : 'down';
-      var chgHtml = chg == null ? '' :
-        '<span class="sh-fx__chg sh-fx__chg--' + dir + '" title="التغيّر عن اليوم السابق">' +
-        (dir === 'flat' ? '' + ShUI.icon('minus', 'solid') + '' : ShUI.icon('caret-' + dir) + num(Math.abs(chg), 2) + '%') + '</span>';
-      return '<span class="sh-fx__item"><span class="sh-fx__pair">' + esc(pairLabel(p[0], p[1])) + '</span><b class="sh-fx__val">' + num(v, digits(v)) + '</b>' + chgHtml + '</span>';
+      return { key: p.join(':'), code: p[0] === 'XAU' || p[0] === 'XAG' ? p[0] + '/USD' : p[0] + '/' + p[1],
+               name: pairLabel(p[0], p[1]), v: v, text: num(v, digits(v)), chg: chg, dir: dir };
+    }
+    function chgHtml(q, withWord) {
+      if (q.chg == null) return '';
+      var body = q.dir === 'flat' ? ShUI.icon('minus', 'solid') : ShUI.icon('caret-' + q.dir) + num(Math.abs(q.chg), 2) + '%';
+      return '<span class="sh-fx__chg sh-fx__chg--' + q.dir + '" title="التغيّر عن اليوم السابق">' + body + '</span>' +
+        (withWord && q.dir !== 'flat' ? '<span class="sh-fx__since">عن أمس</span>' : '');
+    }
+    function chgWords(q) {
+      if (q.chg == null || q.dir === 'flat') return '';
+      return ' · ' + (q.dir === 'up' ? 'ارتفع عن أمس' : 'انخفض عن أمس') + ' · ' + num(Math.abs(q.chg), 2) + '%';
+    }
+    function rows(qs) {
+      return '<div class="sh-fx__rows" role="group" aria-label="كل الأزواج">' + qs.map(function (q) {
+        return '<button type="button" class="sh-fx__row" data-pair="' + q.key + '" aria-pressed="' + (q.key === lead) + '" title="اعرض في الشريط العلوي">' +
+          '<span class="sh-fx__name">' + esc(q.name) + '<small>' + esc(q.code) + '</small></span>' +
+          '<b class="sh-fx__val">' + q.text + '</b>' + chgHtml(q, false) + '</button>';
+      }).join('') + '</div>';
+    }
+    function foot(d) {
+      return '<div class="sh-fx__foot"><span>المصدر: ' + esc(d.source) + '</span><span>تحديث ' + esc(d.date) + '</span></div>';
     }
     function render(d) {
-      var items = pairs.map(function (p) { return item(p, d); }).join('');
-      if (!items) { el.hidden = true; return; }
+      data = d;
+      var qs = pairs.map(function (p) { return quote(p, d); }).filter(Boolean);
+      if (!qs.length) { el.hidden = true; return; }
+      var top = qs.filter(function (q) { return q.key === lead; })[0] || qs[0];
+      lead = top.key;
+      el.hidden = false;
       el.setAttribute('data-sh-state', 'ready');
-      var foot = '<span class="sh-fx__foot"><span>تحديث ' + esc(d.date) + '</span><span>' + esc(d.source) + '</span></span>';
       if (variant === 'card') {
-        el.innerHTML = '<div class="sh-fx__head"><span class="sh-fx__title">' + ShUI.icon('coins', 'solid') + 'أسعار العملات</span></div><div class="sh-fx__list">' + items + '</div>' + foot;
+        el.innerHTML = '<div class="sh-fx__head"><span class="sh-fx__title">' + ShUI.icon('coins', 'solid') + 'أسعار العملات</span></div>' +
+          '<div class="sh-fx__list">' + qs.map(function (q) {
+            return '<span class="sh-fx__item"><span class="sh-fx__pair">' + esc(q.name) + '</span><b class="sh-fx__val">' + q.text + '</b>' + chgHtml(q, false) + '</span>';
+          }).join('') + '</div>' + foot(d);
         return;
       }
-      el.innerHTML = '<div class="sh-fx__viewport"><div class="sh-fx__track"><span class="sh-fx__set">' + items + '</span><span class="sh-fx__set" aria-hidden="true">' + items + '</span></div></div>';
-      el.title = 'أسعار العملات · تحديث ' + d.date + ' · ' + d.source;
-      measure();
+      var label = 'أسعار العملات · ' + top.name + ' · ' + top.text + chgWords(top);
+      el.innerHTML = '<button type="button" class="sh-fx__btn" aria-haspopup="dialog" aria-expanded="' + open + '" aria-label="' + esc(label) + '" title="' + esc(label) + '">' +
+        ShUI.icon('coins', 'solid') + '<span class="sh-fx__code">' + esc(top.code) + '</span><b class="sh-fx__t">' + top.text + '</b>' +
+        (top.chg != null && top.dir !== 'flat' ? '<span class="sh-fx__tick sh-fx__tick--' + top.dir + '">' + ShUI.icon('caret-' + top.dir) + '</span>' : '') + '</button>' +
+        '<div class="sh-fx__pop" role="dialog" aria-label="أسعار العملات"' + (open ? '' : ' hidden') + '>' +
+        '<div class="sh-fx__pophead"><span class="sh-fx__title">' + ShUI.icon('coins', 'solid') + 'أسعار العملات</span><button type="button" class="sh-fx__close" aria-label="إغلاق">' + ShUI.icon('xmark', 'solid') + '</button></div>' +
+        '<div class="sh-fx__lead"><b class="sh-fx__big">' + top.text + '</b><span class="sh-fx__leadname">' + esc(top.name) + '<small>' + esc(top.code) + '</small></span><span class="sh-fx__leadchg">' + chgHtml(top, true) + '</span></div>' +
+        rows(qs) + foot(d) + '</div>';
     }
-    function measure() {
-      var track = el.querySelector('.sh-fx__track'), set = el.querySelector('.sh-fx__set'), vp = el.querySelector('.sh-fx__viewport');
-      if (!track || !set || !vp) return;
-      var w = set.getBoundingClientRect().width, vw = vp.getBoundingClientRect().width;
-      var moving = !reduce && w > vw;                       // لو كله باين ما نحرّكش
-      el.toggleAttribute('data-static', !moving);
-      track.style.setProperty('--sh-fx-dur', (w / speed).toFixed(1) + 's');
+    function load(quiet) {
+      cached('sh-fx', FX_TTL, fxLoad, render, function () {
+        if (!data && !quiet) { el.setAttribute('data-sh-state', 'error'); el.hidden = true; }
+      });
     }
-    var pending = null;
-    window.addEventListener('resize', function () { clearTimeout(pending); pending = setTimeout(measure, 150); });
+    function setOpen(v) {
+      open = v;
+      var pop = el.querySelector('.sh-fx__pop'), btn = el.querySelector('.sh-fx__btn');
+      if (pop) {
+        pop.hidden = !v;
+        // on narrow screens the sheet is position:fixed under the chip
+        var narrow = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+        pop.style.top = v && narrow && btn ? Math.round(btn.getBoundingClientRect().bottom + 8) + 'px' : '';
+        // the notch points at the chip wherever the sheet ends up (RTL: measured from the right edge)
+        if (v && btn) {
+          var br = btn.getBoundingClientRect(), pr = pop.getBoundingClientRect();
+          pop.style.setProperty('--sh-fx-notch', Math.max(12, Math.min(pr.width - 24, Math.round(pr.right - (br.left + br.width / 2) - 6))) + 'px');
+        }
+      }
+      if (btn) btn.setAttribute('aria-expanded', String(v));
+      el.toggleAttribute('data-open', v);
+      // the topbar sits under the masthead's stacking context; lift it while open
+      var bar = el.closest('.sh-topbar');
+      if (bar) bar.toggleAttribute('data-fx-open', v);
+    }
+    el.addEventListener('click', function (e) {
+      var row = e.target.closest('.sh-fx__row');
+      if (row) {
+        // the chosen pair moves to the chip and is remembered; the sheet stays open.
+        // render() rebuilds the sheet, which detaches this click's target, and the
+        // document listener would then read it as a click outside -- so stop it here
+        e.stopPropagation();
+        lead = row.getAttribute('data-pair'); store('sh-fx-lead', lead);
+        if (data) { render(data); setOpen(true); var again = el.querySelector('.sh-fx__row[aria-pressed="true"]'); if (again) again.focus(); }
+        return;
+      }
+      if (e.target.closest('.sh-fx__close')) { setOpen(false); var b = el.querySelector('.sh-fx__btn'); if (b) b.focus(); return; }
+      if (e.target.closest('.sh-fx__btn')) { setOpen(!open); }
+    });
+    document.addEventListener('click', function (e) { if (open && !el.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (open && e.key === 'Escape') { setOpen(false); var b = el.querySelector('.sh-fx__btn'); if (b) b.focus(); } });
 
-    el.innerHTML = '<span class="sh-fx__skel" aria-hidden="true"></span>';
-    cached('sh-fx', FX_TTL, fxLoad, render, function () { el.setAttribute('data-sh-state', 'error'); el.hidden = true; });
-    setInterval(function () { cached('sh-fx', FX_TTL, fxLoad, render, function () {}); }, FX_TTL);
+    el.innerHTML = variant === 'card' ? '<span class="sh-fx__skel" aria-hidden="true"></span>'
+      : '<span class="sh-fx__btn sh-fx__btn--skel" aria-hidden="true">' + ShUI.icon('coins', 'solid') + '<b class="sh-fx__t">····</b></span>';
+    load(false);
+    setInterval(function () { load(true); }, FX_TTL);
   }
 
   /* ================================================================ boot */
