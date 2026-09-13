@@ -12,7 +12,7 @@
    locally) and opens its url on click. Update flow: the page posts
    SKIP_WAITING when the reader accepts the new version. */
 'use strict';
-var VERSION = 'sh-263';
+var VERSION = 'sh-278';
 var SHELL = [
   'index.html', 'offline.html', 'manifest.webmanifest',
   'css/fonts.css', 'css/transition.css', 'css/tokens.css', 'css/base.css', 'css/header.css', 'css/widgets.css',
@@ -22,9 +22,7 @@ var SHELL = [
   'js/push.js', 'js/searchbox.js',
   'assets/images/icons.svg', 'assets/images/logo-white.png', 'assets/images/favicon.svg', 'assets/images/icon-192.png',
   'assets/images/mark-sheen.svg', 'assets/images/mark-arrow.svg',
-  'assets/fonts/almarai-400-arabic.woff2', 'assets/fonts/almarai-700-arabic.woff2', 'assets/fonts/almarai-800-arabic.woff2',
-  'assets/fonts/almarai-400-latin.woff2', 'assets/fonts/almarai-700-latin.woff2', 'assets/fonts/almarai-800-latin.woff2',
-  'assets/fonts/noto-naskh-arabic-arabic.woff2', 'assets/fonts/noto-naskh-arabic-latin.woff2'
+  'assets/fonts/neue-helvetica-arabic-400.woff2', 'assets/fonts/neue-helvetica-arabic-700.woff2'
 ];
 var NEVER = /\/api\/|\.(m3u8|m4s|ts|mp4|webm|vtt)(\?|$)/;
 var ASSET = /\.(css|js|woff2|png|jpg|jpeg|webp|svg|json|geojson|webmanifest)(\?|$)/;

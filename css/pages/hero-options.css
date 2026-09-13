@@ -1,8 +1,10 @@
-/* شهاب — hero-options: three proposals for the front page's lead. One big
-   story and four that stay big, five in all; each proposal is its own
-   system and none is a variation of another. The page around them is the
-   site's chrome, a sticky bar to jump between the three, and a line under
-   each saying what it does to the front page if chosen. */
+/* شهاب — hero-options: three proposals for the front page's lead. Each is
+   its own system and none is a variation of another: the triptych (the lead
+   between two tall pictures, a row of four under the three), the compass (the
+   lead at the centre, eight stories round it from the four sides) and the
+   wall (five photographs edge to edge). The page around them is the site's
+   chrome, a sticky bar to jump between the three, and a line under each
+   saying what it does to the front page if chosen. */
 
 /* ---- the page ---- */
 .sh-ho-page{padding-bottom:48px}
@@ -24,86 +26,129 @@ html[data-compact] .sh-ho__bar{top:var(--sh-compact-h,92px)}
 .sh-ho__title{display:flex;align-items:center;gap:12px;margin:0;font-family:var(--sh-font);font-size:22px;font-weight:800;color:var(--sh-navy)}
 .sh-ho__title .sh-mark{width:16px;height:13px;background:var(--sh-blue)}
 .sh-ho__title small{font-size:14px;font-weight:700;color:var(--sh-mute)}
-.sh-ho__idea{margin:0;font-family:var(--sh-serif);font-size:15.5px;line-height:1.9;color:var(--sh-ink-2);max-width:66ch}
+.sh-ho__idea{margin:0 0 20px;font-family:var(--sh-serif);font-size:15.5px;line-height:1.9;color:var(--sh-ink-2);max-width:66ch;text-wrap:pretty}
 .sh-ho__notes{display:flex;flex-wrap:wrap;gap:6px 0;margin:14px 0 0;padding:0;list-style:none;font-family:var(--sh-font);font-size:12.5px;line-height:1.7;color:var(--sh-mute)}
 .sh-ho__notes li+li::before{content:"·";margin:0 10px;color:var(--sh-grey-3)}
 .sh-ho__notes b{color:var(--sh-navy);font-weight:800}
+.sh-ho__note-tag{flex-basis:100%}   /* the label shape gets a line of its own */
+.sh-ho__note-tag + li::before{content:none}
 
-/* ---- shared parts: the ranking plate, the section chip, the time ---- */
-/* no direction:ltr on the plate: inset-inline-start reads the element's own
-   direction, and an LTR plate would sit on the left, under the credit */
-.sh-ho-no{position:absolute;top:0;inset-inline-start:0;z-index:2;min-width:30px;height:26px;padding:0 8px;display:grid;place-items:center;background:var(--sh-navy);color:#fff;font-family:var(--sh-font);font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums}
-.sh-ho-chip{display:inline-flex;align-items:center;font-family:var(--sh-font);font-size:11.5px;font-weight:800;line-height:1.5;color:#fff;background:var(--sh-blue);padding:3px 9px}
-.sh-ho-chip--hot{background:var(--sh-red)}
-.sh-ho-time{font-family:var(--sh-font);font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* ---- shared part: the section label, in three shapes the client can swap ----
+   Each proposal shows its label in a different shape, and any shape fits any
+   of the three: the markup is the same (the section, then the time) and only
+   the modifier changes. All three stay light — brand blue and white, with red
+   only when the story is breaking — and the headline keeps the foot of the
+   frame alone. --sh-ho-edge is the frame's text edge, set by each proposal;
+   the tab and the flag line their words up with the headline on it. */
+.sh-ho-tag{position:absolute;z-index:2;display:flex;align-items:center;font-family:var(--sh-font);line-height:1;white-space:nowrap}
+.sh-ho-tag__sec{display:flex;align-items:center;gap:7px;height:100%;font-size:12.5px;font-weight:800}
+.sh-ho-tag__time{display:flex;align-items:center;height:100%;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+.sh-ho-tag--hot .sh-ho-tag__sec::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
 
-/* ==== 01 الصدارة — the lead as a cover, four windows beside it, on white ==== */
-.sh-h1{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:20px;height:540px}
-.sh-h1__lead{position:relative;display:block;overflow:hidden;background:var(--sh-navy-2);color:#fff;min-width:0}
-.sh-h1__lead-pic{position:absolute;inset:0}
-.sh-h1__lead-pic img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-h1__credit{position:absolute;top:0;inset-inline-end:0;z-index:2;background:var(--sh-navy);color:#fff;font-family:var(--sh-font);font-size:11.5px;font-weight:700;padding:6px 10px}
-.sh-h1__lead-body{position:absolute;inset:auto 0 0 0;display:flex;flex-direction:column;gap:12px;padding:130px 24px 22px;background:linear-gradient(to top,rgba(10,26,51,.96),rgba(10,26,51,.55) 55%,transparent)}
-.sh-h1__line{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-on-dark-80)}
-.sh-h1__lead-t{margin:0;font-family:var(--sh-font);font-size:clamp(24px,2.3vw,30px);font-weight:800;line-height:1.4;color:#fff;text-wrap:balance;max-width:26ch}
-.sh-h1__lead-more{display:inline-flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:12.5px;font-weight:800;color:#fff}
+/* 01 — the tab: one blue tab hanging from the picture's top edge, on the headline's edge */
+.sh-ho-tag--tab{top:0;inset-inline-start:var(--sh-ho-edge,16px);gap:8px;height:30px;padding:0 11px;background:var(--sh-blue);color:#fff}
+.sh-ho-tag--tab .sh-ho-tag__time{gap:8px;color:rgba(255,255,255,.88)}
+.sh-ho-tag--tab .sh-ho-tag__time::before{content:"·";font-weight:800;color:rgba(255,255,255,.6)}
+.sh-ho-tag--tab.sh-ho-tag--hot{background:var(--sh-red)}
+
+/* 02 — the pair: two cells floating on the picture, the section on blue and the time on white */
+.sh-ho-tag--pair{top:12px;inset-inline-start:12px;height:28px}
+.sh-ho-tag--pair .sh-ho-tag__sec{padding:0 11px;background:var(--sh-blue);color:#fff}
+.sh-ho-tag--pair .sh-ho-tag__time{padding:0 10px;background:#fff;color:var(--sh-blue)}
+.sh-ho-tag--pair.sh-ho-tag--hot .sh-ho-tag__sec{background:var(--sh-red)}
+.sh-ho-tag--pair.sh-ho-tag--hot .sh-ho-tag__time{color:var(--color-red-soft)}
+
+/* 03 — the flag: a white flag drawn out of the picture's reading-side edge,
+   led by the Shehab mark, its words on the headline's edge */
+.sh-ho-tag--flag{top:16px;inset-inline-start:0;gap:9px;height:30px;padding-inline:var(--sh-ho-edge,18px) 12px;background:#fff;color:var(--sh-blue)}
+.sh-ho-tag--flag .sh-mark{flex:none;width:13px;height:11px;background:currentColor}
+.sh-ho-tag--flag .sh-ho-tag__time{gap:9px;color:var(--sh-mute)}
+.sh-ho-tag--flag .sh-ho-tag__time::before{content:"·";font-weight:800;color:var(--color-text-faint)}
+.sh-ho-tag--flag.sh-ho-tag--hot{color:var(--color-red-soft)}
+.sh-ho-tag--flag.sh-ho-tag--hot .sh-mark{display:none}
+
+/* ==== 01 الثلاثية — the lead between two tall pictures, a row of four under the three ====
+   Seven photographs on four columns, every headline on its picture. The two
+   tall frames are 3:4 and set the first row's height, so the lead between
+   them comes out close to 3:2; the four under them are 3:2. */
+.sh-h1{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sh-h1__tile{--sh-ho-edge:16px;position:relative;display:block;min-width:0;overflow:hidden;aspect-ratio:3/2;background:var(--sh-navy-2);color:#fff}
+.sh-h1__tile--lead{--sh-ho-edge:26px;grid-column:2 / span 2;grid-row:1;aspect-ratio:auto}
+.sh-h1__tile--start,.sh-h1__tile--end{grid-row:1;aspect-ratio:3/4}
+.sh-h1__tile--start{grid-column:1}
+.sh-h1__tile--end{grid-column:4}
+.sh-h1__tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sh-h1__tile--start img{object-position:26% 50%}
+.sh-h1__tile--end img{object-position:66% 50%}
+.sh-h1__body{position:absolute;inset:auto 0 0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:56px var(--sh-ho-edge) 14px;background:linear-gradient(to top,rgba(10,26,51,.95),rgba(10,26,51,.62) 58%,rgba(10,26,51,0))}
+.sh-h1__t{margin:0;font-family:var(--sh-font);font-size:15.5px;font-weight:800;line-height:1.55;color:#fff;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sh-h1__tile--start .sh-h1__t,.sh-h1__tile--end .sh-h1__t{font-size:18px;line-height:1.5;-webkit-line-clamp:4}
+.sh-h1__tile--lead .sh-h1__body{gap:12px;padding:120px var(--sh-ho-edge) 22px}
+.sh-h1__tile--lead .sh-h1__t{font-size:clamp(24px,2.2vw,31px);line-height:1.38;text-wrap:balance}
+.sh-h1__tile:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
 @media (hover:hover){
-  .sh-h1__lead:hover{color:#fff}
-  .sh-h1__lead:hover .sh-h1__lead-pic img{transform:scale(1.04)}
-  .sh-h1__lead:hover .sh-h1__lead-more{gap:16px}
-}
-.sh-h1__four{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:20px 18px;min-height:0}
-.sh-h1__item{position:relative;display:flex;flex-direction:column;gap:9px;min-width:0;min-height:0;color:var(--sh-ink)}
-.sh-h1__pic{position:relative;flex:none;aspect-ratio:16/9;background:var(--sh-navy-2);overflow:hidden}
-.sh-h1__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-h1__t{margin:0;font-family:var(--sh-font);font-size:15.5px;font-weight:700;line-height:1.55;color:var(--sh-navy);text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .16s ease}
-.sh-h1__meta{display:flex;align-items:center;gap:9px;margin-top:auto;color:var(--sh-mute)}
-@media (hover:hover){
-  .sh-h1__item:hover .sh-h1__t{color:var(--sh-blue)}
-  .sh-h1__item:hover .sh-h1__pic img{transform:scale(1.04)}
+  .sh-h1__tile:hover{color:#fff}
+  .sh-h1__tile:hover img{transform:scale(1.04)}
 }
 
-/* ==== 02 الشريط — the front page's one navy band: the lead split picture / headline, four beneath ==== */
-.sh-h2{position:relative;isolation:isolate;color:#fff;padding:26px 0 30px}
-.sh-h2::before{content:"";position:absolute;inset:0 calc(50% - 50vw);background:var(--sh-navy);z-index:-1}
-.sh-h2__lead{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:28px;align-items:stretch;color:#fff}
-.sh-h2__lead-pic{position:relative;aspect-ratio:16/9;background:var(--sh-navy-2);overflow:hidden}
-.sh-h2__lead-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-h2__lead-body{display:flex;flex-direction:column;justify-content:center;gap:14px;min-width:0}
-.sh-h2__line{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-sky)}
-.sh-h2__lead-t{margin:0;font-family:var(--sh-font);font-size:clamp(26px,2.6vw,34px);font-weight:800;line-height:1.35;color:#fff;text-wrap:balance}
-.sh-h2__more{display:inline-flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:12.5px;font-weight:800;color:var(--sh-sky);transition:gap .25s ease}
-.sh-h2__more .sh-more__arrow{background:currentColor}
+/* ==== 02 البوصلة — the lead at the centre, eight stories round it from the four sides ====
+   Four columns and four rows. The lead takes the middle two by two; two
+   small frames sit over it and two under it, and each side holds two tall
+   frames that meet halfway down the lead. Every seam lies on the grid: the
+   one between the pairs runs down the lead's vertical axis and the ones
+   between the tall frames along its horizontal axis, so the block's two axes
+   cross at the lead's centre. The small frames and the lead are 16:9 and
+   their ratios set the rows; the tall frames stretch to about 6:7. */
+.sh-h2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sh-h2__tile{--sh-ho-edge:14px;position:relative;display:block;min-width:0;overflow:hidden;aspect-ratio:16/9;background:var(--sh-navy-2);color:#fff}
+.sh-h2__tile--lead{--sh-ho-edge:26px;grid-column:2 / span 2;grid-row:2 / span 2}
+.sh-h2__tile--tall{--sh-ho-edge:16px;aspect-ratio:auto}
+.sh-h2__tile--start-up{grid-column:1;grid-row:1 / span 2}
+.sh-h2__tile--end-up{grid-column:4;grid-row:1 / span 2}
+.sh-h2__tile--start-down{grid-column:1;grid-row:3 / span 2}
+.sh-h2__tile--end-down{grid-column:4;grid-row:3 / span 2}
+.sh-h2__tile--over{grid-row:1}
+.sh-h2__tile--under{grid-row:4}
+.sh-h2__tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sh-h2__tile--start-up img{object-position:26% 50%}
+.sh-h2__tile--end-up img{object-position:66% 50%}
+.sh-h2__tile--end-down img{object-position:50% 22%}
+.sh-h2__body{position:absolute;inset:auto 0 0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:44px var(--sh-ho-edge) 12px;background:linear-gradient(to top,rgba(10,26,51,.95),rgba(10,26,51,.6) 60%,rgba(10,26,51,0))}
+.sh-h2__t{margin:0;font-family:var(--sh-font);font-size:14.5px;font-weight:800;line-height:1.5;color:#fff;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sh-h2__tile--tall .sh-h2__body{padding:72px var(--sh-ho-edge) 14px}
+.sh-h2__tile--tall .sh-h2__t{font-size:17px;-webkit-line-clamp:4}
+.sh-h2__tile--lead .sh-h2__body{gap:12px;padding:110px var(--sh-ho-edge) 22px}
+.sh-h2__tile--lead .sh-h2__t{font-size:clamp(24px,2.3vw,32px);line-height:1.38;text-wrap:balance;-webkit-line-clamp:3}
+.sh-h2__tile:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
 @media (hover:hover){
-  .sh-h2__lead:hover{color:#fff}
-  .sh-h2__lead:hover .sh-h2__lead-pic img{transform:scale(1.04)}
-  .sh-h2__lead:hover .sh-h2__more{gap:16px}
-}
-.sh-h2__four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:28px}
-.sh-h2__item{position:relative;display:flex;flex-direction:column;gap:9px;min-width:0;color:#fff}
-.sh-h2__pic{position:relative;aspect-ratio:16/9;background:var(--sh-navy-2);overflow:hidden}
-.sh-h2__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-h2__t{margin:0;font-family:var(--sh-font);font-size:15px;font-weight:700;line-height:1.55;color:#fff;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .16s ease}
-.sh-h2__meta{display:flex;align-items:center;gap:9px;color:var(--sh-on-dark-60)}
-@media (hover:hover){
-  .sh-h2__item:hover{color:#fff}
-  .sh-h2__item:hover .sh-h2__t{color:var(--sh-sky)}
-  .sh-h2__item:hover .sh-h2__pic img{transform:scale(1.04)}
+  .sh-h2__tile:hover{color:#fff}
+  .sh-h2__tile:hover img{transform:scale(1.04)}
 }
 
 /* ==== 03 الجدار — five photographs edge to edge, every headline on its picture ==== */
 .sh-h3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:4px;height:560px}
-.sh-h3__tile{position:relative;display:block;overflow:hidden;background:var(--sh-navy-2);color:#fff;min-width:0;min-height:0}
-.sh-h3__tile--lead{grid-column:1 / span 2;grid-row:1 / span 2}
+.sh-h3__tile{--sh-ho-edge:18px;position:relative;display:block;overflow:hidden;background:var(--sh-navy-2);color:#fff;min-width:0;min-height:0}
+.sh-h3__tile--lead{--sh-ho-edge:26px;grid-column:1 / span 2;grid-row:1 / span 2}
 .sh-h3__tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.sh-h3__body{position:absolute;inset:auto 0 0 0;display:flex;flex-direction:column;gap:8px;padding:90px 18px 16px;background:linear-gradient(to top,rgba(10,26,51,.96),rgba(10,26,51,.5) 60%,transparent)}
-.sh-h3__tile--lead .sh-h3__body{gap:12px;padding:150px 26px 24px}
-.sh-h3__line{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-on-dark-80)}
+.sh-h3__body{position:absolute;inset:auto 0 0 0;display:flex;flex-direction:column;gap:8px;padding:90px var(--sh-ho-edge) 16px;background:linear-gradient(to top,rgba(10,26,51,.96),rgba(10,26,51,.5) 60%,transparent)}
+.sh-h3__tile--lead .sh-h3__body{gap:12px;padding:150px var(--sh-ho-edge) 24px}
 .sh-h3__t{margin:0;font-family:var(--sh-font);font-size:15.5px;font-weight:700;line-height:1.5;color:#fff;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .sh-h3__tile--lead .sh-h3__t{font-size:clamp(24px,2.3vw,30px);font-weight:800;line-height:1.4;max-width:24ch;text-wrap:balance;-webkit-line-clamp:4}
 @media (hover:hover){
   .sh-h3__tile:hover{color:#fff}
   .sh-h3__tile:hover img{transform:scale(1.04)}
+}
+
+/* ---- laptops under 1100: four columns would leave the small frames too short for their headlines ---- */
+@media (max-width:1100px){
+  .sh-h1{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sh-h1__tile--lead{grid-column:1 / -1;aspect-ratio:16/9}
+  .sh-h1__tile--start,.sh-h1__tile--end{grid-row:2;aspect-ratio:1/1}
+  .sh-h1__tile--end{grid-column:2}
+  .sh-h2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sh-h2__tile{grid-column:auto;grid-row:auto;aspect-ratio:3/2}
+  .sh-h2__tile--lead{grid-column:1 / -1;aspect-ratio:16/9}
+  .sh-h2__tile--tall{aspect-ratio:1/1}
 }
 
 /* ---- phones and narrow laptops ---- */
@@ -115,29 +160,46 @@ html[data-compact] .sh-ho__bar{top:var(--sh-compact-h,92px)}
   .sh-ho__tabs{margin-inline-start:0;width:100%;overflow-x:auto;scrollbar-width:none}
   .sh-ho__tabs::-webkit-scrollbar{display:none}
   .sh-ho__title{font-size:19px}
-  .sh-h1{display:block;height:auto}
-  .sh-h1__lead{aspect-ratio:4/3}
-  .sh-h1__lead-body{padding:90px 16px 16px;gap:9px}
-  .sh-h1__lead-t{font-size:clamp(19px,5.4vw,24px)}
-  .sh-h1__four{grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:18px 12px;margin-top:16px}
-  .sh-h1__t{font-size:14.5px;-webkit-line-clamp:4}
-  .sh-h2__t{-webkit-line-clamp:4}
-  .sh-h2__lead{display:block}
-  .sh-h2__lead-body{padding-top:14px}
-  .sh-h2__lead-t{font-size:clamp(20px,5.6vw,26px)}
-  .sh-h2__four{grid-template-columns:1fr 1fr;gap:18px 12px;margin-top:22px}
-  .sh-h2__t{font-size:14.5px}
   .sh-ho__title{flex-wrap:wrap;gap:6px 12px}
   .sh-ho__title small{flex-basis:100%;padding-inline-start:28px}
   .sh-h3{height:auto;grid-template-columns:1fr 1fr;grid-auto-rows:auto}
-  .sh-h3__tile{aspect-ratio:5/6}   /* a little taller than square: four lines of headline fit on the scrim */
-  .sh-h3__tile--lead{grid-column:1 / -1;grid-row:auto;aspect-ratio:4/3}
-  .sh-h3__body{padding:70px 12px 12px;gap:6px}
-  .sh-h3__tile--lead .sh-h3__body{padding:110px 16px 16px;gap:9px}
+  .sh-h3__tile{--sh-ho-edge:12px;aspect-ratio:5/6}   /* a little taller than square: four lines of headline fit on the scrim */
+  .sh-h3__tile--lead{--sh-ho-edge:16px;grid-column:1 / -1;grid-row:auto;aspect-ratio:4/3}
+  .sh-h3__body{padding:70px var(--sh-ho-edge) 12px;gap:6px}
+  .sh-h3__tile--lead .sh-h3__body{padding:110px var(--sh-ho-edge) 16px;gap:9px}
   .sh-h3__t{font-size:14px;-webkit-line-clamp:4}
   .sh-h3__tile--lead .sh-h3__t{font-size:clamp(19px,5.4vw,24px)}
 }
+@media (max-width:640px){
+  .sh-ho__idea{margin-bottom:16px}
+  .sh-ho-tag__sec{gap:6px;font-size:12px}
+  .sh-ho-tag--tab{height:26px;gap:6px;padding:0 8px}
+  .sh-ho-tag--tab .sh-ho-tag__time{gap:6px}
+  .sh-ho-tag--pair{top:8px;inset-inline-start:8px;height:24px}
+  .sh-ho-tag--pair .sh-ho-tag__sec{padding:0 8px}
+  .sh-ho-tag--pair .sh-ho-tag__time{padding:0 7px}
+  .sh-ho-tag--flag{top:10px;height:26px;gap:6px;padding-inline-end:8px}
+  .sh-ho-tag--flag .sh-ho-tag__time{gap:6px}
+  .sh-h1{gap:8px}
+  .sh-h1__tile{--sh-ho-edge:10px;aspect-ratio:4/5}
+  .sh-h1__tile--lead{--sh-ho-edge:14px;aspect-ratio:4/3}
+  .sh-h1__tile--start,.sh-h1__tile--end{aspect-ratio:3/4}
+  .sh-h1__body{gap:6px;padding:40px var(--sh-ho-edge) 10px}
+  .sh-h1__t{font-size:14px;line-height:1.5;-webkit-line-clamp:4}
+  .sh-h1__tile--start .sh-h1__t,.sh-h1__tile--end .sh-h1__t{font-size:14.5px;-webkit-line-clamp:5}
+  .sh-h1__tile--lead .sh-h1__body{gap:9px;padding:80px var(--sh-ho-edge) 14px}
+  .sh-h1__tile--lead .sh-h1__t{font-size:clamp(19px,5.4vw,23px);line-height:1.42}
+  .sh-h2{gap:8px}
+  .sh-h2__tile{--sh-ho-edge:10px;aspect-ratio:4/5}
+  .sh-h2__tile--lead{--sh-ho-edge:14px;aspect-ratio:4/3}
+  .sh-h2__tile--tall{--sh-ho-edge:10px;aspect-ratio:3/4}
+  .sh-h2__body,.sh-h2__tile--tall .sh-h2__body{gap:6px;padding:40px var(--sh-ho-edge) 10px}
+  .sh-h2__t{font-size:14px;-webkit-line-clamp:4}
+  .sh-h2__tile--tall .sh-h2__t{font-size:14.5px;-webkit-line-clamp:5}
+  .sh-h2__tile--lead .sh-h2__body{gap:9px;padding:80px var(--sh-ho-edge) 14px}
+  .sh-h2__tile--lead .sh-h2__t{font-size:clamp(19px,5.4vw,23px);line-height:1.42}
+}
 @media (prefers-reduced-motion:reduce){
-  .sh-h1__lead-pic img,.sh-h1__pic img,.sh-h2__lead-pic img,.sh-h2__pic img,.sh-h3__tile img,.sh-h2__more,.sh-h1__t,.sh-h2__t{transition:none}
-  .sh-h1__lead:hover .sh-h1__lead-pic img,.sh-h1__item:hover .sh-h1__pic img,.sh-h2__lead:hover .sh-h2__lead-pic img,.sh-h2__item:hover .sh-h2__pic img,.sh-h3__tile:hover img{transform:none}
+  .sh-h1__tile img,.sh-h2__tile img,.sh-h3__tile img{transition:none}
+  .sh-h1__tile:hover img,.sh-h2__tile:hover img,.sh-h3__tile:hover img{transform:none}
 }

@@ -22,7 +22,7 @@ import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-V = '263'
+V = '278'
 SITE = 'https://shehabnews.com/'
 ORG = 'وكالة شهاب للأنباء'
 OG_IMG = SITE + 'assets/images/og-default.jpg'
@@ -57,12 +57,11 @@ PAGES = {
     'map':         ('خريطة الخروقات', 'كل خرق وثّقته شهاب على خريطة القطاع والضفة بالتاريخ والموقع والمصدر.', 'page', None),
     'data':        ('مكتب البيانات', 'أرقام الحرب والوضع الإنساني في غزة والضفة بالمصادر، محدّثة.', 'page', None),
     'saved':       ('المحفوظات', 'المواد التي حفظتها لتقرأها لاحقًا.', 'page', None),
-    'hero-options': ('مقترحات هيرو الرئيسية', 'ثلاثة مقترحات لصدر الصفحة الرئيسية: خبر كبير وأربعة أخبار بارزة، بثلاث فكرات مختلفة.', 'page', None),
+    'hero-options': ('مقترحات هيرو الرئيسية', 'ثلاثة مقترحات لصدر الصفحة الرئيسية: الثلاثية، والبوصلة، والجدار.', 'page', None),
 }
 NO_CHROME = {'shorts', 'offline', 'system-states'}   # immersive / standalone pages keep their own frame
 CORE_SCRIPTS = ['js/ui.js', 'js/lang.js', 'js/chrome.js', 'js/feed.js', 'js/app.js', 'js/responsive.js', 'js/widgets.js', 'js/livebox.js', 'js/brief.js', 'js/searchbox.js', 'js/push.js', 'js/pwa.js']
-PRELOAD_FONTS = ['assets/fonts/almarai-400-arabic.woff2', 'assets/fonts/almarai-700-arabic.woff2',
-                 'assets/fonts/almarai-800-arabic.woff2', 'assets/fonts/noto-naskh-arabic-arabic.woff2']
+PRELOAD_FONTS = ['assets/fonts/neue-helvetica-arabic-400.woff2', 'assets/fonts/neue-helvetica-arabic-700.woff2']
 NO_PRERENDER = ['/live.html', '/reels.html', '/shorts.html', '/video-watch.html', '/now.html', '/map.html']
 
 HEAD_RX = re.compile(r'<head>.*?</head>', re.S)

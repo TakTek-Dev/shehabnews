@@ -77,11 +77,21 @@
   var ARABIC = /[\u0600-\u06FF]/;
   var SEP = /(\s*[·—|،,]\s*|\s+[-]\s+|\s*\/\s*|:\s+)/;
 
+  // copy is written without tashkeel; the dictionary may still carry it, so
+  // every key is also reachable bare, and every lookup is tried bare too
+  var HARAKAT = /[\u064B-\u065F\u0670]/g;
+  function bareKeys(d) {
+    if (!d) return d;
+    Object.keys(d).forEach(function (k) { var b = k.replace(HARAKAT, ''); if (b !== k && !(b in d)) d[b] = d[k]; });
+    return d;
+  }
   function look(k) {
     if (!k) return null;
     var v = DICT[k];
     if (v != null) return v;
-    v = DICT[k.replace(/^[\s·—|،,\-]+|[\s·—|،,\-]+$/g, '')];
+    var bare = k.replace(HARAKAT, '');
+    if (bare !== k) { v = DICT[bare]; if (v != null) return v; }
+    v = DICT[bare.replace(/^[\s\u00b7\u2014|\u060c,\-]+|[\s\u00b7\u2014|\u060c,\-]+$/g, '')];
     return v == null ? null : v;
   }
 
@@ -290,7 +300,7 @@
     var lang = current();
     apply(lang);
     if (lang === 'en') {
-      DICT = window.SH_I18N_EN || null;
+      DICT = bareKeys(window.SH_I18N_EN || null);
       walk(document.body);
       title();
       watch();

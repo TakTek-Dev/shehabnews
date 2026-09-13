@@ -31,7 +31,7 @@
 /* content must never end underneath the companion bar */
 html[data-bf-docked] body{padding-bottom:var(--bf-bar-h)}
 
-[data-bf]{position:fixed;z-index:9900;inset-inline:0;bottom:0;font-family:'Almarai',sans-serif}
+[data-bf]{position:fixed;z-index:9900;inset-inline:0;bottom:0;font-family:var(--sh-font)}
 [data-bf][hidden]{display:none}
 
 /* ============================================================ COMPANION BAR */

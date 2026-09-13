@@ -15,6 +15,15 @@
    Do not hand-edit. Font files live in assets/fonts/. */
 
 /* Almarai — 400 arabic */
+/* Shehab's own face, since September 2026: Monotype's Helvetica Neue ME for
+   SKY W21, the two files shehabnews.com serves (Regular and Bold), used under
+   the agency's licence with Monotype — not a free font; do not reuse it
+   outside Shehab's sites. Arabic and Latin in one file each. The Bold covers
+   every weight from 500 up, so the theme's 700 and 800 both land on the real
+   bold and nothing is synthesised. Almarai stays below as the fallback. */
+@font-face{font-family:'Neue Helvetica Arabic';font-style:normal;font-weight:100 499;font-display:swap;src:url(../assets/fonts/neue-helvetica-arabic-400.woff2) format('woff2')}
+@font-face{font-family:'Neue Helvetica Arabic';font-style:normal;font-weight:500 900;font-display:swap;src:url(../assets/fonts/neue-helvetica-arabic-700.woff2) format('woff2')}
+
 @font-face {
   font-family: 'Almarai';
   font-style: normal;

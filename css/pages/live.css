@@ -2,7 +2,7 @@
    المشغّل هو البؤرة وجدول البث جنبه، وتحتهم التحديثات على الهواء والأرشيف.
    منطق الصفحة في js/live.js والمشغّل نفسه في js/player.js + css/player.css. */
 a{transition:color .16s ease,background .16s ease,border-color .16s ease}
-p{font-family:'Noto Naskh Arabic',Georgia,serif;line-height:2.05}
+p{font-family:var(--sh-serif);line-height:2.05}
 
 /* ---- stage ---- */
 .sh-live-stage{background:var(--sh-navy);color:#fff;border-top:3px solid var(--sh-red)}

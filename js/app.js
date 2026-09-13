@@ -295,7 +295,7 @@
     var groups = [].slice.call(document.querySelectorAll('[data-sh-lightbox]'));
     if (!groups.length) return;
 
-    var FONT = "'Almarai','Noto Naskh Arabic',system-ui,sans-serif";
+    var FONT = "'Neue Helvetica Arabic','Almarai',system-ui,sans-serif";
     var GHOST = 'width:44px;height:44px;border:1px solid rgba(255,255,255,.28);' +
       'background:rgba(10,26,51,.55);color:#fff;display:flex;align-items:center;' +
       'justify-content:center;cursor:pointer;flex:none;padding:0;' +
@@ -998,7 +998,7 @@
       var empty = document.createElement('p');
       empty.setAttribute('data-sh-empty', '');
       empty.style.cssText = 'display:none;grid-column:1/-1;margin:0;padding:26px 0;' +
-        "font-family:'Almarai',sans-serif;font-size:13.5px;color:#8a95a6";
+        "font-family:'Neue Helvetica Arabic','Almarai',sans-serif;font-size:13.5px;color:#8a95a6";
       empty.textContent = 'لا مواد منشورة في هذا القسم';
       items[0].parentNode.appendChild(empty);
 

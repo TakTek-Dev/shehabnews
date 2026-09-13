@@ -1,7 +1,7 @@
 /* شهاب — search: page layout, one-off styles (scoped by section), and what
    the old per-page sheet still owned (keyframes, p/input, its own a{transition}). */
 a{transition:color .16s ease,opacity .16s ease,border-color .16s ease,background .16s ease,gap .16s ease}
-input{font-family:'Almarai','Noto Naskh Arabic',sans-serif}
+input{font-family:var(--sh-font)}
 input::placeholder{color:var(--sh-mute)}
 /* the field that starts the flow: ring it in the interactive blue, inside
    the white box it sits in — never suppress the ring without a replacement */
@@ -156,12 +156,11 @@ body[data-sh-page="search"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):a
 @media (pointer:coarse){.sh-sf__chip,.sh-sf__quick button,.sh-sf__sort,.sh-sf__clear,.sh-sf__date input{min-height:44px}}
 
 /* ---- the rail's sections: the header nav's own names and links as tinted
-   tiles, two to a row; navy under the pointer ---- */
+   tiles, two to a row; navy under the pointer. No blade per tile. ---- */
 .sh-sr__all{padding:0;color:var(--sh-blue);font-size:11.5px}
 .sh-sr__secs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 0;padding:0;list-style:none}
 .sh-sr__sec{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:0 12px;background:var(--color-surface-soft);color:var(--sh-navy);font-family:var(--sh-font);font-size:13px;font-weight:800;line-height:1.3;transition:background .16s ease,color .16s ease}
-.sh-sr__sec .sh-more__arrow{color:var(--sh-blue);transition:color .16s ease}
-@media (hover:hover){a.sh-sr__sec:hover{background:var(--sh-navy);color:#fff}a.sh-sr__sec:hover .sh-more__arrow{color:#fff}}   /* a:hover would paint the label blue on navy */
+@media (hover:hover){a.sh-sr__sec:hover{background:var(--sh-navy);color:#fff}}   /* a:hover would paint the label blue on navy */
 .sh-sr__sec:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
 
 /* ---- the rail's files: the real cover, the title, the month of the last addition ---- */
@@ -211,6 +210,22 @@ body[data-sh-page="search"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):a
 }
 @media (pointer:coarse){.sh-sx__yr,.sh-sx__q,.sh-sr__sec{min-height:44px}}
 @media (prefers-reduced-motion:reduce){
-  .sh-sr__sec,.sh-sr__sec .sh-more__arrow,.sh-sr__cover img,.sh-sr__ftitle,.sh-sx__y,.sh-sx__fill{transition:none}
+  .sh-sr__sec,.sh-sr__cover img,.sh-sr__ftitle,.sh-sx__y,.sh-sx__fill{transition:none}
   .sh-sr__file:hover .sh-sr__cover img{transform:none}
+}
+
+/* ---- the page head: the one navy band, over the Gaza coast at blue hour.
+   The photograph runs out to the viewport edges the way the band's navy
+   does (the band clips it top and bottom only). A navy veil lies solid
+   under the title and the field, on the start side, and opens toward the
+   end, where the coast and the lit windows are. On a phone the text spans
+   the whole band, so the veil evens out and the crop moves onto the coast. ---- */
+.sh-pagehead--photo{isolation:isolate}
+.sh-pagehead__photo{position:absolute;inset-block:0;inset-inline:calc(50% - 50vw);z-index:-1;overflow:hidden;background:var(--sh-navy)}
+.sh-pagehead--photo > .sh-pagehead__photo{max-width:none}   /* responsive.css caps a section's children at 100% on phones; this layer overhangs on purpose */
+.sh-pagehead__photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.sh-pagehead__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(10,26,51,.82) 0%,rgba(10,26,51,.66) 45%,rgba(10,26,51,.2) 100%)}
+@media (max-width:900px){
+  .sh-pagehead__photo img{object-position:18% 50%}
+  .sh-pagehead.sh-pagehead--photo .sh-pagehead__photo::after{background:linear-gradient(to bottom,rgba(10,26,51,.6),rgba(10,26,51,.86))}   /* outranks the LTR mirror of the side veil */
 }

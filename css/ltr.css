@@ -162,6 +162,9 @@ html[dir="ltr"] .sh-live-sched__item{padding:11px 6px 11px 8px}
 html[dir="ltr"] .sh-reels-grid__play{right:50%;left:auto;margin:-20px -20px 0 0}
 html[dir="ltr"] .sh-reels-grid__play .sh-i{margin-right:2px;margin-left:0}
 
+/* ---- css/pages/search.css ---- */
+html[dir="ltr"] .sh-pagehead__photo::after{background:linear-gradient(to right,rgba(10,26,51,.82) 0%,rgba(10,26,51,.66) 45%,rgba(10,26,51,.2) 100%)}
+
 /* ---- css/pages/sections.css ---- */
 html[dir="ltr"] .sh-sections-media-desks__i-1{transform:translateX(-1px)}
 html[dir="ltr"] .sh-sections-sections-rail__a-1{padding:13px 0 13px 14px}
@@ -181,15 +184,6 @@ html[dir="ltr"] .sh-watch__next{direction:ltr}
 html[dir="ltr"] [data-mini] .sh-watch__player{inset:auto auto 16px 16px}
 html[dir="ltr"] .sh-watch__toast{direction:ltr}
 @media (max-width:640px){html[dir="ltr"] [data-mini] .sh-watch__player{inset:auto auto 12px 12px}}
-
-/* ---- css/pages/video.css ---- */
-html[dir="ltr"] .sh-video-featured-video__i-1{transform:translateX(-2px)}
-html[dir="ltr"] .sh-video-latest-videos__i-1{transform:translateX(-1px)}
-html[dir="ltr"] .sh-video-shorts__i-1{transform:translateX(-1px)}
-html[dir="ltr"] .sh-video-video-story__span-2{background:linear-gradient(to right,rgba(10,26,51,.92) 0%,rgba(10,26,51,.55) 45%,rgba(27,90,166,.25) 100%)}
-html[dir="ltr"] .sh-video-video-story__i-1{transform:translateX(-1px)}
-html[dir="ltr"] .sh-video-live-now__i-2{transform:translateX(-2px)}
-html[dir="ltr"] .sh-video-watch-also__i-1{transform:translateX(-1px)}
 
 /* ---- hand-written: the forward arrow and the caret ---- */
 /* the arrow blade points left (forward in RTL); in LTR forward is right */

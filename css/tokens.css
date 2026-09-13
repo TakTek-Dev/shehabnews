@@ -72,9 +72,9 @@
   --sh-navy-a28:rgba(10,26,51,.28);
 
   /* --- type ------------------------------------------------------------- */
-  --sh-font:'Almarai',sans-serif;
-  --sh-serif:'Noto Naskh Arabic',serif;
-  --sh-font-stack:'Almarai','Noto Naskh Arabic',system-ui,sans-serif;
+  --sh-font:'Neue Helvetica Arabic','Almarai',sans-serif;
+  --sh-serif:'Neue Helvetica Arabic','Almarai',sans-serif;   /* one family now: the reading face is the naming face */
+  --sh-font-stack:'Neue Helvetica Arabic','Almarai',system-ui,sans-serif;
 
   /* --- layout ----------------------------------------------------------- */
   --sh-container:1400px;           /* content 1336: fills 1366–1536 laptops, still framed on 1920 */

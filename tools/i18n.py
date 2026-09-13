@@ -29,8 +29,11 @@ WS = re.compile(r'\s+')
 SHOW_ALL = '--all' in sys.argv
 
 
+HARAKAT = re.compile('[\u064B-\u065F\u0670]')   # the copy may be written without tashkeel
+
+
 def norm(s):
-    return WS.sub(' ', s).strip()
+    return HARAKAT.sub('', WS.sub(' ', s)).strip()
 
 
 dic = {}
