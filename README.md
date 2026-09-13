@@ -143,6 +143,17 @@ stays as the no-JS fallback, and on `live.html` itself nothing is intercepted.
   copies — and the feed's `live-state` keeps the title and viewers fresh.
 - Styles live in `css/feed.css` (`.sh-livebox`), next to the dock.
 
+## Front-page hero proposals — `hero-options.html`
+
+Three proposals for the front page's lead, for the client to choose from:
+one big story and four that stay big, five in all, each proposal its own
+system. `01 الصدارة` — the lead as a cover with four windows beside it, on
+white; `02 الشريط` — the page's one navy band, the lead split picture /
+headline with four beneath; `03 الجدار` — five photographs edge to edge,
+every headline on its picture. Real stories and pictures from the front
+page; the sheet is `css/pages/hero-options.css`; a sticky bar jumps between
+the three. Nothing on `index.html` changes until one is chosen.
+
 ## Running it locally
 
 Serve the folder over plain HTTP; do not open the file by double-clicking it:

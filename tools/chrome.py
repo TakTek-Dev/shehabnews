@@ -22,7 +22,7 @@ import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-V = '258'
+V = '259'
 SITE = 'https://shehabnews.com/'
 ORG = 'وكالة شهاب للأنباء'
 OG_IMG = SITE + 'assets/images/og-default.jpg'
@@ -57,6 +57,7 @@ PAGES = {
     'map':         ('خريطة الخروقات', 'كل خرق وثّقته شهاب على خريطة القطاع والضفة بالتاريخ والموقع والمصدر.', 'page', None),
     'data':        ('مكتب البيانات', 'أرقام الحرب والوضع الإنساني في غزة والضفة بالمصادر، محدّثة.', 'page', None),
     'saved':       ('المحفوظات', 'المواد التي حفظتها لتقرأها لاحقًا.', 'page', None),
+    'hero-options': ('مقترحات هيرو الرئيسية', 'ثلاثة مقترحات لصدر الصفحة الرئيسية: خبر كبير وأربعة أخبار بارزة، بثلاث فكرات مختلفة.', 'page', None),
 }
 NO_CHROME = {'shorts', 'offline', 'system-states'}   # immersive / standalone pages keep their own frame
 CORE_SCRIPTS = ['js/ui.js', 'js/lang.js', 'js/chrome.js', 'js/feed.js', 'js/app.js', 'js/responsive.js', 'js/widgets.js', 'js/livebox.js', 'js/brief.js', 'js/searchbox.js', 'js/push.js', 'js/pwa.js']
