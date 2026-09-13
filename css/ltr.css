@@ -121,7 +121,6 @@ html[dir="ltr"] .sh-fl-hero__scrim{background:linear-gradient(to right,rgba(10,2
 
 /* ---- css/pages/hero-options.css ---- */
 html[dir="ltr"] .sh-ho__tab{padding:0 10px 0 14px}
-html[dir="ltr"] .sh-h2::before{inset:0 50vw) - calc(50%}
 
 /* ---- css/pages/index.css ---- */
 html[dir="ltr"] .sh-index-hero__a-1{border-left:1px solid rgba(255,255,255,.22);border-right:0}
@@ -217,6 +216,7 @@ html[dir="ltr"] .sh-hubcard{transform:translateX(calc(var(--o) * 22px)) scale(ca
 html[dir="ltr"] .sh-hubcard[data-state="past"]{transform:translateX(-115%) rotate(-3deg)}
 @media (max-width:760px){html[dir="ltr"] .sh-hubcard{transform:translateX(calc(var(--o) * 14px)) scale(calc(1 - var(--o) * .03))}}
 html[dir="ltr"] .sh-hubview__chip .sh-i{transform:scaleX(-1)}
+html[dir="ltr"] .sh-pane__turn .sh-i{transform:scaleX(-1)}
 
 /* city and clock are adjacent spans with no whitespace between the tags:
    the RTL bidi boundary spaces them, LTR runs them together */

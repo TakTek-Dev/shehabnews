@@ -54,6 +54,26 @@ def split_decls(body):
     return res
 
 
+
+def top_split(val):
+    """Split a value on whitespace outside parentheses, so a calc() or var()
+    stays one token."""
+    out, buf, depth = [], '', 0
+    for ch in val:
+        if ch == '(':
+            depth += 1
+        elif ch == ')':
+            depth -= 1
+        if ch.isspace() and depth == 0:
+            if buf:
+                out.append(buf)
+            buf = ''
+        else:
+            buf += ch
+    if buf:
+        out.append(buf)
+    return out
+
 def mirror(prop, val):
     """return a list of (prop, val) for LTR, or [] when nothing is direction-bound"""
     imp = ''
@@ -64,7 +84,7 @@ def mirror(prop, val):
         out.append((PHYS[prop], val + imp)); out.append((prop, RESET[prop] + imp))
         return out
     if prop in ('margin', 'padding', 'inset', 'border-width', 'border-style', 'border-color'):
-        vals = val.split()
+        vals = top_split(val)   # `0 calc(50% - 50vw)` is two values, not four
         if len(vals) == 4 and vals[1] != vals[3]:
             out.append((prop, ' '.join([vals[0], vals[3], vals[2], vals[1]]) + imp))
         return out
@@ -214,6 +234,7 @@ out += ['/* ---- hand-written: the forward arrow and the caret ---- */',
         'html[dir="ltr"] .sh-hubcard[data-state="past"]{transform:translateX(-115%) rotate(-3deg)}',
         '@media (max-width:760px){html[dir="ltr"] .sh-hubcard{transform:translateX(calc(var(--o) * 14px)) scale(calc(1 - var(--o) * .03))}}',
         'html[dir="ltr"] .sh-hubview__chip .sh-i{transform:scaleX(-1)}',
+        'html[dir="ltr"] .sh-pane__turn .sh-i{transform:scaleX(-1)}',
         '',
         '/* city and clock are adjacent spans with no whitespace between the tags:',
         '   the RTL bidi boundary spaces them, LTR runs them together */',
