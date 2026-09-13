@@ -1188,9 +1188,15 @@
       }
 
       /* dragging the top card: it follows the pointer, and past a third of
-         the deck's width the release turns the page */
+         the deck's width the release turns the page. The page turns towards
+         the read pile: to the right on this RTL page, to the left in English
+         (the deck's geometry in css/components.css and css/ltr.css). */
       function drag(deck) {
         var id = null, x0 = 0, dx = 0, top = null, moved = 0;
+        var fwd = document.documentElement.dir === 'ltr' ? -1 : 1;
+        // a photograph is draggable by default: the native drag would start a
+        // ghost image and cancel the pointer before the page turned
+        deck.addEventListener('dragstart', function (e) { e.preventDefault(); });
         deck.addEventListener('pointerdown', function (e) {
           if (e.button > 0 || e.target.closest('a')) return;
           top = cards[cur.i];
@@ -1212,8 +1218,8 @@
           top.style.transform = 'translateX(' + dx + 'px) rotate(' + (dx / 60).toFixed(2) + 'deg)';
           var nx = cards[cur.i + 1];
           if (nx) {
-            var p = Math.min(1, Math.max(0, -dx / 220));           // only a forward drag pulls it in
-            nx.style.transform = 'translateX(' + (22 * (1 - p)) + 'px) scale(' + (1 - .035 * (1 - p)).toFixed(3) + ')';
+            var p = Math.min(1, Math.max(0, fwd * dx / 220));      // only a forward drag pulls it in
+            nx.style.transform = 'translateX(' + (-fwd * 22 * (1 - p)) + 'px) scale(' + (1 - .035 * (1 - p)).toFixed(3) + ')';
           }
         });
         function end(e) {
@@ -1225,8 +1231,8 @@
           var far = Math.abs(dx) > Math.min(140, w / 3);
           top.style.transform = '';
           if (cards[cur.i + 1]) cards[cur.i + 1].style.transform = '';
-          if (far && dx < 0) next();
-          else if (far && dx > 0) prev();
+          if (far && fwd * dx > 0) next();
+          else if (far && fwd * dx < 0) prev();
           dx = 0;
         }
         deck.addEventListener('pointerup', end);
@@ -1249,7 +1255,7 @@
         el.className = 'sh-hubcard';
         el.innerHTML =
           '<span class="sh-hubcard__photo">' +
-            (r.img ? '<img class="sh-hubcard__art" src="' + esc(r.img) + '" alt="" decoding="async">' : '') +
+            (r.img ? '<img class="sh-hubcard__art" src="' + esc(r.img) + '" alt="" decoding="async" draggable="false">' : '') +
             '<span class="sh-hubcard__no">' + two(i + 1) + '</span>' +
             (r.credit ? '<span class="sh-hubcard__credit">' + esc(r.credit) + '</span>' : '') +
             '<button type="button" class="sh-hubview__tap sh-hubview__tap--prev" data-sh-hv-prev aria-label="الخبر السابق">' +

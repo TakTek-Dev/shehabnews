@@ -213,19 +213,23 @@ html[data-sh-hubview-open]{overflow:hidden}
 @keyframes sh-hubview-seg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .sh-hubview[data-paused] .sh-hubview__seg--on::before{animation-play-state:paused}
 
-/* the deck */
+/* the deck reads right to left, like the page: the stories still to come
+   wait on the left edge, and a story that has been read leaves to the
+   right -- the read pile. So the next arrow (left) points at what is
+   coming, the previous arrow (right) at what has gone, and a drag to the
+   right turns the page. css/ltr.css mirrors all of it for English. */
 .sh-hubview__deck{position:relative;min-height:0;touch-action:pan-y;cursor:grab}
 .sh-hubview__deck[data-drag]{cursor:grabbing}
 .sh-hubcard{
   position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;
   background:#fff;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3);
-  transform:translateX(calc(var(--o) * 22px)) scale(calc(1 - var(--o) * .035));
-  transform-origin:100% 50%;
+  transform:translateX(calc(var(--o) * -22px)) scale(calc(1 - var(--o) * .035));
+  transform-origin:0 50%;
   transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .5s ease;
   will-change:transform;
 }
 .sh-hubview__deck[data-drag] .sh-hubcard{transition:none}
-.sh-hubcard[data-state="past"]{transform:translateX(-115%) rotate(-3deg);opacity:0;pointer-events:none}
+.sh-hubcard[data-state="past"]{transform:translateX(115%) rotate(3deg);opacity:0;pointer-events:none}
 .sh-hubcard[data-state="deep"]{opacity:0;pointer-events:none}     /* deeper than the two showing edges */
 .sh-hubcard[data-state="next"]{cursor:pointer}
 .sh-hubcard[data-state="on"]{cursor:auto}
@@ -297,7 +301,7 @@ html[data-sh-hubview-open]{overflow:hidden}
   .sh-hubview__name{font-size:16px}
   .sh-hubview__listen{padding:8px 11px;font-size:12px}
   .sh-hubview__segs{top:46px}
-  .sh-hubcard{transform:translateX(calc(var(--o) * 14px)) scale(calc(1 - var(--o) * .03))}
+  .sh-hubcard{transform:translateX(calc(var(--o) * -14px)) scale(calc(1 - var(--o) * .03))}
   .sh-hubcard__body{padding:16px 18px 20px}
   .sh-hubcard__title{font-size:19px;margin:10px 0 12px}
   .sh-hubview__tap{width:40%}

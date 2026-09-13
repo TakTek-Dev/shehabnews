@@ -35,7 +35,7 @@ html[dir="ltr"] .sh-timeline__tick{left:9px;right:auto}
 html[dir="ltr"] .sh-timeline__node{left:0;right:auto}
 html[dir="ltr"] .sh-noimg__d{background:linear-gradient(to right top,transparent 49.6%,rgba(126,168,221,.22) 49.8%,rgba(126,168,221,.22) 50.2%,transparent 50.4%)}
 html[dir="ltr"] .sh-hub__stack{margin:10px 10px 0 0}
-html[dir="ltr"] .sh-hubcard[data-state="past"]{transform:translateX(115%) rotate(-3deg)}
+html[dir="ltr"] .sh-hubcard[data-state="past"]{transform:translateX(-115%) rotate(3deg)}
 html[dir="ltr"] .sh-binder::after{right:-14px;left:-14px}
 html[dir="ltr"] .sh-binder__spine{left:0;right:auto}
 html[dir="ltr"] .sh-binder__spine::before{inset:0 0 0 auto}
@@ -56,6 +56,10 @@ html[dir="ltr"] html[data-compact] .sh-header__body{right:0;left:0}
 html[dir="ltr"] html[data-compact] .sh-breaking{right:0;left:0}
 @media (max-width:900px){html[dir="ltr"] .sh-searchbox__sheethead{padding:12px 16px 12px 12px}}
 html[dir="ltr"] .sh-update{padding:10px 16px 10px 12px}
+
+/* ---- css/feed.css ---- */
+html[dir="ltr"] .sh-livebox__bar{padding:8px 16px 8px 8px}
+@media (max-width:640px){html[dir="ltr"] .sh-livebox__bar{padding:6px 12px 6px 6px}}
 
 /* ---- css/gallery.css ---- */
 html[dir="ltr"] .sh-pswp .pswp__button--arrow--prev .pswp__icn{right:20px;left:auto}
@@ -205,6 +209,13 @@ html[dir="ltr"] .sr-only{inset-inline-start:0}
 html[dir="ltr"] .sh-fx__track{animation-name:sh-fx-marquee-ltr}
 @keyframes sh-paper-out-ltr{0%{transform:translateX(-28%);opacity:0}100%{transform:translateX(0);opacity:1}}
 html[dir="ltr"] .sh-index-files__div-4{animation-name:sh-paper-out-ltr}
+
+/* the hub deck: what is coming waits on the reading side, so the pile, the
+   read card and the page-turn chevrons all flip with the page */
+html[dir="ltr"] .sh-hubcard{transform:translateX(calc(var(--o) * 22px)) scale(calc(1 - var(--o) * .035));transform-origin:100% 50%}
+html[dir="ltr"] .sh-hubcard[data-state="past"]{transform:translateX(-115%) rotate(-3deg)}
+@media (max-width:760px){html[dir="ltr"] .sh-hubcard{transform:translateX(calc(var(--o) * 14px)) scale(calc(1 - var(--o) * .03))}}
+html[dir="ltr"] .sh-hubview__chip .sh-i{transform:scaleX(-1)}
 
 /* city and clock are adjacent spans with no whitespace between the tags:
    the RTL bidi boundary spaces them, LTR runs them together */
