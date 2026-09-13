@@ -1,24 +1,25 @@
 /* شهاب — الفيديو (video.html): the programme rows.
 
-   Each [data-sh-car] is a native horizontal scroller ([data-sh-car-track]) with
-   two buttons ([data-sh-car-prev] / [data-sh-car-next]) and a strip of page
-   marks ([data-sh-car-dots]). A page is as many episodes as the row shows at
+   Each [data-sh-vrow] is a native horizontal scroller ([data-sh-vrow-track]) with
+   two buttons ([data-sh-vrow-prev] / [data-sh-vrow-next]) and a strip of page
+   marks ([data-sh-vrow-dots]). A page is as many episodes as the row shows at
    once: the buttons move one page, a mark jumps to its page, and both follow
    the scroller when a finger or a trackpad moves it instead. The row reads the
    way the page does — in Arabic "next" travels left, where scrollLeft runs
    negative — and a reader who asked for less motion gets the jump, not the
-   glide. The pictures, the times and the live link need nothing from here. */
+   glide. The pictures, the times and the live link need nothing from here.
+   (The hooks are data-sh-vrow*, apart from js/app.js's data-sh-car carousel.) */
 (function () {
   'use strict';
-  var cars = document.querySelectorAll('[data-sh-car]');
+  var cars = document.querySelectorAll('[data-sh-vrow]');
   if (!cars.length) return;
   var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
   Array.prototype.forEach.call(cars, function (car) {
-    var track = car.querySelector('[data-sh-car-track]');
-    var prev = car.querySelector('[data-sh-car-prev]');
-    var next = car.querySelector('[data-sh-car-next]');
-    var dots = car.querySelector('[data-sh-car-dots]');
+    var track = car.querySelector('[data-sh-vrow-track]');
+    var prev = car.querySelector('[data-sh-vrow-prev]');
+    var next = car.querySelector('[data-sh-vrow-next]');
+    var dots = car.querySelector('[data-sh-vrow-dots]');
     if (!track || !track.children.length) return;
     var items = track.children;
     var pages = 0, current = -1, queued = false;
@@ -62,7 +63,7 @@
         var b = document.createElement('button');
         b.type = 'button';
         b.className = 'sh-vx-car__dot';
-        b.setAttribute('data-sh-car-page', String(i));
+        b.setAttribute('data-sh-vrow-page', String(i));
         b.setAttribute('aria-label', label(i));
         dots.appendChild(b);
       }
@@ -90,8 +91,8 @@
     if (prev) prev.addEventListener('click', function () { go(pageAt() - 1); });
     if (next) next.addEventListener('click', function () { go(pageAt() + 1); });
     if (dots) dots.addEventListener('click', function (e) {
-      var b = e.target.closest && e.target.closest('[data-sh-car-page]');
-      if (b) go(parseInt(b.getAttribute('data-sh-car-page'), 10));
+      var b = e.target.closest && e.target.closest('[data-sh-vrow-page]');
+      if (b) go(parseInt(b.getAttribute('data-sh-vrow-page'), 10));
     });
     track.addEventListener('scroll', schedule, { passive: true });
 

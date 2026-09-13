@@ -187,7 +187,7 @@ Then `http://localhost:5599/index.html`.
 > **Why?** The fonts are local now, and Chromium browsers (Chrome, Edge) refuse
 > to load `@font-face` from `file://`, because every local file is treated as its
 > own origin. Opening the page by double-clicking renders it in a system font
-> instead of Almarai. Firefox is more forgiving. None of this touches
+> instead of Neue Helvetica Arabic. Firefox is more forgiving. None of this touches
 > production: the theme is served over HTTP in every case, Laravel included.
 
 ## Structure
@@ -394,17 +394,25 @@ than `#fff`. Treat it as a layout of its own.
 There is no connection to Google Fonts. Every file is in `assets/fonts/` and
 declared in `css/fonts.css` with `@font-face` and `font-display: swap`.
 
-| Family | Use | Weights |
+| Family | Use | Files |
 |---|---|---|
-| **Almarai** | Headings and the interface | 400 · 700 · 800 |
-| **Noto Naskh Arabic** | Long-form reading text (`p`, `li`) | 400 · 700 |
+| **Neue Helvetica Arabic** | The whole site since September 2026: the Bold names things, the Regular is read | `neue-helvetica-arabic-400.woff2` (weights 100–499) · `neue-helvetica-arabic-700.woff2` (weights 500–900) |
+| **Almarai** | The fallback in every stack, while the face loads or if it fails | 400 · 700 · 800 |
 
-The weights that were downloaded are **exactly** the weights the theme actually
-paints — no more. The `unicode-range` values are copied verbatim from Google's
-stylesheet, so the browser downloads the same subsets it used to (`arabic`,
-`latin`, `latin-ext`, `math`, `symbols`). Noto Naskh Arabic is a variable font:
-the CDN serves one file for both 400 and 700 — identical by md5 — so each subset
-is stored once and referenced from both declarations.
+Neue Helvetica Arabic is Monotype's *Helvetica Neue ME for SKY W21*: the two
+files shehabnews.com itself serves. **It is not a free font.** It is used here
+under the agency's licence with Monotype and must not be reused outside Shehab's
+sites. Each file carries Arabic and Latin, and the Bold covers every weight from
+500 up, so the theme's 700 and 800 both land on the real bold and nothing is
+synthesised. Both files are preloaded by `tools/chrome.py` and cached by the
+service worker. The Latin digits are equal-width by default, so numbers already
+hold their width.
+
+Noto Naskh Arabic, the former reading face, is still declared in
+`css/fonts.css`, but no page stylesheet or script asks for it any more; only the
+reference snippets in `partials/` still name it in their inline styles. For
+Almarai, the `unicode-range` values are copied verbatim from Google's
+stylesheet, so the browser downloads the same subsets it used to.
 
 **The icons:** Font Awesome Free 6.5.2, a local copy in `css/font-awesome.css`
 identical to the cdnjs file except for the `url()` paths, which were redirected

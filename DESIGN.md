@@ -29,43 +29,43 @@ colors:
   scrim: "rgba(10,26,51,.86)"
 typography:
   display:
-    fontFamily: "Almarai, Noto Naskh Arabic, system-ui, sans-serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, system-ui, sans-serif"
     fontSize: "clamp(30px, 3.6vw, 46px)"
     fontWeight: 800
     lineHeight: 1.32
     letterSpacing: "normal"
   headline:
-    fontFamily: "Almarai, Noto Naskh Arabic, system-ui, sans-serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, system-ui, sans-serif"
     fontSize: "clamp(21px, 1.9vw, 25px)"
     fontWeight: 800
     lineHeight: 1.5
     letterSpacing: "normal"
   title:
-    fontFamily: "Almarai, Noto Naskh Arabic, system-ui, sans-serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, system-ui, sans-serif"
     fontSize: "16px"
     fontWeight: 700
     lineHeight: 1.65
     letterSpacing: "normal"
   dek:
-    fontFamily: "Noto Naskh Arabic, serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, sans-serif"
     fontSize: "calc(19px * var(--reader-scale, 1))"
     fontWeight: 400
     lineHeight: 1.9
     letterSpacing: "normal"
   body:
-    fontFamily: "Noto Naskh Arabic, serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, sans-serif"
     fontSize: "calc(18px * var(--reader-scale, 1))"
     fontWeight: 400
     lineHeight: 2.05
     letterSpacing: "normal"
   quote:
-    fontFamily: "Almarai, Noto Naskh Arabic, system-ui, sans-serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, system-ui, sans-serif"
     fontSize: "clamp(20px, 1.85vw, 25px)"
     fontWeight: 700
     lineHeight: 1.7
     letterSpacing: "normal"
   label:
-    fontFamily: "Almarai, Noto Naskh Arabic, system-ui, sans-serif"
+    fontFamily: "Neue Helvetica Arabic, Almarai, system-ui, sans-serif"
     fontSize: "12.5px"
     fontWeight: 800
     lineHeight: 1.7
@@ -167,14 +167,14 @@ components:
 
 A correspondent's desk at a Palestinian news agency: the photograph laid flat on white paper, the headline written over it in a heavy hand, the figures and the quote typed beside it, nothing framed. The page is white and dense the way a newspaper page is dense — it fills its width with real content and sizes every block to its importance — and it separates things with air, type scale and the picture, never with lines or boxes. Two colours do the talking: navy for whatever speaks (headlines, fills, the one dark band on a page) and brand blue for whatever points (links, the ش blade, the current state, the hover). Red is reserved for news itself: breaking and live.
 
-Two Arabic faces divide the work cleanly. Almarai at 800 names things — headlines, labels, buttons, captions, numerals — and Noto Naskh Arabic at 400 is what gets read: deks and paragraphs on a measure of about sixty characters with generous leading and a reader-controlled scale. The calligraphic ش blade traced from the wordmark is the only ornament the system allows; it marks a heading, ends a report, counts the pictures and, as its arrow variant, points forward (leftward, this being an RTL page).
+One Arabic face does all the work: Neue Helvetica Arabic, the face shehabnews.com itself serves. Its Bold names things — headlines, labels, buttons, captions, numerals — and its Regular is what gets read: deks and paragraphs on a measure of about sixty characters with generous leading and a reader-controlled scale. The calligraphic ش blade traced from the wordmark is the only ornament the system allows; it marks a heading, ends a report, counts the pictures and, as its arrow variant, points forward (leftward, this being an RTL page).
 
 The system is phone-first and laptop-demo second: everything is verified at 375 and 1280. Corners are square, surfaces are flat, photographs are shown whole inside frames that take the picture's ratio, and every veil laid over a photograph is navy, never black. Confirmed rejections: decorative hairlines, card top-rules, ghost numerals, decorative circles, framed panels and any second dark band — the client reads those as machine output.
 
 **Key Characteristics:**
 - White page, one navy band at most, tonal tints (soft, warm, blue) instead of boxes
 - Navy speaks, blue points, red is news; hover on white goes to blue, hover on the blue chrome goes to white
-- Almarai 800 for naming, Noto Naskh Arabic 400 for reading, tabular numerals throughout
+- Neue Helvetica Arabic throughout: Bold for naming, Regular for reading, equal-width numerals
 - Square corners, flat surfaces, photographs whole at fixed ratios on a navy-2 ground
 - The ش blade as the single ornament, in four sizes and one arrow variant
 - Arabic RTL with logical properties; 44px targets and a 12px text floor on phones
@@ -222,28 +222,30 @@ The five desk accents in `tokens.css` (politics, war, land, economy, rights) are
 
 ## Typography
 
-**Display Font:** Almarai 800/700 (with Noto Naskh Arabic, system-ui, sans-serif), self-hosted at 400/700/800
-**Body Font:** Noto Naskh Arabic 400 (with serif), self-hosted at 400/700
-**Label/Mono Font:** none distinct — labels are Almarai 800 with `font-variant-numeric: tabular-nums`
+**Display Font:** Neue Helvetica Arabic Bold (with Almarai, system-ui, sans-serif), self-hosted; the Bold file answers every weight from 500 to 900
+**Body Font:** Neue Helvetica Arabic Regular (with Almarai, sans-serif), self-hosted; the Regular file answers 100 to 499
+**Label/Mono Font:** none distinct — labels are the Bold with `font-variant-numeric: tabular-nums`
 
-**Character:** A heavy modern Arabic sans for everything that names, and a classical naskh for everything that is read. The contrast is the hierarchy: the eye finds the Almarai 800 lines (headline, headings, labels, numerals) at a glance and settles into the naskh paragraphs for the long read. Neither face is ever tracked or uppercased.
+The face is Monotype's *Helvetica Neue ME for SKY W21*, the two files shehabnews.com serves, used under the agency's licence with Monotype: it is not a free font and must not leave Shehab's sites. Almarai stays in every stack as the fallback; Noto Naskh Arabic, the former reading face, is retired (September 2026).
+
+**Character:** One modern Arabic sans, the agency's own, in two weights. The weight is the hierarchy: the eye finds the Bold lines (headline, headings, labels, numerals) at a glance and settles into the Regular paragraphs for the long read. The face is never tracked or uppercased.
 
 ### Hierarchy
 - **Display** (800, `clamp(30px, 3.6vw, 46px)`, 1.32, `text-wrap: balance`): the article headline in navy on white; on a navy hero it grows to `clamp(36px, 3.8vw, 52px)` at 1.15 in white. On phones `clamp(26px, 7.4vw, 30px)` at 1.4.
 - **Headline** (800, `clamp(21px, 1.9vw, 25px)`, 1.5): section headings inside the report and the page's section heads (19–24px), always navy, always with the 16×13 blue ش blade in front of them.
 - **Title** (700, 14.5–17px, 1.5–1.65, `text-wrap: pretty`): story titles on tiles and rows — navy or ink at rest, blue on hover; the lead tile of a grid takes 800.
-- **Dek** (Noto Naskh 400, `19px × --reader-scale`, 1.9, ink 2, `max-width: 56ch`): the standfirst under the headline; 16.5px on phones.
-- **Body** (Noto Naskh 400, `18px × --reader-scale`, 2.05, ink): paragraphs on a column of at most 542px (about sixty characters); the lede is 1.1em at 1.95 in navy; 17px at 1.95 on phones.
-- **Quote** (Almarai 700, `clamp(20px, 1.85vw, 25px)`, 1.7, navy): the one highlighted line in a report, led by a 30px blue quote glyph.
-- **Label** (Almarai 800, 11–12.5px, 1.7, muted or blue, tabular numerals): meta lines, captions (12.5px ink 2), counters, rail labels, chips. Rises to 12.5px on phones; nothing under 12px there.
-- **Figure numerals** (Almarai 800, navy, 1.05em inside naskh lists; 22px blue in ranked lists; 34–40px for years and file numbers): the number leads the sentence.
+- **Dek** (Regular 400, `19px × --reader-scale`, 1.9, ink 2, `max-width: 56ch`): the standfirst under the headline; 16.5px on phones.
+- **Body** (Regular 400, `18px × --reader-scale`, 2.05, ink): paragraphs on a column of at most 542px (about sixty characters); the lede is 1.1em at 1.95 in navy; 17px at 1.95 on phones.
+- **Quote** (Bold, `clamp(20px, 1.85vw, 25px)`, 1.7, navy): the one highlighted line in a report, led by a 30px blue quote glyph.
+- **Label** (Bold, 11–12.5px, 1.7, muted or blue, tabular numerals): meta lines, captions (12.5px ink 2), counters, rail labels, chips. Rises to 12.5px on phones; nothing under 12px there.
+- **Figure numerals** (Bold, navy, 1.05em inside reading lists; 22px blue in ranked lists; 34–40px for years and file numbers): the number leads the sentence.
 
 ### Named Rules
-**The Two Faces Rule.** Almarai for anything that names — headline, headings, labels, buttons, captions, numerals; Noto Naskh Arabic for anything that is read — deks and paragraphs. Never the reverse.
+**The One Face Rule.** Neue Helvetica Arabic everywhere. The Bold for anything that names — headline, headings, labels, buttons, captions, numerals; the Regular for anything that is read — deks and paragraphs. Never the reverse, and never a second family on a page.
 
 **The Sixty Characters Rule.** Reading text sits on a measure of about sixty characters with line-height of 1.9 or more, and it scales with the reader: `--reader-scale` steps 0.92 / 1 / 1.12 / 1.26 multiply body and dek only.
 
-**The Tabular Rule.** Almarai carries no tabular figures (its `GSUB` holds ccmp, fina, init, liga, medi and rlig only) and Noto Naskh Arabic’s digits are already equal-width, so `tabular-nums` is declared as intent but moves nothing today; a number that must hold its width while it ticks (a clock, a counter) gets a fixed-width cell. Every Latin or numeric run inside Arabic (counters like "1 / 3", currency pairs, file numbers) is isolated with `direction: ltr; unicode-bidi: isolate`.
+**The Tabular Rule.** Neue Helvetica Arabic's digits are equal-width by default (every Latin digit is 1139 units; the font carries `pnum` but no `tnum`), so `tabular-nums` is declared as intent but moves nothing today; a number that must hold its width while it ticks (a clock, a counter) gets a fixed-width cell. Every Latin or numeric run inside Arabic (counters like "1 / 3", currency pairs, file numbers) is isolated with `direction: ltr; unicode-bidi: isolate`.
 
 ## Layout
 
@@ -296,11 +298,11 @@ Tabs and tags are cut with `clip-path` rather than drawn with radius: the ticker
 
 ## Components
 
-Everything on the page is set in type on white; controls are square, flat and typed in Almarai 800; state is shown by swapping navy and blue, never by a radius or a shadow.
+Everything on the page is set in type on white; controls are square, flat and typed in the Bold; state is shown by swapping navy and blue, never by a radius or a shadow.
 
 ### Buttons
-- **Shape:** square (`0`), 1px line or solid fill, Almarai 800 at 12–13px, 44px minimum height for filled CTAs and every target on phones.
-- **More («المزيد»):** the house link — `.sh-more`: text set in Almarai 800 at 12px in the colour of its context (navy in a section head, blue in a body), the arrow blade at 13px pointing forward after an 8px gap, 8px of vertical padding for the target. Hover: a 1px underline offset 5px and the arrow steps 3px forward. No box, no line, no ground.
+- **Shape:** square (`0`), 1px line or solid fill, the Bold at 12–13px, 44px minimum height for filled CTAs and every target on phones.
+- **More («المزيد»):** the house link — `.sh-more`: text set in the Bold at 12px in the colour of its context (navy in a section head, blue in a body), the arrow blade at 13px pointing forward after an 8px gap, 8px of vertical padding for the target. Hover: a 1px underline offset 5px and the arrow steps 3px forward. No box, no line, no ground.
 - **Primary CTA:** navy fill, white label 13px 800, `0 24px`, 44px tall, the blade or arrow after the label at a 12px gap. Hover: fill turns blue and the gap opens to 18px. The blue variant (`{colors.brand-blue}` fill) hovers to pressed blue.
 - **Outlined on navy:** 1px `{colors.on-dark-30}` line, white label 12.5px 800, `10px 16px`; hover fills blue with a blue line (the next-read button).
 - **Square icon buttons:** 38px squares on soft light with a navy icon at 14px (share row); 44px at the article's end and on phones; hover fills navy with a white icon. Pager cells are 36px hairline squares; the current one fills blue.
@@ -309,14 +311,14 @@ Everything on the page is set in type on white; controls are square, flat and ty
 - **Focus:** `outline: 2px solid {colors.brand-blue}; outline-offset: 2px` on light; sky on navy; white on red. Always visible, never removed.
 
 ### Chips
-- **Style:** a category chip is a blue fill with white Almarai 800 at 11px, `4px 12px`, square. Tags are text only — blue 13px 700 with a `#`, 18px apart, navy on hover.
+- **Style:** a category chip is a blue fill with white Bold at 11px, `4px 12px`, square. Tags are text only — blue 13px 700 with a `#`, 18px apart, navy on hover.
 - **State:** the chip has one state; selection elsewhere is the blue tint ground or the blue underline of a tab.
 
 ### Cards / Containers
 - **Corner Style:** none — a story is not a card. It is a photograph tile followed by type.
 - **Background:** the tile is a navy-2 ground behind an `object-fit: cover` picture at a fixed ratio; the text below sits directly on the page.
 - **Shadow Strategy:** none in the flow (see Elevation). Hover scales the picture 1.03–1.04 over 0.6–0.8s on `cubic-bezier(.2,.7,.2,1)` and turns the title blue.
-- **Border:** none. Lists separate rows with a 1px `{colors.border-soft}` line or with 10px of air; row numerals lead in blue Almarai 800.
+- **Border:** none. Lists separate rows with a 1px `{colors.border-soft}` line or with 10px of air; row numerals lead in blue Bold.
 - **Internal Padding:** 9–14px between picture, meta line (11.5px blue 700 category + muted tabular time) and title.
 - **Tinted blocks:** when a block needs a ground it takes a tint — soft light for the after-reading band, warm paper for dossiers, blue tint for selection — with no border and 38–40px of block padding.
 
@@ -328,7 +330,7 @@ Everything on the page is set in type on white; controls are square, flat and ty
 ### Navigation
 - **Topbar:** navy-2, 34px, 12px text at `.8` white with tabular numerals; a segmented language switch (white cell for the current language).
 - **Masthead:** the brand blue band, 88px, logo centred, live button and «الآن» to the start, brief button and search to the end; the sheen sky (arcs, meteor, stars) drawn in white at .07–.09 behind it.
-- **Nav:** Almarai 700 14px at `.86` white on a `{colors.on-dark-line}` top hairline, 26px apart, a 3px transparent bottom border that turns `.8` white on hover and solid white when current. Dropdowns are navy panels with a 2px blue rule at the top, 13px 700 links that fill blue on hover. Under 900px the nav becomes a touch menu driven by `data-open`.
+- **Nav:** the Bold at 14px at `.86` white on a `{colors.on-dark-line}` top hairline, 26px apart, a 3px transparent bottom border that turns `.8` white on hover and solid white when current. Dropdowns are navy panels with a 2px blue rule at the top, 13px 700 links that fill blue on hover. Under 900px the nav becomes a touch menu driven by `data-open`.
 - **Ticker:** white bar, 44px, a red notched «عاجل» tag with a pulsing white dot, one headline at 15px 700 with a tabular time and an LTR-isolated counter.
 - **Progress:** a fixed 3px sky bar at the top that fills as the reader scrolls (`animation-timeline: scroll(root)` where supported).
 
@@ -336,10 +338,10 @@ Everything on the page is set in type on white; controls are square, flat and ty
 The report's photograph stands still while the words scroll. A 3:2 stage on navy-2 holds the chapter pictures stacked; the chapter whose heading has passed 45% of the viewport (`data-sh-scene-at`) names the picture, and the pane crossfades to it — opacity 0.6s ease, a 1.04 → 1 settle over 1.1s on `cubic-bezier(.2,.7,.2,1)`. Under the stage: three 14×12 blades in `{colors.border}` with the current one blue, a tabular "1 / 3" counter, and the caption fading in over 0.5s with its credit after an em dash. A navy-scrim «كبّر» plate appears on hover; the stage opens in the shared lightbox.
 
 ### The Pull Quote and the Context Block (signature)
-The one highlighted line in a report: a 30px blue quote glyph, the line in Almarai 700 at `clamp(20px, 1.85vw, 25px)` navy, and a 12.5px muted attribution led by the arrow blade — 40px clear above and below, no rule, no box. The context block is a heading with the blade («سياق») over a naskh list at .9em where each sentence begins with its figure in Almarai 800 navy tabular numerals; live figures come from `data-sh-figure`.
+The one highlighted line in a report: a 30px blue quote glyph, the line in the Bold at `clamp(20px, 1.85vw, 25px)` navy, and a 12.5px muted attribution led by the arrow blade — 40px clear above and below, no rule, no box. The context block is a heading with the blade («سياق») over a naskh list at .9em where each sentence begins with its figure in the Bold navy tabular numerals; live figures come from `data-sh-figure`.
 
 ### Live states
-A live element is a 5–7px red circle pulsing 1.4–1.6s (`sh-pulse`), beside a bold navy head in Almarai 800. On the article the story-updates block is exactly that — dot, head, list — with no tinted panel and no side stripe (feed contexts keep the blue-tint panel with a red inline-start stripe).
+A live element is a 5–7px red circle pulsing 1.4–1.6s (`sh-pulse`), beside a navy head in the Bold. On the article the story-updates block is exactly that — dot, head, list — with no tinted panel and no side stripe (feed contexts keep the blue-tint panel with a red inline-start stripe).
 
 ### Motion
 Colour and background change in 0.16–0.18s ease; arrows step in 0.2s; a panel, a veil or a toast fades in 0.22–0.3s ease; anything that moves or scales rides `cubic-bezier(.2,.7,.2,1)` — 0.35–0.5s for a lift or a deck, 0.5s for a card or grid picture, 0.8–1.2s for a page's one lead picture or a crossfade settle. `prefers-reduced-motion: reduce` removes every transition, animation and hover transform, and stops every pulse.
@@ -350,11 +352,11 @@ Colour and background change in 0.16–0.18s ease; arrows step in 0.2s; a panel,
 - **Do** set every offset with logical properties (`inset-inline-start`, `margin-inline`, `padding-inline`) and isolate Latin or numeric runs with `direction: ltr; unicode-bidi: isolate`; give every SVG on the page `direction: ltr`.
 - **Do** separate blocks with whitespace, type scale and the photograph; use a line only where it means something (a tab underline, a timeline, a list-row divider).
 - **Do** put the 16×13 blue ش blade before a heading and the 13×11 blade at the end of a report; paint the blade with `background`, never with an image element.
-- **Do** keep reading text in Noto Naskh Arabic on a measure of about sixty characters at line-height 1.9–2.05, scaled by `--reader-scale`.
+- **Do** keep reading text in the Regular on a measure of about sixty characters at line-height 1.9–2.05, scaled by `--reader-scale`.
 - **Do** frame every photograph at a fixed ratio on a `{colors.brand-navy-2}` ground with `object-fit: cover` and an authored `object-position`.
 - **Do** draw a band full-bleed with `box-shadow: 0 0 0 100vmax` and `clip-path: inset(0 -100vmax)` — one navy band per page at most.
 - **Do** give every grid child `min-width: 0`, every phone target 44px, every phone text 12px or more, and every focusable a 2px blue outline (sky on navy).
-- **Do** use `tabular-nums` on every number and Almarai 800 on every label, caption, counter and button.
+- **Do** use `tabular-nums` on every number and the Bold on every label, caption, counter and button.
 - **Do** honour `prefers-reduced-motion` on every transition, animation and hover transform.
 - **Do** prefix every class with `sh-`, and bump `?v=N` on every asset after any CSS or JS change.
 
@@ -366,5 +368,5 @@ Colour and background change in 0.16–0.18s ease; arrows step in 0.2s; a panel,
 - **Don't** hover to blue on the blue masthead or the navy chrome — hover there goes to white.
 - **Don't** add a second navy band to a page, or a shadow to anything that sits in the flow.
 - **Don't** stretch, squash or viewport-crop a photograph, or fill a frame with a placeholder when there is no real picture — drop the element instead.
-- **Don't** use IBM Plex Sans Arabic anywhere, and avoid Cairo; Almarai and Noto Naskh Arabic are the only faces, self-hosted, and never tracked or uppercased.
+- **Don't** use IBM Plex Sans Arabic anywhere, and avoid Cairo; Neue Helvetica Arabic is the only face (Almarai only as its fallback), self-hosted, and never tracked or uppercased.
 - **Don't** invent content: headlines, figures and pictures come from the agency's own sources.

@@ -56,7 +56,7 @@
 
   /* ---- time ---- */
   var LOCALE = 'ar-EG-u-nu-latn';
-  var fmtAbs = null, fmtDay = null, fmtRel = null;
+  var fmtAbs = null, fmtDay = null, fmtRel = null, fmtDate = null;
   function absTime(d) {
     if (!fmtAbs) fmtAbs = new Intl.DateTimeFormat(LOCALE, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: '2-digit' });
     return fmtAbs.format(d).replace(/،\s*/g, ' · ').replace(/\s+في\s+/, ' · ');
@@ -74,6 +74,10 @@
     if (!fmtDay) fmtDay = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'long' });
     return fmtDay.format(d);
   }
+  function dayDate(d) {   // 31 أغسطس 2026: a date that has to keep its year
+    if (!fmtDate) fmtDate = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'long', year: 'numeric' });
+    return fmtDate.format(d);
+  }
   function clock(d) {
     if (!fmtRel) fmtRel = new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: '2-digit' });
     return fmtRel.format(d);
@@ -81,7 +85,9 @@
   /* <time datetime="ISO"> gets its text (relative when < 24h), a title with the
      full date, and refreshes every minute. data-sh-ago="N" (minutes) is the
      static build's stand-in for a real timestamp: it synthesises datetime at
-     load so the demo never goes stale. data-sh-format="clock" keeps HH:MM. */
+     load so the demo never goes stale. data-sh-format="clock" keeps HH:MM;
+     data-sh-format="date" writes the day, the month and the year (a library
+     whose videos span years must not drop the year). */
   function paintTimes(root) {
     var now = Date.now();
     [].forEach.call((root || document).querySelectorAll('time'), function (t) {
@@ -97,6 +103,7 @@
       t.title = absTime(d);
       if (fmt === 'clock') t.textContent = clock(d);
       else if (fmt === 'abs') t.textContent = absTime(d);
+      else if (fmt === 'date') t.textContent = dayDate(d);
       else t.textContent = relTime(d, now);
     });
   }

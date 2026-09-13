@@ -31,7 +31,10 @@ img{display:block}
    everywhere else (reels.css .sh-reels-grid__play) ---- */
 .sh-vx-play{position:absolute;inset:0;z-index:2;margin:auto;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.85);background:rgba(10,26,51,.5);color:#fff;display:grid;place-items:center;font-size:12px;transition:background .2s ease,border-color .2s ease,transform .2s ease}
 .sh-vx-play .sh-i{translate:1px 0}   /* the triangle's optical centre, the same way in both directions */
-.sh-vx-pick--lead .sh-vx-play{width:56px;height:56px;border:0;background:var(--sh-blue);font-size:18px;box-shadow:0 6px 18px rgba(10,26,51,.45)}
+/* on a picture that carries its title, the disc centres on the part above the
+   title, so a two-line title never runs under it */
+.sh-vx-pick .sh-vx-play,.sh-vx-slide .sh-vx-play{inset:0 0 42% 0}
+.sh-vx-pick--lead .sh-vx-play{inset:0 0 36% 0;width:56px;height:56px;border:0;background:var(--sh-blue);font-size:18px;box-shadow:0 6px 18px rgba(10,26,51,.45)}
 
 /* ---- a picture with its title on it: the picks and the programme rows.
    The veil is navy at an opacity (DESIGN.md, Navy Veil Rule). ---- */
@@ -127,16 +130,24 @@ html[dir="ltr"] .sh-vx-car__btn .sh-i{transform:scaleX(-1)}   /* forward points 
 @media (max-width:640px){
   .sh-vx-head{padding-top:16px}
   .sh-vx-head__row{margin-top:4px}
-  /* the programmes stay on one line and slide under the thumb */
-  .sh-vx-rail{flex-wrap:nowrap;width:100%;overflow-x:auto;scrollbar-width:none;gap:0 18px}
-  .sh-vx-rail::-webkit-scrollbar{display:none}
+  /* all six links stay in view: the rail wraps rather than hiding one past the edge */
+  .sh-vx-rail{gap:0 16px}
   .sh-vx-sec{margin-top:40px}
   .sh-vx-sec__t{font-size:20px;margin-bottom:12px}
   .sh-vx-picks{grid-template-columns:minmax(0,1fr);gap:0;margin-top:12px}
-  .sh-vx-pick--lead{margin-bottom:6px}
-  .sh-vx-pick--lead .sh-vx-pick__body{padding:14px 16px 16px;gap:6px}
-  .sh-vx-pick--lead .sh-vx-pick__t{font-size:20px}
+  /* a phone reads no title on a picture: the lead and the programme rows put
+     it under the picture, the way the channels' own phone pages do */
+  .sh-vx-pick--lead,.sh-vx-slide{aspect-ratio:auto;overflow:visible;background:none;color:var(--sh-ink)}
+  .sh-vx-pick--lead{margin-bottom:10px}
+  .sh-vx-pick--lead .sh-vx-pick__pic,.sh-vx-slide__pic{position:relative;inset:auto;aspect-ratio:16/9;overflow:hidden;background:var(--sh-navy-2)}
+  .sh-vx-pick--lead .sh-vx-pick__pic::after,.sh-vx-slide__pic::after{content:none}
+  .sh-vx-pick--lead .sh-vx-pick__body,.sh-vx-slide__body{position:static;padding:10px 0 0;gap:4px}
+  .sh-vx-pick--lead .sh-vx-pick__t{color:var(--sh-navy);font-size:20px;-webkit-line-clamp:3}
+  .sh-vx-slide__t{color:var(--sh-navy);font-size:14px;-webkit-line-clamp:3}
+  .sh-vx-pick--lead .sh-vx-pick__m,.sh-vx-slide__m{color:var(--sh-mute)}
+  .sh-vx-pick__m > * + *::before,.sh-vx-slide__m > * + *::before{color:var(--sh-mute-2)}
   .sh-vx-pick--lead .sh-vx-chip{top:12px;inset-inline-start:12px;font-size:12px}
+  .sh-vx-pick .sh-vx-play,.sh-vx-slide .sh-vx-play{inset:0}
   .sh-vx-pick--lead .sh-vx-play{width:48px;height:48px;font-size:15px}
   /* on a phone the four smaller picks, the latest and the most watched read
      as rows: the picture beside its title */
@@ -156,11 +167,13 @@ html[dir="ltr"] .sh-vx-car__btn .sh-i{transform:scaleX(-1)}   /* forward points 
   .sh-vx-card .sh-vx-play{width:30px;height:30px;font-size:10px}
   .sh-vx-rank{min-width:28px;height:24px;padding:0 6px;font-size:12px}
   .sh-vx-band{margin-top:44px;padding:28px 0 32px}
-  /* a programme row shows one episode and the edge of the next */
+  /* a programme row shows one episode and the edge of the next; the thumb moves it */
   .sh-vx-car__track{grid-auto-columns:80%;gap:12px}
-  .sh-vx-slide__body{padding:10px 12px 12px}
-  .sh-vx-slide__t{font-size:14px}
-  .sh-vx-car__dots{display:none}
+  .sh-vx-car__btn,.sh-vx-car__dots{display:none}
+}
+@media (max-width:640px) and (hover:hover){
+  a.sh-vx-pick--lead:hover,a.sh-vx-slide:hover{color:var(--sh-ink)}
+  .sh-vx-pick--lead:hover .sh-vx-pick__t,.sh-vx-slide:hover .sh-vx-slide__t{color:var(--sh-blue)}
 }
 @media (max-width:640px) and (hover:hover){
   a.sh-vx-pick:not(.sh-vx-pick--lead):hover{color:var(--sh-ink)}
