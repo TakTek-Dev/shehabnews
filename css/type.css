@@ -2,7 +2,7 @@
    every content font-size again under html[data-sh-type="sm"] (×0.92, floor
    12px) and ="lg" (×1.12). The chrome is not here on purpose. */
 
-/* ---- sm ×0.92 (602 rules) ---- */
+/* ---- sm ×0.92 (613 rules) ---- */
 html[data-sh-type="sm"] .sh-page{font-size:12.88px}
 html[data-sh-type="sm"] .sh-more{font-size:12px}
 html[data-sh-type="sm"] .sh-section__title.sh-section__title--sm{font-size:12.88px}
@@ -410,21 +410,21 @@ html[data-sh-type="sm"] .sh-now__link{font-size:12px}
 html[data-sh-type="sm"] .sh-now__time{font-size:12px}
 html[data-sh-type="sm"] .sh-now__t{font-size:12.88px}
 html[data-sh-type="sm"] .sh-now__top a{font-size:12px}
-html[data-sh-type="sm"] .sh-ph-hero__kicker{font-size:12px}
-html[data-sh-type="sm"] .sh-ph-hero__title{font-size:calc(clamp(20px,2.1vw,26px) * 0.92)}
-html[data-sh-type="sm"] .sh-ph-hero__stitle{font-size:12.88px}
-html[data-sh-type="sm"] .sh-ph-cats{font-size:12px}
-html[data-sh-type="sm"] .sh-ph-card__title{font-size:13.8px}
-html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title{font-size:15.64px}
-html[data-sh-type="sm"] .sh-ph-card--major .sh-ph-card__title{font-size:calc(clamp(17px,1.7vw,22px) * 0.92)}
-html[data-sh-type="sm"] .sh-ph-picks__h2{font-size:18.4px}
-html[data-sh-type="sm"] .sh-ph-picks__sub{font-size:12px}
-html[data-sh-type="sm"] .sh-ph-pick__title{font-size:13.8px}
-html[data-sh-type="sm"] .sh-ph-pager{font-size:12px}
-html[data-sh-type="sm"] .sh-ph-lens__title{font-size:18.4px}
-html[data-sh-type="sm"] .sh-ph-lens__stitle{font-size:12.88px}
-html[data-sh-type="sm"] .sh-ph-closing__lead{font-size:12px}
-html[data-sh-type="sm"] .sh-ph-closing__cta{font-size:12px}
+html[data-sh-type="sm"] .sh-ph-crumbs{font-size:12.88px}
+html[data-sh-type="sm"] .sh-ph-title{font-size:calc(clamp(34px,3.6vw,48px) * 0.92)}
+html[data-sh-type="sm"] .sh-ph-dek{font-size:16.56px}
+html[data-sh-type="sm"] .sh-ph-tabs a{font-size:15.64px}
+html[data-sh-type="sm"] .sh-ph-card__cat{font-size:12.88px}
+html[data-sh-type="sm"] .sh-ph-card__title{font-size:17.48px}
+html[data-sh-type="sm"] .sh-ph-card__time{font-size:12.88px}
+html[data-sh-type="sm"] .sh-ph-card--week .sh-ph-card__title{font-size:calc(clamp(26px,2.5vw,34px) * 0.92)}
+html[data-sh-type="sm"] .sh-ph-card--side .sh-ph-card__title{font-size:16.56px}
+html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title{font-size:22.08px}
+html[data-sh-type="sm"] .sh-ph-card--major .sh-ph-card__title{font-size:calc(clamp(26px,2.5vw,34px) * 0.92)}
+html[data-sh-type="sm"] .sh-ph-pager{font-size:14.72px}
+html[data-sh-type="sm"] .sh-ph-picks__h2{font-size:calc(clamp(24px,2.2vw,30px) * 0.92)}
+html[data-sh-type="sm"] .sh-ph-picks__more{font-size:13.8px}
+html[data-sh-type="sm"] .sh-ph-pick__title{font-size:18.4px}
 html[data-sh-type="sm"] .sh-privacy-privacy-body__article-1{font-size:13.8px}
 html[data-sh-type="sm"] .sh-privacy-privacy-body__h2-1{font-size:18.4px}
 html[data-sh-type="sm"] .sh-privacy-privacy-body__p-2{font-size:12.88px}
@@ -588,6 +588,13 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-lc__lead-t{font-size:18.4px}
   html[data-sh-type="sm"] .leaflet-bar a,html[data-sh-type="sm"] .leaflet-touch .leaflet-bar a{font-size:20.24px}
   html[data-sh-type="sm"] .leaflet-container a.leaflet-popup-close-button{font-size:20.24px}
+  html[data-sh-type="sm"] .sh-ph-crumbs{font-size:12px}
+  html[data-sh-type="sm"] .sh-ph-dek{font-size:14.72px}
+  html[data-sh-type="sm"] .sh-ph-tabs a{font-size:14.72px}
+  html[data-sh-type="sm"] .sh-ph-card--week .sh-ph-card__title{font-size:21.16px}
+  html[data-sh-type="sm"] .sh-ph-card--side .sh-ph-card__cat{font-size:12px}
+  html[data-sh-type="sm"] .sh-ph-card--side .sh-ph-card__title{font-size:15.18px}
+  html[data-sh-type="sm"] .sh-ph-pick__title{font-size:16.56px}
   html[data-sh-type="sm"] .sh-reels__sub{font-size:12px}
   html[data-sh-type="sm"] .sh-reels__ftitle{font-size:16.56px}
   html[data-sh-type="sm"] .sh-reels__fdek{font-size:12.42px}
@@ -609,16 +616,20 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
 }
 @media (max-width:767px){
   html[data-sh-type="sm"] .sh-fl-card--lead .sh-fl-card__title{font-size:18.4px}
-  html[data-sh-type="sm"] .sh-ph-hero__title{font-size:18.4px}
-  html[data-sh-type="sm"] .sh-ph-lens__title{font-size:15.64px}
+  html[data-sh-type="sm"] .sh-ph-card__cat{font-size:12px}
+  html[data-sh-type="sm"] .sh-ph-card__title{font-size:16.56px}
+  html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title,html[data-sh-type="sm"] .sh-ph-card--major .sh-ph-card__title{font-size:19.32px}
+  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__cat{font-size:12px}
+  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__title{font-size:15.18px}
+  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__time{font-size:12px}
 }
 @media (max-width:1023px){
-  html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title{font-size:13.8px}
+  html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title{font-size:19.32px}
   html[data-sh-type="sm"] .sh-reels__ftitle{font-size:18.4px}
   html[data-sh-type="sm"] .sh-reels__fdek{font-size:12.42px}
 }
 
-/* ---- lg ×1.12 (823 rules) ---- */
+/* ---- lg ×1.12 (826 rules) ---- */
 html[data-sh-type="lg"] .sh-page{font-size:15.68px}
 html[data-sh-type="lg"] .sh-more{font-size:13.44px}
 html[data-sh-type="lg"] .sh-doc__num.sh-doc__num--sm{font-size:12.32px}
@@ -1187,29 +1198,21 @@ html[data-sh-type="lg"] .sh-now__time{font-size:13.44px}
 html[data-sh-type="lg"] .sh-now__cat{font-size:12.88px}
 html[data-sh-type="lg"] .sh-now__t{font-size:15.68px}
 html[data-sh-type="lg"] .sh-now__top a{font-size:14.56px}
-html[data-sh-type="lg"] .sh-ph-tile__n{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-hero__brand{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-hero__kicker{font-size:13.44px}
-html[data-sh-type="lg"] .sh-ph-hero__title{font-size:calc(clamp(20px,2.1vw,26px) * 1.12)}
-html[data-sh-type="lg"] .sh-ph-hero__cat{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-hero__stitle{font-size:15.68px}
-html[data-sh-type="lg"] .sh-ph-cats{font-size:13.44px}
-html[data-sh-type="lg"] .sh-ph-card__meta{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-card__title{font-size:16.8px}
-html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title{font-size:19.04px}
-html[data-sh-type="lg"] .sh-ph-card--major .sh-ph-card__title{font-size:calc(clamp(17px,1.7vw,22px) * 1.12)}
-html[data-sh-type="lg"] .sh-ph-picks__h2{font-size:22.4px}
-html[data-sh-type="lg"] .sh-ph-picks__sub{font-size:13.44px}
-html[data-sh-type="lg"] .sh-ph-pick__n{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-pick__kicker{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-pick__title{font-size:16.8px}
-html[data-sh-type="lg"] .sh-ph-pager{font-size:14.56px}
-html[data-sh-type="lg"] .sh-ph-lens__label > span:not(.sh-rule){font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-lens__cat{font-size:12.88px}
-html[data-sh-type="lg"] .sh-ph-lens__title{font-size:22.4px}
-html[data-sh-type="lg"] .sh-ph-lens__stitle{font-size:15.68px}
-html[data-sh-type="lg"] .sh-ph-closing__lead{font-size:14.56px}
-html[data-sh-type="lg"] .sh-ph-closing__cta{font-size:13.44px}
+html[data-sh-type="lg"] .sh-ph-crumbs{font-size:15.68px}
+html[data-sh-type="lg"] .sh-ph-title{font-size:calc(clamp(34px,3.6vw,48px) * 1.12)}
+html[data-sh-type="lg"] .sh-ph-dek{font-size:20.16px}
+html[data-sh-type="lg"] .sh-ph-tabs a{font-size:19.04px}
+html[data-sh-type="lg"] .sh-ph-card__cat{font-size:15.68px}
+html[data-sh-type="lg"] .sh-ph-card__title{font-size:21.28px}
+html[data-sh-type="lg"] .sh-ph-card__time{font-size:15.68px}
+html[data-sh-type="lg"] .sh-ph-card--week .sh-ph-card__title{font-size:calc(clamp(26px,2.5vw,34px) * 1.12)}
+html[data-sh-type="lg"] .sh-ph-card--side .sh-ph-card__title{font-size:20.16px}
+html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title{font-size:26.88px}
+html[data-sh-type="lg"] .sh-ph-card--major .sh-ph-card__title{font-size:calc(clamp(26px,2.5vw,34px) * 1.12)}
+html[data-sh-type="lg"] .sh-ph-pager{font-size:17.92px}
+html[data-sh-type="lg"] .sh-ph-picks__h2{font-size:calc(clamp(24px,2.2vw,30px) * 1.12)}
+html[data-sh-type="lg"] .sh-ph-picks__more{font-size:16.8px}
+html[data-sh-type="lg"] .sh-ph-pick__title{font-size:22.4px}
 html[data-sh-type="lg"] .sh-privacy-privacy-index__span-1{font-size:12.88px}
 html[data-sh-type="lg"] .sh-privacy-privacy-index__a-1{font-size:12.88px}
 html[data-sh-type="lg"] .sh-privacy-privacy-body__article-1{font-size:16.8px}
@@ -1422,6 +1425,13 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
   html[data-sh-type="lg"] .sh-live-stage__bar{font-size:12.32px}
   html[data-sh-type="lg"] .leaflet-bar a,html[data-sh-type="lg"] .leaflet-touch .leaflet-bar a{font-size:24.64px}
   html[data-sh-type="lg"] .leaflet-container a.leaflet-popup-close-button{font-size:24.64px}
+  html[data-sh-type="lg"] .sh-ph-crumbs{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-ph-dek{font-size:17.92px}
+  html[data-sh-type="lg"] .sh-ph-tabs a{font-size:17.92px}
+  html[data-sh-type="lg"] .sh-ph-card--week .sh-ph-card__title{font-size:25.76px}
+  html[data-sh-type="lg"] .sh-ph-card--side .sh-ph-card__cat{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-ph-card--side .sh-ph-card__title{font-size:18.48px}
+  html[data-sh-type="lg"] .sh-ph-pick__title{font-size:20.16px}
   html[data-sh-type="lg"] .sh-reels__sub{font-size:14px}
   html[data-sh-type="lg"] .sh-reels__ftitle{font-size:20.16px}
   html[data-sh-type="lg"] .sh-reels__fdek{font-size:15.12px}
@@ -1446,11 +1456,15 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
 }
 @media (max-width:767px){
   html[data-sh-type="lg"] .sh-fl-card--lead .sh-fl-card__title{font-size:22.4px}
-  html[data-sh-type="lg"] .sh-ph-hero__title{font-size:22.4px}
-  html[data-sh-type="lg"] .sh-ph-lens__title{font-size:19.04px}
+  html[data-sh-type="lg"] .sh-ph-card__cat{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-ph-card__title{font-size:20.16px}
+  html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title,html[data-sh-type="lg"] .sh-ph-card--major .sh-ph-card__title{font-size:23.52px}
+  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__cat{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__title{font-size:18.48px}
+  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__time{font-size:14.56px}
 }
 @media (max-width:1023px){
-  html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title{font-size:16.8px}
+  html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title{font-size:23.52px}
   html[data-sh-type="lg"] .sh-reels__ftitle{font-size:22.4px}
   html[data-sh-type="lg"] .sh-reels__fdek{font-size:15.12px}
 }
