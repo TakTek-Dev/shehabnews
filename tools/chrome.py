@@ -22,7 +22,7 @@ import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-V = '293'
+V = '294'
 SITE = 'https://shehabnews.com/'
 ORG = 'وكالة شهاب للأنباء'
 OG_IMG = SITE + 'assets/images/og-default.jpg'
@@ -75,6 +75,16 @@ LANG_PRELUDE = ('<script>(function(){try{if(localStorage.getItem("sh-lang")==="e
 # from the first paint instead of a beat after it
 TYPE_PRELUDE = ('<script>(function(){try{var t=(localStorage.getItem("sh-type")||"").replace(/"/g,"");'
                 'if(t==="sm"||t==="lg")document.documentElement.setAttribute("data-sh-type",t)}catch(e){}})()</script>')
+# and no CSS transition runs while the page is still settling: Safari starts
+# them as the sheets apply, so the hero slid open and faded its captions in on
+# every load. <html data-sh-settling> switches transitions off until the page
+# has loaded and painted twice (capped at 1.2s after DOMContentLoaded, so a slow
+# image never holds a hover still); animations are untouched.
+SETTLE_PRELUDE = ('<style>html[data-sh-settling] *,html[data-sh-settling] *::before,html[data-sh-settling] *::after{transition:none!important}</style>'
+                  '<script>(function(){var h=document.documentElement,off=false;h.setAttribute("data-sh-settling","");'
+                  'function done(){if(off)return;off=true;requestAnimationFrame(function(){requestAnimationFrame(function(){h.removeAttribute("data-sh-settling")})})}'
+                  'addEventListener("load",done);addEventListener("pageshow",function(e){if(e.persisted)done()});'
+                  'document.addEventListener("DOMContentLoaded",function(){setTimeout(done,1200)})})()</script>')
 HEADER_MARK = re.compile(r'<!-- sh:header -->.*?<!-- /sh:header -->', re.S)
 FOOTER_MARK = re.compile(r'<!-- sh:footer -->.*?<!-- /sh:footer -->', re.S)
 HEADER_TAG = re.compile(r'<header[^>]*data-screen-label="Header"[^>]*>.*?</header>', re.S)
@@ -182,6 +192,7 @@ def build_head(page, html, old_head):
         '<meta name="robots" content="%s">' % robots,
         '<link rel="canonical" href="%s">' % url,
         '<meta name="theme-color" content="%s">' % theme,
+        SETTLE_PRELUDE,
         TYPE_PRELUDE,
         LANG_PRELUDE,
         '<meta name="color-scheme" content="light">',
