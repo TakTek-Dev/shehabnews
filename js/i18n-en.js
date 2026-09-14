@@ -1533,6 +1533,7 @@ window.SH_I18N_EN = {
   "صور": "Photos",
   "صور التقرير": "Report photographs",
   "صور خدمة الوكالة بدقّتها الكاملة تُرخَّص للمؤسسات الإعلامية. يمكنك مشاهدة النسخة العامة.": "The agency's wire photographs are licensed at full resolution to media organisations. You can view the public version.",
+  "صفحات مواد الكاتب": "The writer's pages",
   "صورة الأسبوع": "Photo of the week",
   "صورة الأسبوع — غزة": "Photo of the week — Gaza",
   "صورة اليوم": "Photo of the day",

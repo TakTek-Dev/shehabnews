@@ -102,9 +102,6 @@ html[dir="ltr"] .sh-art-next__pic::after{background:linear-gradient(to left,rgba
 html[dir="ltr"] .sh-art-next:hover .sh-more__arrow{transform:translateX(3px)}
 html[dir="ltr"] .sh-progress{right:0;left:0;transform-origin:left center}
 
-/* ---- css/pages/author.css ---- */
-html[dir="ltr"] .sh-author-top-stories__span-2{background:linear-gradient(to right,rgba(10,26,51,.92) 0%,rgba(10,26,51,.5) 50%,rgba(27,90,166,.2) 100%)}
-
 /* ---- css/pages/category.css ---- */
 html[dir="ltr"] .sh-category-section-stream__a-2{padding:20px 0 20px 18px;margin:0 0 0 -18px}
 
