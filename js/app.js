@@ -243,23 +243,44 @@
       var panels = [].slice.call(box.querySelectorAll('[data-sh-hero-panel]'));
       if (panels.length < 2) return;
 
-      var open = 0;
-      // which slide ships open: its flex-grow is 1. That value used to be inline
-      // and now comes from a class, so read it computed -- otherwise every slide
-      // reads '' here, `open` stays 0, and the OPEN/SHUT caption templates are
-      // snapped from the wrong panels: the first hover then shows the captions
-      // on the collapsed slides and hides them on the open one.
-      panels.forEach(function (p, i) { if (window.getComputedStyle(p).flexGrow === '1') open = i; });
-      var closed = open === 0 ? 1 : 0;
+      // Every read below happens with the transitions switched off. Safari runs
+      // CSS transitions while a page is still settling (a late sheet, a font
+      // swap), so at this point flex-grow can read 0.37 and the captions half
+      // faded: no slide read as open, the templates were snapped mid-fade, and
+      // the first hover showed the captions on the shut slides and the vertical
+      // title on the open one. With transition:none the computed values are the
+      // settled ones, and putting the transition back starts nothing.
+      function settled(read) {
+        var els = [];
+        panels.forEach(function (p) { els.push(p); [].push.apply(els, p.children); });
+        var was = els.map(function (el) { return el.style.transition; });
+        els.forEach(function (el) { el.style.transition = 'none'; });
+        void box.offsetWidth;
+        var out = read();
+        els.forEach(function (el, i) { el.style.transition = was[i]; });
+        return out;
+      }
 
-      var snap = function (p) {
-        return [].slice.call(p.children).map(function (c) {
-          var cc = window.getComputedStyle(c);
-          return { opacity: c.style.opacity || cc.opacity, transform: c.style.transform || cc.transform };
+      var open = 0, closed = 1, OPEN, SHUT;
+      settled(function () {
+        // which slide ships open: the one that grows. That value used to be
+        // inline and now comes from a class, so read it computed -- otherwise
+        // `open` stays 0 and the OPEN/SHUT templates come from the wrong panels
+        var most = -1;
+        panels.forEach(function (p, i) {
+          var g = parseFloat(window.getComputedStyle(p).flexGrow) || 0;
+          if (g > most) { most = g; open = i; }
         });
-      };
-      var OPEN = snap(panels[open]);
-      var SHUT = snap(panels[closed]);
+        closed = open === 0 ? 1 : 0;
+        var snap = function (p) {
+          return [].slice.call(p.children).map(function (c) {
+            var cc = window.getComputedStyle(c);
+            return { opacity: c.style.opacity || cc.opacity, transform: c.style.transform || cc.transform };
+          });
+        };
+        OPEN = snap(panels[open]);
+        SHUT = snap(panels[closed]);
+      });
 
       function show(idx) {
         if (idx === open) return;
@@ -742,8 +763,18 @@
       var spines = wraps.map(function (w) { return w.querySelector('[data-sh-file]'); });
       if (spines.some(function (s) { return !s; })) return;
 
-      // the open and closed spine colours, read off the markup as shipped
-      var read = function (el, prop) { return el.style[prop] || window.getComputedStyle(el)[prop === 'background' ? 'backgroundColor' : prop]; };
+      // the open and closed spine colours, read off the markup as shipped --
+      // with the transition off, since Safari can still be fading them in
+      // while the page settles and would hand back a colour half way
+      var read = function (el, prop) {
+        if (el.style[prop]) return el.style[prop];
+        var was = el.style.transition;
+        el.style.transition = 'none';
+        void el.offsetWidth;
+        var v = window.getComputedStyle(el)[prop === 'background' ? 'backgroundColor' : prop];
+        el.style.transition = was;
+        return v;
+      };
       var OPEN_BG = read(spines[0], 'background') || '#1b5aa6';
       var SHUT_BG = read(spines[1], 'background') || '#0f2a4f';
       var current = null;
@@ -785,7 +816,13 @@
           [].slice.call(s.children).forEach(function (o) {
             var cs = getComputedStyle(o);
             if (cs.position !== 'absolute' || cs.left !== '0px' || cs.right !== '0px') return;
-            if (o.__op === undefined) o.__op = o.style.opacity || getComputedStyle(o).opacity || '1';
+            if (o.__op === undefined) {
+              var was = o.style.transition;
+              o.style.transition = 'none';
+              void o.offsetWidth;
+              o.__op = o.style.opacity || getComputedStyle(o).opacity || '1';
+              o.style.transition = was;
+            }
             o.style.transition = 'opacity .2s ease';
             o.style.opacity = on ? '0' : o.__op;
           });
