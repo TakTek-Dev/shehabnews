@@ -102,9 +102,6 @@ html[dir="ltr"] .sh-art-next__pic::after{background:linear-gradient(to left,rgba
 html[dir="ltr"] .sh-art-next:hover .sh-more__arrow{transform:translateX(3px)}
 html[dir="ltr"] .sh-progress{right:0;left:0;transform-origin:left center}
 
-/* ---- css/pages/category.css ---- */
-html[dir="ltr"] .sh-category-section-stream__a-2{padding:20px 0 20px 18px;margin:0 0 0 -18px}
-
 /* ---- css/pages/contact.css ---- */
 html[dir="ltr"] .sh-contact-contact-info__span-11{direction:ltr}
 
@@ -155,9 +152,6 @@ html[dir="ltr"] .sh-live-sched__item{padding:11px 6px 11px 8px}
 /* ---- css/pages/reels.css ---- */
 html[dir="ltr"] .sh-reels-grid__play{right:50%;left:auto;margin:-20px -20px 0 0}
 html[dir="ltr"] .sh-reels-grid__play .sh-i{margin-right:2px;margin-left:0}
-
-/* ---- css/pages/search.css ---- */
-html[dir="ltr"] .sh-pagehead__photo::after{background:linear-gradient(to right,rgba(10,26,51,.82) 0%,rgba(10,26,51,.66) 45%,rgba(10,26,51,.2) 100%)}
 
 /* ---- css/pages/shorts.css ---- */
 html[dir="ltr"] media-player.sh-shorts__player .sh-lite__play{margin:-33px -33px 0 0}

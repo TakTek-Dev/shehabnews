@@ -797,3 +797,81 @@ html[data-sh-bo-open]{overflow:hidden}
   .sh-reveal:hover,.sh-reveal:focus-visible{box-shadow:none}
   .sh-reveal__title,.sh-reveal__meta{transform:none!important;transition:opacity .15s linear!important;transition-delay:0s!important}
 }
+
+/* ============================================================================
+   LEGAL DOCUMENT — .sh-legal-head + .sh-legal (privacy.html, terms.html)
+   A light head (crumbs, title, dek, last update and the twin document), then
+   three columns: a sticky index of the numbered sections, the text on a
+   reading measure, and a sticky «باختصار» — the document in four lines with
+   the way to reach the agency. Under 1100px the brief moves above the text and
+   the index lies flat as a scrolling row; nothing is framed but the brief's tint.
+   ========================================================================== */
+.sh-legal-head{padding-top:24px}
+.sh-legal-head__crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:4px 9px;font-family:var(--sh-font);font-size:14px;color:var(--sh-mute)}
+.sh-legal-head__crumbs a{color:var(--sh-mute)}
+.sh-legal-head__crumbs a::after{content:"/";margin-inline-start:9px;color:var(--color-text-faint)}
+@media (hover:hover){.sh-legal-head__crumbs a:hover{color:var(--sh-blue)}}
+.sh-legal-head__crumbs span{color:var(--sh-navy);font-weight:700}
+.sh-legal-head__title{margin:12px 0 0;font-family:var(--sh-font);font-size:clamp(34px,3.6vw,48px);font-weight:800;line-height:1.2;color:var(--sh-navy)}
+.sh-legal-head__dek{margin:10px 0 0;font-family:var(--sh-font);font-size:18px;line-height:1.8;color:var(--sh-ink-2);text-wrap:pretty}
+.sh-legal-head__meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;margin:12px 0 0;font-family:var(--sh-font);font-size:15px;color:var(--sh-mute)}
+.sh-legal-head__meta a{font-weight:700;color:var(--sh-blue)}
+@media (hover:hover){.sh-legal-head__meta a:hover{color:var(--sh-navy)}}
+
+.sh-legal{display:grid;grid-template-columns:240px minmax(0,1fr) 320px;gap:48px;align-items:start;margin:40px 0 64px}
+.sh-legal__index,.sh-legal__brief{position:sticky;top:calc(var(--sh-compact-h,100px) + 26px)}
+.sh-legal__index{display:flex;flex-direction:column}
+.sh-legal__index-h{margin-bottom:8px;font-family:var(--sh-font);font-size:14px;font-weight:700;color:var(--sh-mute)}
+.sh-legal__index a{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;align-items:baseline;padding:9px 0;font-family:var(--sh-font);font-size:16px;font-weight:700;line-height:1.45;color:var(--sh-ink-2)}
+.sh-legal__index a b{font-weight:800;color:var(--sh-blue);font-variant-numeric:tabular-nums}
+@media (hover:hover){.sh-legal__index a:hover{color:var(--sh-blue)}}
+.sh-legal__index a:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+
+.sh-legal__doc{min-width:0;max-width:68ch;font-family:var(--sh-font);font-size:18px;line-height:2;color:var(--sh-ink)}
+.sh-legal__lede{margin:0;font-size:19px;line-height:1.95;color:var(--sh-navy);text-wrap:pretty}
+.sh-legal__sec{padding-top:36px;scroll-margin-top:calc(var(--sh-compact-h,100px) + 26px)}
+.sh-legal__sec h2{display:flex;align-items:baseline;gap:12px;margin:0 0 10px;font-family:var(--sh-font);font-size:clamp(22px,2vw,26px);font-weight:800;line-height:1.4;color:var(--sh-navy)}
+.sh-legal__sec h2 b{font-size:.8em;font-weight:800;color:var(--sh-blue);font-variant-numeric:tabular-nums}
+.sh-legal__sec p{margin:0 0 14px;text-wrap:pretty}
+.sh-legal__sec ul{margin:0 0 14px;padding-inline-start:22px}
+.sh-legal__sec li{margin-bottom:6px;padding-inline-start:4px;text-wrap:pretty}
+.sh-legal__sec li::marker{color:var(--sh-blue)}
+.sh-legal__doc a{font-weight:700;color:var(--sh-blue)}
+@media (hover:hover){.sh-legal__doc a:hover{color:var(--sh-navy)}}
+
+.sh-legal__brief{padding:24px;background:var(--color-surface-soft)}
+.sh-legal__brief-h{margin:0 0 10px;font-family:var(--sh-font);font-size:22px;font-weight:800;color:var(--sh-navy)}
+.sh-legal__brief ul{list-style:none;margin:0;padding:0}
+.sh-legal__brief li{padding:10px 0;font-family:var(--sh-font);font-size:16px;font-weight:700;line-height:1.6;color:var(--sh-navy)}
+.sh-legal__brief li + li{border-top:1px solid var(--color-border)}
+.sh-legal__brief-p{margin:16px 0 0;font-family:var(--sh-font);font-size:15px;line-height:1.7;color:var(--sh-ink-2)}
+.sh-legal__cta,.sh-legal__cta:hover{color:#fff}   /* base.css a:hover would paint the label blue on blue */
+.sh-legal__cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;margin-top:12px;background:var(--sh-navy);font-family:var(--sh-font);font-size:16px;font-weight:800}
+@media (hover:hover){.sh-legal__cta:hover{background:var(--sh-blue);gap:14px}}
+.sh-legal__cta:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
+
+@media (max-width:1100px){
+  .sh-legal{grid-template-columns:220px minmax(0,1fr);gap:40px}
+  .sh-legal__brief{position:static;grid-column:2;grid-row:1}
+  .sh-legal__doc{grid-column:2}
+  .sh-legal__index{grid-row:1/span 2}
+}
+@media (max-width:767px){
+  .sh-legal{grid-template-columns:minmax(0,1fr);gap:24px;margin:24px 0 48px}
+  .sh-legal__index{position:static;grid-row:auto;flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:8px;margin-inline:calc(var(--sh-gutter,16px) * -1);padding-inline:var(--sh-gutter,16px)}
+  .sh-legal__index::-webkit-scrollbar{display:none}
+  .sh-legal__index-h{display:none}
+  .sh-legal__index a{flex:none;display:inline-flex;gap:6px;min-height:44px;align-items:center;padding:0 14px;background:var(--color-surface-soft);font-size:15px;white-space:nowrap}
+  .sh-legal__brief,.sh-legal__doc{grid-column:auto;grid-row:auto}
+  .sh-legal__index{order:-2}
+  .sh-legal__brief{order:-1}   /* on a phone the four-line brief comes before the full text */
+  .sh-legal__brief{padding:18px}
+  .sh-legal__doc{font-size:17px;line-height:1.95}
+  .sh-legal__lede{font-size:17px}
+  .sh-legal__sec{padding-top:28px}
+}
+@media (max-width:640px){
+  .sh-legal-head{padding-top:18px}
+  .sh-legal-head__crumbs{font-size:13px}
+  .sh-legal-head__dek{font-size:16px;margin-top:6px}
+}

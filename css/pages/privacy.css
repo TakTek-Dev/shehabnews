@@ -1,38 +1,11 @@
-/* شهاب — privacy: page layout, one-off styles (scoped by section), and what
-   the old per-page sheet still owned (keyframes, p/input, its own a{transition}). */
+/* شهاب — privacy: the page is .sh-legal-head + .sh-legal (css/components.css), shared with terms.html. */
 a{transition:color .16s ease,background .16s ease,border-color .16s ease,gap .16s ease}
-p{font-family:var(--sh-serif);line-height:2.15;margin:0 0 16px}
-li{font-family:var(--sh-serif);line-height:2.15;margin-bottom:9px}
-h2{scroll-margin-top:24px}
-.sh-privacy-privacy-body__div-1{display:grid;grid-template-columns:minmax(min(100%,220px),.3fr) minmax(min(100%,320px),1fr);gap:52px;padding:24px 0 0;align-items:start}
-.sh-privacy-privacy-index__aside-1{align-self:start;position:sticky;top:22px}
-.sh-privacy-privacy-index__span-1{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-mute);border-bottom:1px solid var(--color-border-soft);padding-bottom:9px}
-.sh-privacy-privacy-index__a-1{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-blue)}
-@media (hover:hover){.sh-privacy-privacy-index__a-1:hover{gap:16px}}
-.sh-privacy-privacy-body__article-1{max-width:74ch;font-size:15px;color:var(--sh-ink-2)}
-.sh-privacy-privacy-body__p-1{margin-bottom:22px}
-.sh-privacy-privacy-body__h2-1{font-family:var(--sh-font);font-size:20px;font-weight:800;line-height:1.6;margin:26px 0 12px;color:var(--sh-navy);display:flex;align-items:center;gap:11px;border-top:1px solid var(--sh-hair-3);padding-top:20px}
-.sh-privacy-privacy-body__ul-1{margin:0 0 16px;padding-inline-start:20px}
-.sh-privacy-privacy-body__p-2{background:var(--color-surface-soft);border-inline-start:3px solid var(--sh-blue);padding:13px 16px;font-size:14px}
-.sh-privacy-privacy-body__a-1{color:var(--sh-blue);font-weight:700;font-family:var(--sh-font);font-size:14px}
-.sh-privacy-privacy-body__div-2{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:28px;padding-top:16px;}
-.sh-privacy-privacy-body__span-1{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--sh-mute)}
-.sh-privacy-privacy-body__a-2{display:inline-flex;align-items:center;gap:11px;border:1px solid var(--sh-grey-1);color:var(--sh-navy);font-family:var(--sh-font);font-size:12px;font-weight:800;padding:11px 22px;white-space:nowrap}
-@media (hover:hover){.sh-privacy-privacy-body__a-2:hover{background:var(--sh-navy);border-color:var(--sh-navy);color:#fff;gap:17px}}
-.sh-privacy-privacy-body__span-2{display:none}
-.sh-privacy-body__div-1{height:40px}
 
 /* A press has to answer on a touch screen, where :hover never fires: the ground
    steps to navy for as long as the control is held. No transform and no radius —
    the timing is the colour transition the control already carries. */
 body[data-sh-page="privacy"] :where(.sh-more,.sh-pager__btn,.sh-chip,.sh-tag,.sh-btn):active{
   background:var(--sh-navy);color:#fff;border-color:var(--sh-navy);
-}
-body[data-sh-page="privacy"] :where(.sh-band,.sh-navy,[class*="--on-dark"]) :where(a,button):active{
-  background:rgba(255,255,255,.18);
-}
-body[data-sh-page="privacy"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):active{
-  background:var(--color-surface-soft);
 }
 
 /* the burger and its chevron live in the shared css/responsive.css, which feeds
