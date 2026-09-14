@@ -1,21 +1,61 @@
-/* شهاب — المحفوظات (saved.html). */
-a{transition:color .16s ease,opacity .16s ease,border-color .16s ease,background .16s ease}
-p{font-family:var(--sh-serif);line-height:2}
-.sh-saved-body{padding:8px 0 48px;max-width:820px}
-.sh-saved__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;padding:16px 0;border-bottom:1px solid var(--color-border-soft)}
-.sh-saved__body{display:flex;flex-direction:column;gap:6px;min-width:0}
-.sh-saved__body .sh-card__title{font-size:15px}
-.sh-saved__rm{width:36px;height:36px;border:1px solid var(--color-border);background:#fff;color:var(--sh-mute);cursor:pointer;display:grid;place-items:center}
-@media (hover:hover){.sh-saved__rm:hover{color:var(--color-red-soft);border-color:var(--color-red-soft)}}
-.sh-saved-empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:48px 24px;margin-top:20px;text-align:center;background:var(--color-surface-soft)}
-.sh-saved-empty[hidden]{display:none}
-.sh-saved-empty__i{font-size:34px;color:var(--sh-blue)}
-.sh-saved-empty b{font-family:var(--sh-font);font-size:15px;font-weight:800;color:var(--sh-navy)}
-.sh-saved-empty span{font-size:13px;color:var(--sh-mute)}
-.sh-saved-empty .sh-more{margin-top:8px}
+/* شهاب — المحفوظات (saved.html).
 
+   على الأبيض: رأس فاتح (العدد وزر «امسح الكل» على جانبه)، ثم القائمة التي
+   يرسمها js/saved.js صفوفًا بعناوين كبيرة وزر إزالة واضح — أو حالة فارغة
+   تشرح كيف تحفظ — وجنبها «الأكثر قراءة اليوم» حتى لا تبقى الصفحة خالية.
+   لا أرقام زخرفية في الرأس. */
+a{transition:color .16s ease,background .16s ease,border-color .16s ease}
+
+.sh-sv{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:64px;align-items:start;margin:40px 0 72px}
+.sh-sv-main{min-width:0}
+
+/* ---- a saved item: section and when it was saved, the title, remove ---- */
+.sh-saved__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 0;border-top:1px solid var(--color-border-soft)}
+.sh-saved__row:last-child{border-bottom:1px solid var(--color-border-soft)}
+.sh-saved__body{display:flex;flex-direction:column;gap:8px;min-width:0;color:var(--sh-ink)}
+@media (hover:hover){.sh-saved__body:hover{color:var(--sh-ink)}.sh-saved__body:hover .sh-card__title{color:var(--sh-blue)}}
+.sh-saved__body:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-saved__body .sh-meta{display:flex;align-items:center;gap:10px;font-size:14px}
+.sh-saved__body .sh-link{font-weight:700;color:var(--sh-blue)}
+.sh-saved__body .sh-card__title{font-family:var(--sh-font);font-size:21px;font-weight:800;line-height:1.5;color:var(--sh-navy);text-wrap:pretty;transition:color .2s ease}
+.sh-saved__rm{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--color-border);background:#fff;color:var(--sh-mute);font-size:15px;cursor:pointer;transition:color .16s ease,border-color .16s ease}
+@media (hover:hover){.sh-saved__rm:hover{color:var(--color-red-soft);border-color:var(--color-red-soft)}}
+.sh-saved__rm:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+
+/* ---- nothing saved yet ---- */
+.sh-saved-empty{display:flex;flex-direction:column;align-items:center;gap:12px;padding:72px 24px;background:var(--color-surface-soft);text-align:center}
+.sh-saved-empty[hidden]{display:none}
+.sh-saved-empty__i{display:grid;place-items:center;width:76px;height:76px;margin-bottom:6px;background:#fff;color:var(--sh-blue);font-size:30px}
+.sh-saved-empty b{font-family:var(--sh-font);font-size:26px;font-weight:800;color:var(--sh-navy)}
+.sh-saved-empty > span:not(.sh-saved-empty__i){max-width:46ch;font-family:var(--sh-font);font-size:17px;line-height:1.8;color:var(--sh-ink-2)}
+.sh-saved-empty__go,.sh-saved-empty__go:hover{color:#fff}   /* base.css a:hover would paint the label blue on navy */
+.sh-saved-empty__go{display:inline-flex;align-items:center;min-height:52px;margin-top:10px;padding:0 28px;background:var(--sh-navy);font-family:var(--sh-font);font-size:17px;font-weight:800}
+@media (hover:hover){.sh-saved-empty__go:hover{background:var(--sh-blue)}}
+.sh-saved-empty__go:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
+
+/* ---- the most read today ---- */
+.sh-sv-side{position:sticky;top:calc(var(--sh-compact-h,100px) + 26px);min-width:0;border-top:3px solid var(--sh-navy)}
+.sh-sv-side__h{margin:0;padding:16px 0 4px;font-family:var(--sh-font);font-size:21px;font-weight:800;color:var(--sh-navy)}
+.sh-sv-most{list-style:none;margin:0;padding:0}
+.sh-sv-most a{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:baseline;padding:14px 0;color:var(--sh-ink)}
+.sh-sv-most li + li a{border-top:1px solid var(--color-border-soft)}
+.sh-sv-most b{font-family:var(--sh-font);font-size:24px;font-weight:800;line-height:1;color:var(--sh-blue);font-variant-numeric:tabular-nums}
+.sh-sv-most span{font-family:var(--sh-font);font-size:17px;font-weight:700;line-height:1.55;color:var(--sh-navy);text-wrap:pretty;transition:color .16s ease}
+@media (hover:hover){.sh-sv-most a:hover{color:var(--sh-ink)}.sh-sv-most a:hover span{color:var(--sh-blue)}}
+.sh-sv-most a:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+
+@media (max-width:1100px){.sh-sv{grid-template-columns:minmax(0,1fr) 300px;gap:40px}}
+@media (max-width:900px){
+  .sh-sv{grid-template-columns:minmax(0,1fr);gap:40px;margin:28px 0 56px}
+  .sh-sv-side{position:static}
+}
 @media (max-width:640px){
-  .sh-saved-hero__clear,.sh-saved-body .sh-more,.sh-saved-body a,.sh-saved-body button{min-height:44px;display:inline-flex;align-items:center}
+  .sh-saved__row{gap:14px;padding:18px 0}
+  .sh-saved__body .sh-card__title{font-size:18px}
+  .sh-saved-empty{padding:48px 18px}
+  .sh-saved-empty b{font-size:22px}
+  .sh-saved-empty > span:not(.sh-saved-empty__i){font-size:16px}
+  .sh-sv-most span{font-size:16px}
 }
 
 /* A press has to answer on a touch screen, where :hover never fires: the ground
@@ -24,10 +64,7 @@ p{font-family:var(--sh-serif);line-height:2}
 body[data-sh-page="saved"] :where(.sh-more,.sh-pager__btn,.sh-chip,.sh-tag,.sh-btn):active{
   background:var(--sh-navy);color:#fff;border-color:var(--sh-navy);
 }
-body[data-sh-page="saved"] :where(.sh-band,.sh-navy,[class*="--on-dark"]) :where(a,button):active{
-  background:rgba(255,255,255,.18);
-}
-body[data-sh-page="saved"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):active{
+body[data-sh-page="saved"] :where(.sh-saved__body,.sh-sv-most a):active{
   background:var(--color-surface-soft);
 }
 
@@ -36,5 +73,5 @@ body[data-sh-page="saved"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):ac
 @media (prefers-reduced-motion:reduce){
   body[data-sh-page="saved"] .sh-nav-toggle span,
   body[data-sh-page="saved"] header nav .sh-menu > a > span:last-child{transition:none}
-  body[data-sh-page="saved"] a{transition:none}
+  body[data-sh-page="saved"] a,.sh-saved__body .sh-card__title,.sh-saved__rm,.sh-sv-most span{transition:none}
 }

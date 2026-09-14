@@ -1,75 +1,110 @@
-/* شهاب — خريطة الخروقات (map.html). The map itself is LTR (Leaflet), the panels RTL. */
-a{transition:color .16s ease,opacity .16s ease,border-color .16s ease,background .16s ease}
-p{font-family:var(--sh-serif);line-height:2}/* toolbar */
-.sh-map-tools{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:12px 0;background:#fff;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
+/* شهاب — خريطة الخروقات (map.html). The map itself is LTR (Leaflet), the panels RTL.
+
+   على الأبيض: رأس فاتح (الأرقام الحيّة الثلاثة بين خطين، وتبويبات الصفحات
+   القريبة)، ثم شريط الفلاتر مثبّتًا تحت الترويسة وكل مجموعة باسمها، ثم الخريطة
+   بارتفاع مريح وجنبها القائمة بخط أكبر، ثم «كيف نوثّق» عنوانًا بجوار ثلاثة
+   أعمدة نصية — نفس ترتيب مكتب البيانات. */
+a{transition:color .16s ease,background .16s ease,border-color .16s ease}
+
+/* ================================================================ toolbar */
+.sh-map-tools{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:28px;padding:14px 0;border-bottom:1px solid var(--color-border-soft);background:#fff}
 html[data-compact] .sh-map-tools{top:var(--sh-compact-h,92px)}
-.sh-map-tools__group{display:flex;flex-wrap:wrap;gap:6px}
-.sh-map-chip{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border:1px solid var(--color-border);background:#fff;color:var(--sh-navy);font-family:var(--sh-font);font-size:12px;font-weight:800;cursor:pointer;transition:background .16s ease,color .16s ease,border-color .16s ease}
+.sh-map-tools__group{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.sh-map-tools__label{margin-inline-end:4px;font-family:var(--sh-font);font-size:15px;font-weight:700;color:var(--sh-mute)}
+.sh-map-chip{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border:1px solid var(--sh-grey-1);background:#fff;color:var(--sh-ink-2);font-family:var(--sh-font);font-size:15px;font-weight:700;white-space:nowrap;cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease}
 @media (hover:hover){.sh-map-chip:hover{border-color:var(--sh-blue);color:var(--sh-blue)}}
 .sh-map-chip[aria-pressed="true"]{background:var(--sh-blue);border-color:var(--sh-blue);color:#fff}   /* selected is blue: blue points */
-.sh-map-chip--ghost{margin-inline-start:auto;color:var(--sh-blue)}
+.sh-map-chip--ghost{margin-inline-start:auto;border-color:var(--sh-navy);color:var(--sh-navy)}
+.sh-map-chip .sh-i{font-size:14px}
 .sh-map-chip:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
-/* layout */
-.sh-map-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,.8fr);gap:0;margin-top:18px;border:1px solid var(--color-border)}
-.sh-map-stage{position:relative;min-height:560px;background:var(--color-surface-soft)}
+
+/* ================================================================= layout */
+.sh-map-layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;margin-top:24px;border:1px solid var(--color-border)}
+.sh-map-stage{position:relative;min-height:640px;background:var(--color-surface-soft)}
 .sh-map{position:absolute;inset:0;font-family:var(--sh-font)}
-.sh-map-legend{position:absolute;bottom:12px;inset-inline-start:12px;z-index:400;display:flex;flex-wrap:wrap;gap:6px 12px;padding:8px 12px;background:rgba(255,255,255,.94);border:1px solid var(--color-border);font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-navy);max-width:calc(100% - 24px)}
-.sh-map__lg{display:inline-flex;align-items:center;gap:6px}
-.sh-map__lg i{width:10px;height:10px;border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(10,26,51,.2)}
-.sh-map-panel{display:flex;flex-direction:column;min-width:0;border-inline-start:1px solid var(--color-border);max-height:560px}
-.sh-map-panel__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 16px 10px;border-bottom:1px solid var(--color-border-soft)}
-.sh-map-panel__empty{margin:0;padding:22px 16px;font-family:var(--sh-font);font-weight:700;color:var(--sh-mute);text-align:center}
+.sh-map-legend{position:absolute;bottom:12px;inset-inline-start:12px;z-index:400;display:flex;flex-wrap:wrap;gap:6px 14px;padding:9px 14px;background:rgba(255,255,255,.95);border:1px solid var(--color-border);font-family:var(--sh-font);font-size:14px;font-weight:700;color:var(--sh-ink)}
+.sh-map__lg{display:inline-flex;align-items:center;gap:7px}
+.sh-map__lg i{width:11px;height:11px;border-radius:50%;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(10,26,51,.2)}
+.sh-map-panel{display:flex;flex-direction:column;min-width:0;max-height:640px;border-inline-start:1px solid var(--color-border)}
+.sh-map-panel__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 20px 12px;border-bottom:1px solid var(--color-border-soft)}
+.sh-map-panel__h{margin:0;font-family:var(--sh-font);font-size:20px;font-weight:800;color:var(--sh-navy)}
+.sh-map-panel__n{font-family:var(--sh-font);font-size:15px;font-weight:700;color:var(--sh-mute);font-variant-numeric:tabular-nums}
+.sh-map-panel__empty{margin:0;padding:24px 20px;font-family:var(--sh-font);font-size:16px;font-weight:700;line-height:1.7;color:var(--sh-mute);text-align:center}
 .sh-map-panel__empty[hidden]{display:none}
-.sh-map-list{overflow-y:auto;overscroll-behavior:contain;flex:1 1 auto}
-.sh-map__row{display:grid;grid-template-columns:12px minmax(0,1fr);gap:12px;align-items:start;padding:12px 16px;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
+.sh-map-list{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain}
+.sh-map__row{display:grid;grid-template-columns:12px minmax(0,1fr);gap:14px;align-items:start;padding:14px 20px;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
 @media (hover:hover){.sh-map__row:hover{background:var(--color-surface-soft);color:var(--sh-ink)}}
-.sh-map__row[aria-current]{background:var(--color-surface-blue);box-shadow:inset 3px 0 0 var(--sh-blue)}
-.sh-map__row-dot{width:12px;height:12px;border-radius:50%;margin-top:4px;border:2px solid #fff;box-shadow:0 0 0 1px rgba(10,26,51,.25)}
-.sh-map__row-body{display:flex;flex-direction:column;gap:3px;min-width:0}
-.sh-map__row-k{font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-blue)}
-.sh-map__row-t{font-family:var(--sh-font);font-size:13px;font-weight:700;line-height:1.6}
-.sh-map__row-time{font-size:11.5px;color:var(--sh-mute);font-variant-numeric:tabular-nums}
-/* pins + popup */
+.sh-map__row[aria-current]{background:var(--color-surface-blue);box-shadow:inset -3px 0 0 var(--sh-blue)}
+.sh-map__row-dot{width:12px;height:12px;margin-top:6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(10,26,51,.25)}
+.sh-map__row-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.sh-map__row-k{font-family:var(--sh-font);font-size:14px;font-weight:700;color:var(--sh-blue)}
+.sh-map__row-t{font-family:var(--sh-font);font-size:16.5px;font-weight:700;line-height:1.55;color:var(--sh-navy)}
+.sh-map__row-time{font-family:var(--sh-font);font-size:13.5px;color:var(--sh-mute);font-variant-numeric:tabular-nums}
+
+/* ========================================================== pins + popup */
 .sh-map__pin--fresh{animation:sh-map-pulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes sh-map-pulse{0%,100%{opacity:1}50%{opacity:.55}}
 .leaflet-popup-content-wrapper{border-radius:0;box-shadow:0 14px 40px rgba(10,26,51,.3);padding:0}
-.leaflet-popup-content{margin:0;font-family:var(--sh-font);line-height:1.6;min-width:220px}
+.leaflet-popup-content{margin:0;font-family:var(--sh-font);line-height:1.6;min-width:240px}
 .leaflet-popup-tip{border-radius:0}
 .sh-map__pop{display:flex;flex-direction:column;gap:6px;padding:14px 16px;text-align:start}
-.sh-map__pop-type{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800}
-.sh-map__pop-t{font-size:14px;font-weight:800;color:var(--sh-navy);text-decoration:none;line-height:1.55}
+.sh-map__pop-type{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.sh-map__pop-t{font-size:16px;font-weight:800;color:var(--sh-navy);text-decoration:none;line-height:1.55}
 @media (hover:hover){.sh-map__pop-t:hover{color:var(--sh-blue)}}
-.sh-map__pop-meta{font-size:11.5px;color:var(--sh-mute)}
-.sh-map__pop-c{display:inline-block;align-self:flex-start;padding:2px 8px;background:var(--sh-red);color:#fff;font-size:11.5px;font-weight:800}
+.sh-map__pop-meta{font-size:13px;color:var(--sh-mute)}
+.sh-map__pop-c{display:inline-block;align-self:flex-start;padding:2px 8px;background:var(--sh-red);color:#fff;font-size:12px;font-weight:800}
 .leaflet-container a.leaflet-popup-close-button{width:30px;height:30px;font-size:20px;color:var(--sh-mute)}
 .leaflet-control-attribution{font-family:system-ui,sans-serif;font-size:11.5px}
 /* the credit is required reading; Leaflet's own grey reads at 3.6:1 */
 .leaflet-control-attribution,.leaflet-control-attribution a{color:var(--color-text)}
 .leaflet-bar a{border-radius:0!important;color:var(--sh-navy)}
-/* method */
-.sh-map-method{padding:36px 0 48px;margin-top:30px;border-top:1px solid var(--color-border)}
-.sh-map-method__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:8px}
-.sh-map-method__item{display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:var(--color-surface-warm);border-inline-start:3px solid var(--sh-blue)}
-.sh-map-method__item b{font-family:var(--sh-font);font-size:14px;font-weight:800;color:var(--sh-navy)}
-.sh-map-method__item span{font-size:13px;line-height:1.9;color:var(--sh-ink-2)}
+
+/* ================================================================= method */
+.sh-map-method{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start;margin:56px 0 72px}
+.sh-map-method__h{margin:0;font-family:var(--sh-font);font-size:clamp(22px,2vw,26px);font-weight:800;line-height:1.35;color:var(--sh-navy)}
+.sh-map-method__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.sh-map-method__item{display:flex;flex-direction:column;gap:8px;min-width:0;padding-inline:28px}
+.sh-map-method__item:first-child{padding-inline-start:0}
+.sh-map-method__item:last-child{padding-inline-end:0}
+.sh-map-method__item + .sh-map-method__item{border-inline-start:1px solid var(--color-border-soft)}
+.sh-map-method__item b{font-family:var(--sh-font);font-size:19px;font-weight:800;color:var(--sh-navy)}
+.sh-map-method__item span{font-family:var(--sh-font);font-size:16px;line-height:1.8;color:var(--sh-ink-2);text-wrap:pretty}
+
 /* mini map (used on now.html) */
 .sh-map--mini{position:relative;aspect-ratio:4/3;cursor:pointer}
 .sh-map--mini .leaflet-control-attribution{display:none}
-@media (max-width:1024px){.sh-map-layout{grid-template-columns:minmax(0,1.3fr) minmax(280px,.9fr)}}
-@media (max-width:900px){  .sh-map-layout{grid-template-columns:minmax(0,1fr)}
-  .sh-map-stage{min-height:420px}
-  .sh-map-panel{border-inline-start:0;border-top:1px solid var(--color-border);max-height:460px}
-  .sh-map-method__grid{grid-template-columns:minmax(0,1fr)}
-  .sh-map-chip--ghost{margin-inline-start:0}
+
+/* ============================================================ breakpoints */
+@media (max-width:1100px){
+  .sh-map-layout{grid-template-columns:minmax(0,1fr) 320px}
+  .sh-map-method{grid-template-columns:minmax(0,1fr);gap:18px}
 }
-@media (max-width:640px){  .sh-map-tools{gap:6px 12px;padding:10px 0}
-  .sh-map-chip{min-height:44px;padding:0 14px}   /* thumbs */
+@media (max-width:900px){
+  .sh-map-tools{position:static;gap:12px}
+  .sh-map-tools__group{flex-wrap:nowrap;width:100%;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--sh-gutter,16px) * -1);padding-inline:var(--sh-gutter,16px)}
+  .sh-map-tools__group::-webkit-scrollbar{display:none}
+  .sh-map-tools__label{flex:none;min-width:64px}
+  .sh-map-chip{flex:none}
+  .sh-map-chip--ghost{margin-inline-start:0}
+  .sh-map-layout{grid-template-columns:minmax(0,1fr)}
+  .sh-map-stage{min-height:440px}
+  .sh-map-panel{max-height:480px;border-inline-start:0;border-top:1px solid var(--color-border)}
+  .sh-map-method__grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .sh-map-method__item,.sh-map-method__item:first-child,.sh-map-method__item:last-child{padding-inline:0}
+  .sh-map-method__item + .sh-map-method__item{padding-top:20px;border-inline-start:0;border-top:1px solid var(--color-border-soft)}
+}
+@media (max-width:640px){
+  .sh-map-tools{margin-top:20px;padding:12px 0}
+  .sh-map-chip{min-height:44px}   /* thumbs */
   .sh-map-stage{min-height:380px}
-  .sh-map-panel{max-height:420px}
-  .sh-map__row{padding:12px 14px;min-height:44px}
+  .sh-map-panel{max-height:440px}
+  .sh-map-panel__head{padding:14px 14px 10px}
+  .sh-map__row{min-height:44px;padding:12px 14px}
+  .sh-map__row-t{font-size:15.5px}
+  .sh-map-legend{font-size:12.5px;gap:4px 10px;padding:7px 10px}
   .leaflet-bar a,.leaflet-touch .leaflet-bar a{width:44px;height:44px;line-height:44px;font-size:22px}   /* beats leaflet.css .leaflet-touch rule */
   .leaflet-container a.leaflet-popup-close-button{width:44px;height:44px;font-size:22px;line-height:44px}
-  .sh-map-method{padding:28px 0 40px;margin-top:24px}
+  .sh-map-method{margin:40px 0 56px}
 }
 @media (prefers-reduced-motion:reduce){.sh-map__pin--fresh{animation:none}}
 
@@ -79,10 +114,7 @@ html[data-compact] .sh-map-tools{top:var(--sh-compact-h,92px)}
 body[data-sh-page="map"] :where(.sh-more,.sh-pager__btn,.sh-chip,.sh-tag,.sh-btn):active{
   background:var(--sh-navy);color:#fff;border-color:var(--sh-navy);
 }
-body[data-sh-page="map"] :where(.sh-band,.sh-navy,[class*="--on-dark"]) :where(a,button):active{
-  background:rgba(255,255,255,.18);
-}
-body[data-sh-page="map"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):active{
+body[data-sh-page="map"] :where(.sh-map__row):active{
   background:var(--color-surface-soft);
 }
 
@@ -91,4 +123,5 @@ body[data-sh-page="map"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):acti
 @media (prefers-reduced-motion:reduce){
   body[data-sh-page="map"] .sh-nav-toggle span,
   body[data-sh-page="map"] header nav .sh-menu > a > span:last-child{transition:none}
+  body[data-sh-page="map"] a,.sh-map-chip{transition:none}
 }

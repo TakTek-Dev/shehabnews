@@ -37,10 +37,21 @@
   ShFigures.ready.then(function (data) {
     if (!data) { host.innerHTML = '<p class="sh-fig__err">تعذّر تحميل الأرقام.</p>'; return; }
     var figs = data.figures || {};
-    host.innerHTML = (data.groups || []).map(function (g) {
-      return '<section class="sh-fig-group" aria-labelledby="fg-' + esc(g.title) + '"><h2 class="sh-section__title sh-section__title--md" id="fg-' + esc(g.title) + '"><span class="sh-mark sh-mark--md"></span>' + esc(g.title) + '</h2>' +
+    var groups = (data.groups || []).filter(function (g) { return g.keys.some(function (k) { return figs[k]; }); });
+    // one row per group: its title beside its figures; ids are by position so
+    // the head's tabs can jump to them
+    host.innerHTML = groups.map(function (g, i) {
+      return '<section class="sh-fig-group" id="fg-' + (i + 1) + '" aria-labelledby="fg-' + (i + 1) + '-h"><h2 class="sh-fig-group__h" id="fg-' + (i + 1) + '-h">' + esc(g.title) + '</h2>' +
         '<div class="sh-fig-grid">' + g.keys.filter(function (k) { return figs[k]; }).map(function (k) { return card(k, figs[k], data); }).join('') + '</div></section>';
     }).join('');
+    var nav = document.querySelector('[data-sh-figures-nav]');
+    if (nav) nav.innerHTML = groups.map(function (g, i) { return '<a href="#fg-' + (i + 1) + '">' + esc(g.title) + '</a>'; }).join('');
+    var stamp = document.querySelector('[data-sh-figures-updated]');
+    if (stamp && data.updated) {
+      var t = stamp.querySelector('time');
+      if (t) { t.setAttribute('datetime', data.updated); t.setAttribute('data-sh-format', 'date'); ShUI.paintTimes(stamp); }
+      stamp.hidden = false;
+    }
     if (data.demo) {
       var note = document.querySelector('[data-sh-figures-note]');
       if (note) { note.hidden = false; note.textContent = data._note || ''; }

@@ -1,104 +1,124 @@
 /* شهاب — «الآن» (now.html): شاشة غرفة الأخبار.
-   نفس اللياوت (شريط علوي + مسرح | تحديثات | جانب)، بس الألوان على نظام
-   الموقع: القماش فاتح (surface-soft)، اللوحات بيضا بنص كحلي، والكحلي
-   للشريط العلوي والمسرح وبلاطة «24 ساعة» فقط. مفيش نص باهت على غامق. */
-.sh-now-page{background:var(--color-surface-soft)}
-.sh-now-page .sh-page{background:var(--color-surface-soft)}
-.sh-now{max-width:var(--sh-container);margin:0 auto;padding:0 32px 36px;font-family:var(--sh-font)}
+
+   على الأبيض مثل باقي الصفحات: رأس فاتح (الساعة والحالة وزر وضع الشاشة على
+   جانبه، وتحته تبويبات الصفحات الحيّة)، ثم ثلاثة أعمدة بلا صناديق — المسرح
+   وأرقامه والأبرز | آخر التحديثات | الخريطة المصغّرة والطقس والعملات. كل عمود
+   يبدأ بخط كحلي وعنوان واضح، والخط أكبر ليُقرأ من بعيد في وضع الشاشة. الأدوات
+   الجانبية (الطقس والعملات) على الرمادي الفاتح. */
+.sh-now{max-width:var(--sh-container);margin:0 auto;padding:0 32px 64px;font-family:var(--sh-font)}
 
 /* ---- the grid ---- */
-.sh-now__grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,.85fr);gap:18px;padding-top:18px;align-items:start}
+.sh-now__grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr) minmax(0,.8fr);gap:36px;align-items:start;margin-top:32px}
+.sh-now__col,.sh-now__side{display:flex;flex-direction:column;gap:32px;min-width:0}
 
-/* ---- stage: white panel, black frame ---- */
-.sh-now__col{display:flex;flex-direction:column;gap:18px;min-width:0}
-.sh-now__stage{background:#fff;padding:10px 10px 12px;min-width:0}
-.sh-now__frame{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+/* ---- a column block: a navy rule and its title ---- */
+.sh-now__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 0 12px;border-top:3px solid var(--sh-navy)}
+.sh-now__h2{display:flex;align-items:center;gap:10px;margin:0;font-size:21px;font-weight:800;color:var(--sh-navy)}
+.sh-now__dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--sh-red);animation:sh-pulse 1.4s ease-in-out infinite}
+.sh-now__link{font-size:15px;font-weight:700;color:var(--sh-blue);white-space:nowrap}
+@media (hover:hover){.sh-now__link:hover{color:var(--sh-navy)}}
+
+/* ---- stage: the player, its bar, four figures ---- */
+.sh-now__stage{min-width:0}
+.sh-now__frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
 .sh-now__frame media-player{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
 .sh-now__badge{position:absolute;top:12px;inset-inline-start:12px;z-index:5}
 .sh-now__edge{position:absolute;bottom:64px;inset-inline-start:12px;z-index:5}
-.sh-now__notice{position:absolute;inset-inline:12px;top:12px;z-index:5}
-.sh-now__stagebar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:10px 2px 0;font-size:11.5px;font-weight:700;color:var(--color-text-muted)}
-.sh-now__meta{display:inline-flex;align-items:center;gap:6px}
-.sh-now__meta b{color:var(--sh-navy);font-weight:800}
-.sh-now__meta .sh-i{color:var(--sh-blue);font-size:11px}
+.sh-now__notice{position:absolute;top:12px;inset-inline:12px;z-index:5}
+.sh-now__stagebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:12px 0;border-bottom:1px solid var(--color-border-soft);font-size:14px;font-weight:700;color:var(--color-text-muted)}
+.sh-now__meta{display:inline-flex;align-items:center;gap:7px}
+.sh-now__meta b{font-weight:800;color:var(--sh-navy)}
+.sh-now__meta .sh-i{font-size:13px;color:var(--sh-blue)}
 .sh-now__meta--state b{color:var(--color-red-soft)}
-.sh-now__livedot{width:8px;height:8px;border-radius:50%;background:var(--sh-red);animation:sh-pulse 1.4s ease-in-out infinite}
-.sh-now__open{margin-inline-start:auto;display:inline-flex;align-items:center;gap:6px;color:var(--sh-blue);font-weight:800;white-space:nowrap}
-@media (hover:hover){.sh-now__open:hover{color:var(--color-brand-blue-deep)}}
-.sh-now__figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--color-border);border:1px solid var(--color-border);margin-top:12px}
-.sh-now__fig{background:#fff;padding:10px 12px 9px;display:flex;flex-direction:column;gap:3px;min-width:0}
-.sh-now__fig b{font-size:22px;font-weight:800;line-height:1;color:var(--sh-blue);direction:ltr;unicode-bidi:isolate;text-align:start}
-.sh-now__fig span{font-size:11.5px;font-weight:700;color:var(--color-text-muted);line-height:1.6}
-.sh-now__fig em{font-style:normal;color:var(--color-red-soft)}
-.sh-now__fig--hot{background:var(--color-surface-blue);box-shadow:inset 0 3px 0 var(--sh-blue)}
+.sh-now__livedot{width:9px;height:9px;border-radius:50%;background:var(--sh-red);animation:sh-pulse 1.4s ease-in-out infinite}
+.sh-now__open{display:inline-flex;align-items:center;gap:7px;margin-inline-start:auto;font-size:15px;font-weight:700;color:var(--sh-blue);white-space:nowrap}
+@media (hover:hover){.sh-now__open:hover{color:var(--sh-navy)}}
+.sh-now__figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:18px 0;border-bottom:1px solid var(--color-border-soft)}
+.sh-now__fig{display:flex;flex-direction:column;gap:6px;min-width:0;padding-inline:16px}
+.sh-now__fig:first-child{padding-inline-start:0}
+.sh-now__fig:last-child{padding-inline-end:0}
+.sh-now__fig + .sh-now__fig{border-inline-start:1px solid var(--color-border-soft)}
+.sh-now__fig b{font-size:26px;font-weight:800;line-height:1;color:var(--sh-navy);direction:ltr;unicode-bidi:isolate;text-align:right}
+.sh-now__fig span{font-size:14px;font-weight:700;line-height:1.5;color:var(--color-text-muted)}
+.sh-now__fig em{display:block;font-style:normal;color:var(--color-red-soft)}
 .sh-now__fig--hot b{color:var(--color-red-soft)}
-.sh-now__fig--hot span{color:var(--sh-navy)}
 
-/* ---- feed: white panel, navy text ---- */
-.sh-now__feed{background:#fff;padding:12px 16px 14px;min-width:0;display:flex;flex-direction:column;max-height:calc(100vh - 160px)}
-.sh-now__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--color-border)}
-.sh-now__h2{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;margin:0;color:var(--sh-navy)}
-.sh-now__link{font-size:12px;font-weight:800;color:var(--sh-blue)}
-@media (hover:hover){.sh-now__link:hover{color:var(--color-brand-blue-deep)}}
-.sh-now__list{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
-.sh-now__row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding:11px 2px;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
-@media (hover:hover){.sh-now__row:hover{background:var(--color-surface-soft);color:var(--sh-ink)}}
-.sh-now__row:hover .sh-now__t{color:var(--sh-blue)}
-.sh-now__time{font-size:12px;font-weight:800;color:var(--sh-blue);font-variant-numeric:tabular-nums;padding-top:2px;min-width:44px;direction:ltr;text-align:end}
-.sh-now__body{display:flex;flex-direction:column;gap:3px;min-width:0}
-.sh-now__cat{font-size:11.5px;font-weight:800;color:var(--color-text-muted)}
-.sh-now__cat--breaking,[data-breaking] .sh-now__cat{color:#fff;background:var(--sh-red);padding:1px 7px;align-self:flex-start}
-.sh-now__t{font-size:14px;font-weight:700;line-height:1.65;color:var(--sh-ink);transition:color .16s ease}
+/* ---- the most important now ---- */
+.sh-now__card{display:flex;flex-direction:column;min-width:0}
+.sh-now__top{list-style:none;margin:0;padding:0;counter-reset:top}
+.sh-now__top li{counter-increment:top;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--color-border-soft)}
+.sh-now__top li:last-child{border-bottom:0}
+.sh-now__top li::before{content:counter(top);font-size:22px;font-weight:800;line-height:1;color:var(--sh-blue);font-variant-numeric:tabular-nums}
+.sh-now__top a{font-size:17px;font-weight:700;line-height:1.55;color:var(--sh-navy);text-wrap:pretty}
+.sh-now__top a[data-new]{color:var(--sh-blue)}
+@media (hover:hover){.sh-now__top a:hover{color:var(--sh-blue)}}
+
+/* ---- the feed: time, section, title ---- */
+.sh-now__feed{display:flex;flex-direction:column;min-width:0;max-height:calc(100vh - var(--sh-compact-h,100px) - 60px);position:sticky;top:calc(var(--sh-compact-h,100px) + 26px)}
+.sh-now__list{display:flex;flex:1 1 auto;flex-direction:column;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.sh-now__row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--color-border-soft);color:var(--sh-ink)}
+@media (hover:hover){.sh-now__row:hover{color:var(--sh-ink)}.sh-now__row:hover .sh-now__t{color:var(--sh-blue)}}
+.sh-now__row:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-now__time{min-width:52px;padding-top:3px;font-size:14px;font-weight:800;color:var(--sh-blue);font-variant-numeric:tabular-nums;direction:ltr;text-align:end}
+.sh-now__body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.sh-now__cat{font-size:14px;font-weight:700;color:var(--color-text-muted)}
+.sh-now__cat--breaking,[data-breaking] .sh-now__cat{align-self:flex-start;padding:1px 8px;background:var(--sh-red);color:#fff}
+.sh-now__t{font-size:17px;font-weight:700;line-height:1.55;color:var(--sh-navy);text-wrap:pretty;transition:color .16s ease}
 .sh-now__list [data-new]::after{background:var(--color-surface-blue)}
 .sh-now__list .sh-feed-pill{position:sticky;top:0;margin:0 0 6px}
 
-/* ---- side ---- */
-.sh-now__side{display:flex;flex-direction:column;gap:18px}
-.sh-now__card{background:#fff;padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+/* ---- side: the mini map, then the two tools on the soft tint ---- */
 .sh-now__card .sh-map--mini{border:1px solid var(--color-border)}
-.sh-now__top{list-style:none;margin:0;padding:0;counter-reset:top}
-.sh-now__top li{counter-increment:top;display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--color-border-soft)}
-.sh-now__top li:last-child{border-bottom:0}
-.sh-now__top li::before{content:counter(top,decimal-leading-zero);font-size:17px;font-weight:800;color:var(--sh-blue);line-height:1;direction:ltr}
-.sh-now__top a{font-size:13px;font-weight:700;line-height:1.6;color:var(--sh-ink)}
-.sh-now__top a[data-new]{color:var(--sh-blue)}@media (hover:hover){.sh-now__top a:hover{color:var(--sh-blue)}}
-.sh-now__card--widgets{background:transparent;border:0;padding:0;gap:12px}
-.sh-now__card--top{flex:1 1 auto}
+.sh-now__card--widgets{gap:16px}
 
 /* ---- kiosk ---- */
 html[data-kiosk] .sh-header,html[data-kiosk] .sh-footer,html[data-kiosk] .sh-totop,html[data-kiosk] .sh-consent,html[data-kiosk] .sh-livedock,html[data-kiosk] .sh-skip{display:none!important}
-html[data-kiosk] .sh-now{max-width:none;padding-inline:20px}
-html[data-kiosk] .sh-now__feed{max-height:calc(100vh - 140px)}
-.sh-now-page .sh-footer{margin-top:0}
+html[data-kiosk] .sh-now{max-width:none;padding-inline:28px}
+html[data-kiosk] .sh-now__feed{top:20px;max-height:calc(100vh - 40px)}
 
-@media (max-width:1200px){.sh-now__grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.sh-now__side{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1200px){
+  .sh-now__grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px}
+  .sh-now__side{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .sh-now__card--widgets{display:contents}
+}
 @media (max-width:900px){
-  .sh-now{padding-inline:16px}  .sh-now__grid{grid-template-columns:minmax(0,1fr)}
+  .sh-now{padding-inline:16px}
+  .sh-now__grid{grid-template-columns:minmax(0,1fr);margin-top:24px}
   .sh-now__side{grid-template-columns:minmax(0,1fr)}
-  .sh-now__feed{max-height:none}
-  .sh-now__figs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (prefers-reduced-motion:reduce){.sh-now__dot,.sh-now__livedot{animation:none}}
+  .sh-now__feed{position:static;max-height:none}
+  .sh-now__figs{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 0}
+  .sh-now__fig:nth-child(odd){padding-inline:0 14px;border-inline-start:0}
+  .sh-now__fig:nth-child(even){padding-inline:14px 0}
+}
+@media (max-width:640px){
+  .sh-now__h2{font-size:19px}
+  .sh-now__fig b{font-size:26px}
+  .sh-now__t,.sh-now__top a{font-size:16px}
+  .sh-now__stagebar{font-size:13px;gap:6px 14px}
+}
+@media (prefers-reduced-motion:reduce){.sh-now__dot,.sh-now__livedot{animation:none}.sh-now__t{transition:none}}
 
 /* ---- widget cards go light on this page (the navy card variant is for dark columns) ---- */
-.sh-now-page .sh-wx--card,.sh-now-page .sh-fx--card{background:#fff;color:var(--sh-ink)}
-.sh-now-page .sh-wx--card .sh-wx__title,.sh-now-page .sh-fx--card .sh-fx__title{color:var(--sh-navy)}
+.sh-now-page .sh-wx--card,.sh-now-page .sh-fx--card{padding:18px 20px 14px;background:var(--color-surface-soft);color:var(--sh-ink)}
+.sh-now-page .sh-wx--card .sh-wx__title,.sh-now-page .sh-fx--card .sh-fx__title{font-size:19px;color:var(--sh-navy)}
 .sh-now-page .sh-wx--card .sh-wx__title .sh-i,.sh-now-page .sh-fx--card .sh-fx__title .sh-i{color:var(--sh-blue)}
 .sh-now-page .sh-wx--card .sh-wx__tab{border-color:var(--color-border);color:var(--sh-navy);background:#fff}
-.sh-now-page .sh-wx--card .sh-wx__tab[aria-pressed="true"]{border-color:var(--sh-blue);color:var(--sh-blue);background:var(--color-surface-blue)}@media (hover:hover){.sh-now-page .sh-wx--card .sh-wx__tab:hover{border-color:var(--sh-blue);color:var(--sh-blue);background:var(--color-surface-blue)}}
-.sh-now-page .sh-wx--card .sh-wx__now{background:var(--color-surface-blue)}
+.sh-now-page .sh-wx--card .sh-wx__tab[aria-pressed="true"]{border-color:var(--sh-blue);color:#fff;background:var(--sh-blue)}
+@media (hover:hover){.sh-now-page .sh-wx--card .sh-wx__tab:hover{border-color:var(--sh-blue);color:var(--sh-blue);background:#fff}.sh-now-page .sh-wx--card .sh-wx__tab[aria-pressed="true"]:hover{color:#fff;background:var(--sh-blue)}}
+.sh-now-page .sh-wx--card .sh-wx__now{margin:0 -20px;padding:12px 20px;background:#fff}
 .sh-now-page .sh-wx--card .sh-wx__now > .sh-i{color:#c9a25a}
 .sh-now-page .sh-wx--card .sh-wx__big,.sh-now-page .sh-wx--card .sh-wx__desc{color:var(--sh-navy)}
 .sh-now-page .sh-wx--card .sh-wx__desc small{color:var(--color-text-muted)}
-.sh-now-page .sh-wx--card .sh-wx__day{background:var(--color-surface-soft);color:var(--sh-navy)}
+.sh-now-page .sh-wx--card .sh-wx__day{background:#fff;color:var(--sh-navy)}
 .sh-now-page .sh-wx--card .sh-wx__day .sh-i{color:#c9a25a}
 .sh-now-page .sh-wx--card .sh-wx__day em{color:var(--color-text-muted)}
-.sh-now-page .sh-wx--card .sh-wx__foot{border-top-color:var(--color-border-soft);color:var(--color-text-muted)}
-.sh-now-page .sh-fx--card .sh-fx__item{border-bottom-color:var(--color-border-soft);color:var(--sh-ink)}
+.sh-now-page .sh-wx--card .sh-wx__foot{border-top-color:var(--color-border);color:var(--color-text-muted);font-size:13px}
+.sh-now-page .sh-fx--card .sh-fx__item{border-bottom-color:var(--color-border);color:var(--sh-ink)}
 .sh-now-page .sh-fx--card .sh-fx__pair{color:var(--sh-ink)}
 .sh-now-page .sh-fx--card .sh-fx__val{color:var(--sh-navy)}
 .sh-now-page .sh-fx--card .sh-fx__chg--up,.sh-now-page .sh-fx--card .sh-fx__chg[data-dir="up"]{color:var(--color-desk-land)}
 .sh-now-page .sh-fx--card .sh-fx__chg--down,.sh-now-page .sh-fx--card .sh-fx__chg[data-dir="down"]{color:var(--color-red-soft)}
-.sh-now-page .sh-fx--card .sh-fx__foot{color:var(--color-text-muted)}
+.sh-now-page .sh-fx--card .sh-fx__foot{color:var(--color-text-muted);font-size:13px}
 
 /* A press has to answer on a touch screen, where :hover never fires: the ground
    steps to navy for as long as the control is held. No transform and no radius —
@@ -106,10 +126,7 @@ html[data-kiosk] .sh-now__feed{max-height:calc(100vh - 140px)}
 body[data-sh-page="now"] :where(.sh-more,.sh-pager__btn,.sh-chip,.sh-tag,.sh-btn):active{
   background:var(--sh-navy);color:#fff;border-color:var(--sh-navy);
 }
-body[data-sh-page="now"] :where(.sh-band,.sh-navy,[class*="--on-dark"]) :where(a,button):active{
-  background:rgba(255,255,255,.18);
-}
-body[data-sh-page="now"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):active{
+body[data-sh-page="now"] :where(.sh-now__row,.sh-now__top a):active{
   background:var(--color-surface-soft);
 }
 

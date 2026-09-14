@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://shehabnews.com/saved.html">
 <meta name="theme-color" content="#1b5aa6">
 <script>(function(){try{var t=(localStorage.getItem("sh-type")||"").replace(/"/g,"");if(t==="sm"||t==="lg")document.documentElement.setAttribute("data-sh-type",t)}catch(e){}})()</script>
-<script>(function(){try{if(localStorage.getItem("sh-lang")==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";h.setAttribute("data-i18n-wait","");document.write('<script src="js/i18n-en.js?v=290"><\/script>');setTimeout(function(){h.removeAttribute("data-i18n-wait")},1500)}}catch(e){}})()</script>
+<script>(function(){try{if(localStorage.getItem("sh-lang")==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";h.setAttribute("data-i18n-wait","");document.write('<script src="js/i18n-en.js?v=292"><\/script>');setTimeout(function(){h.removeAttribute("data-i18n-wait")},1500)}}catch(e){}})()</script>
 <meta name="color-scheme" content="light">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
@@ -30,22 +30,22 @@
 <link rel="alternate" hreflang="en" href="https://shehabnews.com/post/category/35/EN">
 <link rel="preload" href="assets/fonts/neue-helvetica-arabic-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/neue-helvetica-arabic-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css?v=290">
-<link rel="stylesheet" href="css/transition.css?v=290">
-<link rel="stylesheet" href="css/tokens.css?v=290">
-<link rel="stylesheet" href="css/base.css?v=290">
-<link rel="stylesheet" href="css/header.css?v=290">
-<link rel="stylesheet" href="css/widgets.css?v=290">
-<link rel="stylesheet" href="css/footer.css?v=290">
-<link rel="stylesheet" href="css/components.css?v=290">
-<link rel="stylesheet" href="css/chrome.css?v=290">
-<link rel="stylesheet" href="css/feed.css?v=290">
-<link rel="stylesheet" href="css/pages/saved.css?v=290">
-<link rel="stylesheet" href="css/mark.css?v=290">
-<link rel="stylesheet" href="css/responsive.css?v=290">
-<link rel="stylesheet" href="css/brief.css?v=290">
-<link rel="stylesheet" href="css/type.css?v=290">
-<link rel="stylesheet" href="css/ltr.css?v=290">
+<link rel="stylesheet" href="css/fonts.css?v=292">
+<link rel="stylesheet" href="css/transition.css?v=292">
+<link rel="stylesheet" href="css/tokens.css?v=292">
+<link rel="stylesheet" href="css/base.css?v=292">
+<link rel="stylesheet" href="css/header.css?v=292">
+<link rel="stylesheet" href="css/widgets.css?v=292">
+<link rel="stylesheet" href="css/footer.css?v=292">
+<link rel="stylesheet" href="css/components.css?v=292">
+<link rel="stylesheet" href="css/chrome.css?v=292">
+<link rel="stylesheet" href="css/feed.css?v=292">
+<link rel="stylesheet" href="css/pages/saved.css?v=292">
+<link rel="stylesheet" href="css/mark.css?v=292">
+<link rel="stylesheet" href="css/responsive.css?v=292">
+<link rel="stylesheet" href="css/brief.css?v=292">
+<link rel="stylesheet" href="css/type.css?v=292">
+<link rel="stylesheet" href="css/ltr.css?v=292">
 <script type="speculationrules">{"prerender": [{"where": {"and": [{"href_matches": "/*.html"}, {"not": {"href_matches": ["/live.html", "/reels.html", "/shorts.html", "/video-watch.html", "/now.html", "/map.html"]}}]}, "eagerness": "moderate"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "المحفوظات", "description": "المواد التي حفظتها لتقرأها لاحقًا.", "url": "https://shehabnews.com/saved.html", "publisher": {"@type": "NewsMediaOrganization", "name": "وكالة شهاب للأنباء", "url": "https://shehabnews.com/", "logo": {"@type": "ImageObject", "url": "https://shehabnews.com/assets/images/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://www.facebook.com/sahpp2023", "https://twitter.com/ShehabAgency", "https://www.instagram.com/shehabagency/", "https://www.youtube.com/channel/UChvBXfexWtP5gdGZespJnZw", "https://t.me/ShehabTelegram", "https://www.tiktok.com/@shehab_news"]}, "inLanguage": "ar"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://shehabnews.com/"}, {"@type": "ListItem", "position": 2, "name": "المحفوظات", "item": "https://shehabnews.com/saved.html"}]}]}</script>
 </head>
@@ -224,31 +224,39 @@
     </nav>
     <div class="sh-pagehead__head">
       <div class="sh-pagehead__lead">
-        <h1 class="sh-pagehead__title"><span class="sh-mark sh-mark--md"></span>المحفوظات</h1>
-        <p class="sh-pagehead__sub">المواد التي حفظتها لتقرأها لاحقًا. محفوظة على هذا الجهاز وحده، ولا تُرسل إلى الوكالة.</p>
+        <h1 class="sh-pagehead__title">المحفوظات</h1>
+        <p class="sh-pagehead__sub">المواد التي حفظتها لتقرأها لاحقًا. تبقى على هذا الجهاز وحده، ولا تُرسل إلى الوكالة.</p>
       </div>
       <div class="sh-pagehead__tools">
-        <span class="sh-pagehead__stamp" data-sh-saved-count></span>
+        <span class="sh-pagehead__stamp" data-sh-saved-count hidden></span>
         <button type="button" class="sh-pagehead__btn" data-sh-saved-clear hidden>امسح الكل</button>
       </div>
     </div>
-    <ul class="sh-pagehead__stats" style="--sh-ph-cols:3">
-      <li><b>هذا الجهاز</b><span>مكان الحفظ</span></li>
-      <li><b>بلا حساب</b><span>لا يلزم تسجيل دخول</span></li>
-      <li><b>بضغطة</b><span>الحذف في أي وقت</span></li>
-    </ul>
   </div>
 </section>
 
-
-<div data-screen-label="Saved List" class="sh-saved-body">
-  <div class="sh-saved-list" data-sh-saved-list></div>
-  <div class="sh-saved-empty" data-sh-saved-empty hidden>
-    <svg class="sh-i sh-saved-empty__i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#r-bookmark"></use></svg>
-    <b>لا مواد محفوظة بعد</b>
-    <span>احفظ أي خبر أو تقرير ليظهر هنا.</span>
-    <a href="index.html" class="sh-more">تصفّح الأخبار <span class="sh-more__arrow sh-more__arrow--14"></span></a>
-  </div>
+<!-- the list js/saved.js draws from this device (or its empty state), beside what readers open most today -->
+<div data-screen-label="Saved" class="sh-sv">
+  <section class="sh-sv-main" aria-labelledby="sh-sv-h">
+    <h2 class="sr-only" id="sh-sv-h">المواد المحفوظة</h2>
+    <div class="sh-saved-list" data-sh-saved-list></div>
+    <div class="sh-saved-empty" data-sh-saved-empty hidden>
+      <span class="sh-saved-empty__i"><svg class="sh-i" aria-hidden="true" focusable="false"><use href="assets/images/icons.svg#r-bookmark"></use></svg></span>
+      <b>لا مواد محفوظة بعد</b>
+      <span>اضغط «حفظ» في أي خبر أو تقرير، وستجده هنا حين تعود.</span>
+      <a href="index.html" class="sh-saved-empty__go">تصفّح آخر الأخبار</a>
+    </div>
+  </section>
+  <aside data-screen-label="Most Read" class="sh-sv-side" aria-labelledby="sh-sv-most">
+    <h2 class="sh-sv-side__h" id="sh-sv-most">الأكثر قراءة اليوم</h2>
+    <ol class="sh-sv-most">
+        <li><a href="article.html"><b aria-hidden="true">1</b><span>فيديو | لحظة إطلاق النار على شاب فلسطيني أعزل في قلنديا</span></a></li>
+        <li><a href="article.html"><b aria-hidden="true">2</b><span>الأوقاف: 1244 مسجدًا دمرها الاحتلال في غزة</span></a></li>
+        <li><a href="article.html"><b aria-hidden="true">3</b><span>مصادر تكشف كواليس استشهاد &quot;أبو رعد&quot; خازم في جنين</span></a></li>
+        <li><a href="article.html"><b aria-hidden="true">4</b><span>أطفال غزة والطائرات الورقية.. ذريعة جديدة للتصعيد</span></a></li>
+        <li><a href="article.html"><b aria-hidden="true">5</b><span>لبنان: ارتفاع حصيلة العدوان إلى 4350 شهيدًا</span></a></li>
+    </ol>
+  </aside>
 </div>
 
 </main>
@@ -339,18 +347,18 @@
 </dialog>
 <!-- /sh:footer -->
 </div>
-<script src="js/ui.js?v=290" defer></script>
-<script src="js/lang.js?v=290" defer></script>
-<script src="js/chrome.js?v=290" defer></script>
-<script src="js/feed.js?v=290" defer></script>
-<script src="js/app.js?v=290" defer></script>
-<script src="js/responsive.js?v=290" defer></script>
-<script src="js/widgets.js?v=290" defer></script>
-<script src="js/livebox.js?v=290" defer></script>
-<script src="js/brief.js?v=290" defer></script>
-<script src="js/searchbox.js?v=290" defer></script>
-<script src="js/push.js?v=290" defer></script>
-<script src="js/pwa.js?v=290" defer></script>
-<script src="js/saved.js?v=290" defer></script>
+<script src="js/ui.js?v=292" defer></script>
+<script src="js/lang.js?v=292" defer></script>
+<script src="js/chrome.js?v=292" defer></script>
+<script src="js/feed.js?v=292" defer></script>
+<script src="js/app.js?v=292" defer></script>
+<script src="js/responsive.js?v=292" defer></script>
+<script src="js/widgets.js?v=292" defer></script>
+<script src="js/livebox.js?v=292" defer></script>
+<script src="js/brief.js?v=292" defer></script>
+<script src="js/searchbox.js?v=292" defer></script>
+<script src="js/push.js?v=292" defer></script>
+<script src="js/pwa.js?v=292" defer></script>
+<script src="js/saved.js?v=292" defer></script>
 </body>
 </html>

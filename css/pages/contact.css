@@ -1,74 +1,101 @@
-/* شهاب — contact: page layout, one-off styles (scoped by section), and what
-   the old per-page sheet still owned (keyframes, p/input, its own a{transition}). */
-a{transition:color .16s ease,background .16s ease,border-color .16s ease,gap .16s ease}
-p{font-family:var(--sh-serif);line-height:2.05}
-input,textarea,button,select{font-family:inherit;font-size:inherit;color:inherit}
-input:focus,textarea:focus{outline:none;border-color:var(--sh-blue)}
-@keyframes sh-ring{0%{transform:scale(.55);opacity:.9}70%{opacity:.12}100%{transform:scale(1.6);opacity:0}}
-.sh-contact-contact__section-1{display:grid;grid-template-columns:minmax(min(100%,300px),1.3fr) minmax(min(100%,260px),.85fr);gap:40px;padding:22px 0 0;align-items:stretch}
-.sh-contact-contact-form__div-1{display:flex;align-items:baseline;justify-content:space-between;gap:14px;border-bottom:1px solid var(--sh-hair-2);padding-bottom:10px}
-.sh-contact-contact-form__h2-1{gap:10px}
-.sh-contact-contact-form__span-1{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-mute);margin:14px 0 9px}
-.sh-contact-contact-form__span-2{font-weight:400;font-size:11.5px}
-.sh-contact-contact-form__div-2{display:flex;flex-wrap:wrap;gap:8px}
-.sh-contact-contact-form__span-3{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--sh-blue);background:var(--sh-blue);color:#fff;font-family:var(--sh-font);font-size:12px;font-weight:800;padding:9px 15px;white-space:nowrap}
-.sh-contact-contact-form__span-4{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--sh-grey-1);background:#fff;color:var(--sh-ink-2);font-family:var(--sh-font);font-size:12px;font-weight:800;padding:9px 15px;white-space:nowrap}
-@media (hover:hover){.sh-contact-contact-form__span-4:hover{border-color:var(--sh-blue);color:var(--sh-blue)}}
-.sh-contact-contact-form__div-3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px;margin-top:18px}
-.sh-contact-contact-form__label-1{display:block;padding-bottom:14px}
-.sh-contact-contact-form__span-5{display:block;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-mute);margin-bottom:7px}
-.sh-contact-contact-form__input-1{width:100%;min-height:44px;border:none;border-bottom:1px solid var(--sh-grey-1);background:transparent;padding:9px 2px;font-size:14px}
-.sh-contact-contact-form__input-2{width:100%;min-height:44px;border:none;border-bottom:1px solid var(--sh-grey-1);background:transparent;padding:9px 2px;font-size:14px;direction:ltr;text-align:start}
-.sh-contact-contact-form__div-4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
-.sh-contact-contact-form__span-6{font-weight:400}
-.sh-contact-contact-form__span-7{display:block;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-mute);margin:4px 0 7px}
-.sh-contact-contact-form__textarea-1{width:100%;border:none;border-bottom:1px solid var(--sh-grey-1);background:transparent;padding:9px 2px;font-size:14px;line-height:1.95;resize:vertical}
-.sh-contact-contact-form__div-5{display:flex;align-items:center;gap:12px;margin-top:14px;border-bottom:1px solid var(--sh-grey-1);padding:0 2px 12px}
-.sh-contact-contact-form__i-1{font-size:13px;color:var(--sh-blue)}
-.sh-contact-contact-form__span-8{font-size:12px;color:var(--sh-ink-2)}
-.sh-contact-contact-form__span-9{margin-inline-start:auto;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-blue)}
-.sh-contact-contact-form__div-6{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:16px}
-.sh-contact-contact-form__span-10{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--sh-mute)}
-.sh-contact-contact-form__button-1{display:inline-flex;align-items:center;gap:12px;background:var(--sh-navy);color:#fff;border:none;font-family:var(--sh-font);font-size:12px;font-weight:800;padding:13px 28px;cursor:pointer;white-space:nowrap;flex:none}
-@media (hover:hover){.sh-contact-contact-form__button-1:hover{background:var(--sh-blue)}}
-.sh-contact-contact-info__aside-1{display:flex;flex-direction:column}
-.sh-contact-contact-info__div-1{position:relative;overflow:hidden;background:var(--sh-navy);color:#fff;flex:1;min-height:190px;display:flex;align-items:flex-end}
-.sh-contact-contact-info__span-1{position:absolute;inset:0;overflow:hidden;opacity:.5}
-.sh-contact-contact-info__span-2{display:none}   /* a blue multiply veil is not the navy veil */
-.sh-contact-contact-info__span-3{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,26,51,.9),rgba(10,26,51,.25))}
-.sh-contact-contact-info__div-2{position:relative;padding:18px 18px 17px;width:100%}
-.sh-contact-contact-info__span-4{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-sky)}
-.sh-contact-contact-info__span-5{flex:1;height:1px;background:var(--sh-on-dark-30)}
-.sh-contact-contact-info__span-6{display:block;font-family:var(--sh-font);font-size:clamp(17px,1.9vw,22px);font-weight:800;line-height:1.5;margin-top:11px;max-width:20ch;text-wrap:pretty}
-.sh-contact-contact-info__span-7{display:flex;align-items:center;gap:9px;margin-top:9px;font-size:11.5px;color:var(--sh-on-dark-72)}
-.sh-contact-contact-info__div-3{margin-top:18px}
-.sh-contact-contact-info__span-8{display:flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:11.5px;font-weight:800;color:var(--sh-mute);border-bottom:1px solid var(--color-border-soft);padding-bottom:9px}
-.sh-contact-contact-info__div-4{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;align-items:start;padding:11px 0;border-bottom:1px solid var(--sh-hair)}
-.sh-contact-contact-info__i-1{font-size:13px;color:var(--sh-blue);margin-top:3px}
-.sh-contact-contact-info__span-9{display:block;font-family:var(--sh-font);font-size:13px;font-weight:800;color:var(--sh-navy)}
-.sh-contact-contact-info__span-10{display:block;font-size:11.5px;color:var(--sh-mute);margin-top:4px;line-height:1.75;direction:ltr;text-align:start}
-.sh-contact-contact-info__span-11{display:block;font-size:11.5px;color:var(--sh-mute);margin-top:4px;line-height:1.75;direction:rtl;text-align:start}
-.sh-contact-contact-info__div-5{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.sh-contact-contact-info__a-1{width:34px;height:34px;border:1px solid var(--sh-grey-1);display:flex;align-items:center;justify-content:center;color:var(--sh-navy)}
-@media (hover:hover){.sh-contact-contact-info__a-1:hover{background:var(--sh-blue);border-color:var(--sh-blue);color:#fff}}
-.sh-contact-contact-info__i-2{font-size:13px}
-.sh-contact-contact-note__div-1{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 30px;margin:26px 0 36px;padding:15px 0;border-top:1px solid var(--sh-hair-3);border-bottom:1px solid var(--sh-hair-3)}
-.sh-contact-contact-note__span-1{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--sh-ink-2)}
-.sh-contact-contact-note__a-1{display:inline-flex;align-items:center;gap:10px;font-family:var(--sh-font);font-size:12px;font-weight:800;color:var(--sh-blue)}
-@media (hover:hover){.sh-contact-contact-note__a-1:hover{gap:16px}}
-.sh-contact-contact-note__span-2{display:none}
+/* شهاب — contact: تواصل معنا.
 
-/* ---- image tiles (converted from background spans): the picture is an <img> that lazy-loads ---- */
-.sh-contact-contact-info__span-1 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+   على الأبيض: رأس فاتح، ثم النموذج بعرض القراءة (نوع الرسالة خيارات حقيقية،
+   الحقول بصناديق واضحة وخط كبير، إرفاق ملف فعلي، والرد تحت الزر) وجنبه عمود
+   ثابت فيه القنوات المباشرة على الرمادي الفاتح وما يلزم معرفته قبل الإرسال.
+   لا صورة زخرفية، لا عنوان إنجليزي، لا شريط مسارات يعود للصفحة نفسها. */
+a{transition:color .16s ease,background .16s ease,border-color .16s ease}
+input,textarea,button{font-family:var(--sh-font)}
+input::placeholder,textarea::placeholder{color:var(--sh-mute)}
 
-.sh-contact-contact-info__span-11 a{color:var(--sh-blue);font-weight:700;direction:ltr;unicode-bidi:isolate}
-@media (max-width:640px){
-  .sh-contact-contact-form__span-3,.sh-contact-contact-form__span-4{min-height:44px;display:inline-flex;align-items:center}
-  .sh-contact-contact-form__button-1{min-height:44px;width:100%;justify-content:center}
-  .sh-contact-contact-info__a-1{width:44px;height:44px}
-  .sh-contact-contact-note__a-1{min-height:44px}
+.sh-ct{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:64px;align-items:start;margin:40px 0 72px}
+
+/* ================================================================== form */
+.sh-ct-form{display:flex;flex-direction:column;gap:24px;min-width:0}
+.sh-ct-label{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:10px;padding:0;font-family:var(--sh-font);font-size:16px;font-weight:700;color:var(--sh-navy)}
+.sh-ct-label small{font-size:14px;font-weight:400;color:var(--sh-mute)}
+.sh-ct-kind{min-width:0;margin:0;padding:0;border:0}
+.sh-ct-kind__opts{display:flex;flex-wrap:wrap;gap:10px}
+.sh-ct-opt{position:relative;display:inline-flex}
+.sh-ct-opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.sh-ct-opt span{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border:1px solid var(--sh-grey-1);background:#fff;color:var(--sh-ink-2);font-family:var(--sh-font);font-size:16px;font-weight:700;white-space:nowrap;transition:background .16s ease,border-color .16s ease,color .16s ease}
+@media (hover:hover){.sh-ct-opt:hover span{border-color:var(--sh-blue);color:var(--sh-blue)}}
+.sh-ct-opt input:checked + span{background:var(--sh-blue);border-color:var(--sh-blue);color:#fff}
+.sh-ct-opt input:focus-visible + span{outline:2px solid var(--sh-blue);outline-offset:2px}
+
+.sh-ct-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.sh-ct-field{display:block;min-width:0}
+.sh-ct-field input,.sh-ct-field textarea{display:block;width:100%;min-height:54px;padding:0 16px;border:1px solid var(--sh-grey-1);background:#fff;color:var(--sh-navy);font-size:17px;transition:border-color .16s ease,box-shadow .16s ease}
+.sh-ct-field textarea{min-height:190px;padding:14px 16px;line-height:1.85;resize:vertical}
+:root[dir="rtl"] .sh-ct-field input[dir="ltr"]{text-align:right}
+/* the ring is the border thickening in blue — one replacement, never none */
+[data-sh-page="contact"] .sh-ct-field input:focus,[data-sh-page="contact"] .sh-ct-field textarea:focus{outline:none;border-color:var(--sh-blue);box-shadow:inset 0 0 0 1px var(--sh-blue)}
+.sh-ct-field [aria-invalid="true"]{border-color:var(--sh-red);box-shadow:inset 0 0 0 1px var(--sh-red)}
+
+.sh-ct-file{position:relative;display:flex;align-items:center;gap:12px;min-height:62px;padding:0 16px;border:1px dashed var(--sh-grey-1);background:var(--color-surface-soft);cursor:pointer;transition:border-color .16s ease}
+.sh-ct-file input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+@media (hover:hover){.sh-ct-file:hover{border-color:var(--sh-blue)}}
+.sh-ct-file:focus-within{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-ct-file .sh-i{flex:none;font-size:18px;color:var(--sh-blue)}
+.sh-ct-file__t{flex:none;font-family:var(--sh-font);font-size:16px;font-weight:700;color:var(--sh-navy)}
+.sh-ct-file__n{flex:1;min-width:0;overflow:hidden;font-family:var(--sh-font);font-size:14px;color:var(--sh-mute);text-overflow:ellipsis;white-space:nowrap}
+.sh-ct-file__btn{flex:none;display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border:1px solid var(--sh-navy);background:#fff;font-family:var(--sh-font);font-size:14px;font-weight:700;color:var(--sh-navy)}
+
+.sh-ct-send{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.sh-ct-send__btn{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 40px;border:0;background:var(--sh-navy);color:#fff;font-size:18px;font-weight:800;cursor:pointer;transition:background .18s ease}
+@media (hover:hover){.sh-ct-send__btn:hover{background:var(--sh-blue)}}
+.sh-ct-send__btn:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
+.sh-ct-send__btn:disabled{opacity:.6;cursor:progress}
+.sh-ct-status{flex:1 1 260px;margin:0;font-family:var(--sh-font);font-size:16px;font-weight:700;line-height:1.7;color:var(--sh-ink-2)}
+.sh-ct-status:empty{display:none}
+.sh-ct-status[data-state="ok"]{color:#1f7a4d}
+.sh-ct-status[data-state="err"]{color:var(--sh-red)}
+
+/* ============================================================ channels */
+.sh-ct-side{position:sticky;top:calc(var(--sh-compact-h,100px) + 26px);display:flex;flex-direction:column;gap:28px;min-width:0}
+.sh-ct-block{padding:24px;background:var(--color-surface-soft)}
+.sh-ct-block__h,.sh-ct-note__h{margin:0 0 6px;font-family:var(--sh-font);font-size:22px;font-weight:800;color:var(--sh-navy)}
+.sh-ct-channel{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;align-items:center;padding:14px 0;color:var(--sh-ink)}
+.sh-ct-channel + .sh-ct-channel{border-top:1px solid var(--color-border)}
+.sh-ct-channel__i{display:grid;place-items:center;width:48px;height:48px;background:#fff;color:var(--sh-blue);font-size:21px}
+.sh-ct-channel b{display:block;font-family:var(--sh-font);font-size:18px;font-weight:800;color:var(--sh-navy);transition:color .16s ease}
+.sh-ct-channel b + span{display:block;font-family:var(--sh-font);font-size:15px;color:var(--sh-ink-2)}
+:root[dir="rtl"] .sh-ct-channel b + span[dir="ltr"]{text-align:right}
+@media (hover:hover){.sh-ct-channel:hover{color:var(--sh-ink)}.sh-ct-channel:hover b{color:var(--sh-blue)}}
+.sh-ct-channel:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-ct-social{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:18px;border-top:1px solid var(--color-border)}
+.sh-ct-social a{display:grid;place-items:center;width:46px;height:46px;background:#fff;color:var(--sh-navy);font-size:18px}
+@media (hover:hover){.sh-ct-social a:hover{background:var(--sh-navy);color:#fff}}   /* base.css a:hover would paint the icon blue on navy */
+.sh-ct-social a:focus-visible{outline:2px solid var(--sh-blue);outline-offset:2px}
+.sh-ct-note{padding-inline:4px}
+.sh-ct-note__h{font-size:19px;margin-bottom:10px}
+.sh-ct-note ul{margin:0;padding-inline-start:20px}
+.sh-ct-note li{margin-bottom:8px;padding-inline-start:4px;font-family:var(--sh-font);font-size:16px;line-height:1.75;color:var(--sh-ink);text-wrap:pretty}
+.sh-ct-note li::marker{color:var(--sh-blue)}
+.sh-ct-note p{margin:14px 0 0;font-family:var(--sh-font);font-size:15px;line-height:1.7;color:var(--sh-mute)}
+.sh-ct-note p a{font-weight:700;color:var(--sh-blue)}
+@media (hover:hover){.sh-ct-note p a:hover{color:var(--sh-navy)}}
+
+/* ============================================================ narrower */
+@media (max-width:1100px){
+  .sh-ct{grid-template-columns:minmax(0,1fr) 300px;gap:40px}
 }
-@media (max-width:640px){.sh-contact-contact-info__span-11 a{display:inline-flex;align-items:center;min-height:44px}}
+@media (max-width:900px){
+  .sh-ct{grid-template-columns:minmax(0,1fr);gap:40px;margin:28px 0 56px}
+  .sh-ct-side{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+}
+@media (max-width:640px){
+  .sh-ct-form{gap:20px}
+  .sh-ct-row{grid-template-columns:minmax(0,1fr);gap:20px}
+  .sh-ct-kind__opts{gap:8px}
+  .sh-ct-opt span{min-height:44px;padding:0 14px;font-size:15px}
+  .sh-ct-file{flex-wrap:wrap;gap:4px 10px;padding:12px 14px}
+  .sh-ct-file__n{order:3;flex-basis:100%}
+  .sh-ct-file__btn{margin-inline-start:auto}
+  .sh-ct-send__btn{width:100%}
+  .sh-ct-side{grid-template-columns:minmax(0,1fr)}
+  .sh-ct-block{padding:18px}
+}
 
 /* A press has to answer on a touch screen, where :hover never fires: the ground
    steps to navy for as long as the control is held. No transform and no radius —
@@ -76,11 +103,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--sh-blue)}
 body[data-sh-page="contact"] :where(.sh-more,.sh-pager__btn,.sh-chip,.sh-tag,.sh-btn):active{
   background:var(--sh-navy);color:#fff;border-color:var(--sh-navy);
 }
-body[data-sh-page="contact"] :where(.sh-band,.sh-navy,[class*="--on-dark"]) :where(a,button):active{
-  background:rgba(255,255,255,.18);
-}
-body[data-sh-page="contact"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):active{
-  background:var(--color-surface-soft);
+body[data-sh-page="contact"] :where(.sh-ct-channel):active{
+  background:var(--color-surface-blue);
 }
 
 /* the burger and its chevron live in the shared css/responsive.css, which feeds
@@ -88,5 +112,5 @@ body[data-sh-page="contact"] :where(.sh-list__row,.sh-card,.sh-fig,.sh-op__row):
 @media (prefers-reduced-motion:reduce){
   body[data-sh-page="contact"] .sh-nav-toggle span,
   body[data-sh-page="contact"] header nav .sh-menu > a > span:last-child{transition:none}
-  body[data-sh-page="contact"] a{transition:none}
+  body[data-sh-page="contact"] a,.sh-ct-opt span,.sh-ct-field input,.sh-ct-field textarea,.sh-ct-file,.sh-ct-send__btn,.sh-ct-channel b{transition:none}
 }

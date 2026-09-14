@@ -25,7 +25,8 @@
     }).join('');
     ShUI.paintTimes(host);
     if (empty) empty.hidden = list.length > 0;
-    if (count) count.textContent = list.length ? (list.length === 1 ? 'مادة واحدة' : list.length === 2 ? 'مادتان' : list.length <= 10 ? list.length + ' مواد' : list.length + ' مادة') : 'لا شيء بعد';
+    // the count beside the title only speaks when there is something to count
+    if (count) { count.textContent = list.length === 1 ? 'مادة واحدة' : list.length === 2 ? 'مادتان' : list.length <= 10 ? list.length + ' مواد' : list.length + ' مادة'; count.hidden = !list.length; }
     if (clear) clear.hidden = !list.length;
   }
   host.addEventListener('click', function (e) {
