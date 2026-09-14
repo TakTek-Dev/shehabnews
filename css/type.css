@@ -2,7 +2,7 @@
    every content font-size again under html[data-sh-type="sm"] (×0.92, floor
    12px) and ="lg" (×1.12). The chrome is not here on purpose. */
 
-/* ---- sm ×0.92 (613 rules) ---- */
+/* ---- sm ×0.92 (606 rules) ---- */
 html[data-sh-type="sm"] .sh-page{font-size:12.88px}
 html[data-sh-type="sm"] .sh-more{font-size:12px}
 html[data-sh-type="sm"] .sh-section__title.sh-section__title--sm{font-size:12.88px}
@@ -66,6 +66,9 @@ html[data-sh-type="sm"] .sh-pagehead__clock span{font-size:12px}
 html[data-sh-type="sm"] .sh-pagehead__live{font-size:12px}
 html[data-sh-type="sm"] .sh-pagehead__form input[type="search"],html[data-sh-type="sm"] .sh-pagehead__form input[type="text"]{font-size:12.42px}
 html[data-sh-type="sm"] .sh-pagehead__form button{font-size:12px}
+html[data-sh-type="sm"] .sh-reveal__cat{font-size:13.8px}
+html[data-sh-type="sm"] .sh-reveal__title{font-size:18.4px}
+html[data-sh-type="sm"] .sh-reveal__meta{font-size:12.88px}
 html[data-sh-type="sm"] .sh-pswp .pswp__counter{font-size:12px}
 html[data-sh-type="sm"] .sh-pswp .pswp__button--sh-share,html[data-sh-type="sm"] .sh-pswp .pswp__button--sh-fs{font-size:14.72px}
 html[data-sh-type="sm"] .sh-pswp__title{font-size:14.72px}
@@ -221,41 +224,25 @@ html[data-sh-type="sm"] .sh-fig__label{font-size:12px}
 html[data-sh-type="sm"] .sh-data-note{font-size:12px}
 html[data-sh-type="sm"] .sh-data-ctx__k{font-size:12px}
 html[data-sh-type="sm"] .sh-data-ctx__t{font-size:13.8px}
-html[data-sh-type="sm"] .sh-fl-latest .sh-meta__note,html[data-sh-type="sm"] .sh-fl-arch .sh-fl-arch__all{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-hero__h1{font-size:calc(clamp(34px,3.8vw,44px) * 0.92)}
-html[data-sh-type="sm"] .sh-fl-hero__dek{font-size:13.8px}
-html[data-sh-type="sm"] .sh-fl-open__no{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-open__title{font-size:calc(clamp(22px,2.1vw,26px) * 0.92)}
-html[data-sh-type="sm"] .sh-fl-open__list li{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-open__cta{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-feat__cap{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-feat__title{font-size:calc(clamp(26px,2.7vw,34px) * 0.92)}
-html[data-sh-type="sm"] .sh-fl-feat__dek{font-size:13.8px}
-html[data-sh-type="sm"] .sh-fl-feat__item{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-feat__cta{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-topics{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-card__no{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-card__title{font-size:15.64px}
-html[data-sh-type="sm"] .sh-fl-card--lead .sh-fl-card__title{font-size:23.92px}
-html[data-sh-type="sm"] .sh-fl-card__dek{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-card--lead .sh-fl-card__dek{font-size:13.8px}
-html[data-sh-type="sm"] .sh-fl-card__foot{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-most__no{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-most__title{font-size:13.8px}
-html[data-sh-type="sm"] .sh-fl-most__reads{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-unit__text{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-inter__note{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-int__title{font-size:15.64px}
-html[data-sh-type="sm"] .sh-fl-int__dek{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-int__foot{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-int__go{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-arch__year{font-size:31.28px}
-html[data-sh-type="sm"] .sh-fl-arch__meta{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-arch__title{font-size:13.8px}
-html[data-sh-type="sm"] .sh-fl-arch__go{font-size:12px}
-html[data-sh-type="sm"] .sh-fl-close__title{font-size:18.4px}
-html[data-sh-type="sm"] .sh-fl-close__dek{font-size:12.88px}
-html[data-sh-type="sm"] .sh-fl-close__cta{font-size:12px}
+html[data-sh-type="sm"] .sh-fl-crumbs{font-size:12.88px}
+html[data-sh-type="sm"] .sh-fl-title{font-size:calc(clamp(40px,4.2vw,60px) * 0.92)}
+html[data-sh-type="sm"] .sh-fl-dek{font-size:16.56px}
+html[data-sh-type="sm"] .sh-fl-hero__meta{font-size:12.88px}
+html[data-sh-type="sm"] .sh-fl-hero__title{font-size:calc(clamp(26px,2.4vw,34px) * 0.92)}
+html[data-sh-type="sm"] .sh-fl-hero__dek{font-size:15.64px}
+html[data-sh-type="sm"] .sh-fl-hero__docs a{font-size:15.64px}
+html[data-sh-type="sm"] .sh-fl-hero__cta{font-size:14.72px}
+html[data-sh-type="sm"] .sh-fl-hero__also-h{font-size:14.72px}
+html[data-sh-type="sm"] .sh-fl-mini__t{font-size:15.64px}
+html[data-sh-type="sm"] .sh-fl-mini__m{font-size:12px}
+html[data-sh-type="sm"] .sh-fl-sec .sh-section__title{font-size:calc(clamp(24px,2.2vw,30px) * 0.92)}
+html[data-sh-type="sm"] .sh-fl-sec .sh-meta__note{font-size:12.88px}
+html[data-sh-type="sm"] .sh-fl-all{font-size:13.8px}
+html[data-sh-type="sm"] .sh-fl-grid--4 .sh-reveal__title{font-size:16.56px}
+html[data-sh-type="sm"] .sh-fl-tool__kind{font-size:12.88px}
+html[data-sh-type="sm"] .sh-fl-tool__title{font-size:17.48px}
+html[data-sh-type="sm"] .sh-fl-tool__fig{font-size:13.8px}
+html[data-sh-type="sm"] .sh-fl-tool__fig b{font-size:27.6px}
 html[data-sh-type="sm"] .sh-ho__bar-t{font-size:15.64px}
 html[data-sh-type="sm"] .sh-ho__tab{font-size:12px}
 html[data-sh-type="sm"] .sh-ho__hint{font-size:12px}
@@ -470,26 +457,18 @@ html[data-sh-type="sm"] .sh-sx__meta{font-size:12px}
 html[data-sh-type="sm"] .sh-sx__y{font-size:14.72px}
 html[data-sh-type="sm"] .sh-sx__n{font-size:12px}
 html[data-sh-type="sm"] .sh-sx__q{font-size:12.42px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-9{font-size:31.28px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-12{font-size:15.64px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-14{font-size:20.24px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-20{font-size:12.88px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-25{font-size:20.24px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-29{font-size:12.88px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-35{font-size:15.64px}
-html[data-sh-type="sm"] .sh-sections-section-map__span-36{font-size:12px}
-html[data-sh-type="sm"] .sh-sections-media-desks__span-8{font-size:23.92px}
-html[data-sh-type="sm"] .sh-sections-files-rail__span-3{font-size:12.88px}
-html[data-sh-type="sm"] .sh-sections-interactive-map__p-1{font-size:12px}
-html[data-sh-type="sm"] .sh-sections-interactive-map__span-4{font-size:20.24px}
-html[data-sh-type="sm"] .sh-sections-interactive-map__a-1{font-size:12px}
-html[data-sh-type="sm"] .sh-sections-year-archive__span-5{font-size:23.92px}
-html[data-sh-type="sm"] .sh-sections-editorial-team__span-1{font-size:13.8px}
-html[data-sh-type="sm"] .sh-sections-editorial-team__span-2{font-size:12.88px}
-html[data-sh-type="sm"] .sh-sections-sections-rail__span-1{font-size:12px}
-html[data-sh-type="sm"] .sh-sections-sections-closing__span-1{font-size:15.64px}
-html[data-sh-type="sm"] .sh-sections-sections-closing__span-2{font-size:12px}
-html[data-sh-type="sm"] .sh-sections-sections-closing__a-1{font-size:12px}
+html[data-sh-type="sm"] .sh-sc-crumbs{font-size:12.88px}
+html[data-sh-type="sm"] .sh-sc-title{font-size:calc(clamp(34px,3.6vw,48px) * 0.92)}
+html[data-sh-type="sm"] .sh-sc-dek{font-size:16.56px}
+html[data-sh-type="sm"] .sh-sc-desks .sh-reveal__title{font-size:19.32px}
+html[data-sh-type="sm"] .sh-sc-row__name{font-size:17.48px}
+html[data-sh-type="sm"] .sh-sc-row__t{font-size:13.8px}
+html[data-sh-type="sm"] .sh-sc-sec .sh-section__title{font-size:calc(clamp(24px,2.2vw,30px) * 0.92)}
+html[data-sh-type="sm"] .sh-sc-all{font-size:13.8px}
+html[data-sh-type="sm"] .sh-sc-media .sh-reveal__title{font-size:15.64px}
+html[data-sh-type="sm"] .sh-sc-person__pic--mark{font-size:22.08px}
+html[data-sh-type="sm"] .sh-sc-person__name{font-size:16.56px}
+html[data-sh-type="sm"] .sh-sc-person__role{font-size:12.88px}
 html[data-sh-type="sm"] .sh-shorts__title{font-size:12.88px}
 html[data-sh-type="sm"] .sh-shorts__close{font-size:12.88px}
 html[data-sh-type="sm"] .sh-shorts__heart{font-size:77.28px}
@@ -556,6 +535,25 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-rep__lead-t{font-size:18.4px}
   html[data-sh-type="sm"] .sh-op__t{font-size:12.88px}
 }
+@media (max-width:767px){
+  html[data-sh-type="sm"] .sh-reveal__cat{font-size:12px}
+  html[data-sh-type="sm"] .sh-reveal__title{font-size:15.64px}
+  html[data-sh-type="sm"] .sh-reveal__meta{font-size:12px}
+  html[data-sh-type="sm"] .sh-fl-mini__t{font-size:15.18px}
+  html[data-sh-type="sm"] .sh-fl-grid--4 .sh-reveal__title{font-size:15.64px}
+  html[data-sh-type="sm"] .sh-fl-tool__title{font-size:15.18px}
+  html[data-sh-type="sm"] .sh-fl-tool__fig b{font-size:22.08px}
+  html[data-sh-type="sm"] .sh-ph-card__cat{font-size:12px}
+  html[data-sh-type="sm"] .sh-ph-card__title{font-size:16.56px}
+  html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title,html[data-sh-type="sm"] .sh-ph-card--major .sh-ph-card__title{font-size:19.32px}
+  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__cat{font-size:12px}
+  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__title{font-size:15.18px}
+  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__time{font-size:12px}
+  html[data-sh-type="sm"] .sh-sc-desks .sh-reveal__title{font-size:15.64px}
+  html[data-sh-type="sm"] .sh-sc-media .sh-reveal__title{font-size:13.8px}
+  html[data-sh-type="sm"] .sh-sc-row__name{font-size:15.64px}
+  html[data-sh-type="sm"] .sh-sc-row__t{font-size:12.88px}
+}
 @media (max-width:899px){
   html[data-sh-type="sm"] .sh-pswp__title{font-size:13.8px}
 }
@@ -572,8 +570,13 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-fig__value small{font-size:12px}
   html[data-sh-type="sm"] .sh-fig__delta{font-size:12px}
   html[data-sh-type="sm"] .sh-fig__label{font-size:12px}
-  html[data-sh-type="sm"] .sh-fl-open__no,html[data-sh-type="sm"] .sh-fl-card__no{font-size:12px}
-  html[data-sh-type="sm"] .sh-fl-arch__year{font-size:23.92px}
+  html[data-sh-type="sm"] .sh-fl-crumbs{font-size:12px}
+  html[data-sh-type="sm"] .sh-fl-title{font-size:33.12px}
+  html[data-sh-type="sm"] .sh-fl-dek{font-size:14.72px}
+  html[data-sh-type="sm"] .sh-fl-hero__title{font-size:23px}
+  html[data-sh-type="sm"] .sh-fl-hero__dek{font-size:14.72px}
+  html[data-sh-type="sm"] .sh-fl-hero__docs a{font-size:14.72px}
+  html[data-sh-type="sm"] .sh-fl-tool__kind{font-size:12px}
   html[data-sh-type="sm"] .sh-ho-tag__sec{font-size:12px}
   html[data-sh-type="sm"] .sh-h1__t{font-size:12.88px}
   html[data-sh-type="sm"] .sh-h1__tile--start .sh-h1__t,html[data-sh-type="sm"] .sh-h1__tile--end .sh-h1__t{font-size:13.34px}
@@ -600,9 +603,8 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-reels__fdek{font-size:12.42px}
   html[data-sh-type="sm"] .sh-sf__toggle{font-size:12px}
   html[data-sh-type="sm"] .sh-sx__y{font-size:13.8px}
-  html[data-sh-type="sm"] .sh-sections-section-map__span-9{font-size:23.92px}
-  html[data-sh-type="sm"] .sh-sections-section-map__span-12{font-size:13.8px}
-  html[data-sh-type="sm"] .sh-sections-media-desks__span-8{font-size:20.24px}
+  html[data-sh-type="sm"] .sh-sc-crumbs{font-size:12px}
+  html[data-sh-type="sm"] .sh-sc-dek{font-size:14.72px}
   html[data-sh-type="sm"] .sh-vw__ch{font-size:12px}
   html[data-sh-type="sm"] .sh-vx-sec__t{font-size:18.4px}
   html[data-sh-type="sm"] .sh-vx-pick--lead .sh-vx-pick__t{font-size:18.4px}
@@ -614,22 +616,13 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-vx-card__t{font-size:12.88px}
   html[data-sh-type="sm"] .sh-vx-rank{font-size:12px}
 }
-@media (max-width:767px){
-  html[data-sh-type="sm"] .sh-fl-card--lead .sh-fl-card__title{font-size:18.4px}
-  html[data-sh-type="sm"] .sh-ph-card__cat{font-size:12px}
-  html[data-sh-type="sm"] .sh-ph-card__title{font-size:16.56px}
-  html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title,html[data-sh-type="sm"] .sh-ph-card--major .sh-ph-card__title{font-size:19.32px}
-  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__cat{font-size:12px}
-  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__title{font-size:15.18px}
-  html[data-sh-type="sm"] .sh-ph-card--third .sh-ph-card__time{font-size:12px}
-}
 @media (max-width:1023px){
   html[data-sh-type="sm"] .sh-ph-card--lead .sh-ph-card__title{font-size:19.32px}
   html[data-sh-type="sm"] .sh-reels__ftitle{font-size:18.4px}
   html[data-sh-type="sm"] .sh-reels__fdek{font-size:12.42px}
 }
 
-/* ---- lg ×1.12 (826 rules) ---- */
+/* ---- lg ×1.12 (793 rules) ---- */
 html[data-sh-type="lg"] .sh-page{font-size:15.68px}
 html[data-sh-type="lg"] .sh-more{font-size:13.44px}
 html[data-sh-type="lg"] .sh-doc__num.sh-doc__num--sm{font-size:12.32px}
@@ -717,6 +710,9 @@ html[data-sh-type="lg"] .sh-pagehead__clock span{font-size:13.44px}
 html[data-sh-type="lg"] .sh-pagehead__live{font-size:13.44px}
 html[data-sh-type="lg"] .sh-pagehead__form input[type="search"],html[data-sh-type="lg"] .sh-pagehead__form input[type="text"]{font-size:15.12px}
 html[data-sh-type="lg"] .sh-pagehead__form button{font-size:14px}
+html[data-sh-type="lg"] .sh-reveal__cat{font-size:16.8px}
+html[data-sh-type="lg"] .sh-reveal__title{font-size:22.4px}
+html[data-sh-type="lg"] .sh-reveal__meta{font-size:15.68px}
 html[data-sh-type="lg"] .sh-pswp .pswp__counter{font-size:14.56px}
 html[data-sh-type="lg"] .sh-pswp .pswp__button--sh-share,html[data-sh-type="lg"] .sh-pswp .pswp__button--sh-fs{font-size:17.92px}
 html[data-sh-type="lg"] .sh-pswp__kicker{font-size:12.88px}
@@ -930,52 +926,25 @@ html[data-sh-type="lg"] .sh-fig__src{font-size:12.88px}
 html[data-sh-type="lg"] .sh-data-note{font-size:14.56px}
 html[data-sh-type="lg"] .sh-data-ctx__k{font-size:13.44px}
 html[data-sh-type="lg"] .sh-data-ctx__t{font-size:16.8px}
-html[data-sh-type="lg"] .sh-fl-crumbs{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-eyebrow{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-brand{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-latest .sh-meta__note,html[data-sh-type="lg"] .sh-fl-arch .sh-fl-arch__all{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-hero__eyebrow{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-hero__h1{font-size:calc(clamp(34px,3.8vw,44px) * 1.12)}
-html[data-sh-type="lg"] .sh-fl-hero__dek{font-size:16.8px}
-html[data-sh-type="lg"] .sh-fl-open__chip{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-open__no{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-open__title{font-size:calc(clamp(22px,2.1vw,26px) * 1.12)}
-html[data-sh-type="lg"] .sh-fl-open__list li{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-open__cta{font-size:14.56px}
-html[data-sh-type="lg"] .sh-fl-feat__cap{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-feat__title{font-size:calc(clamp(26px,2.7vw,34px) * 1.12)}
-html[data-sh-type="lg"] .sh-fl-feat__dek{font-size:16.8px}
-html[data-sh-type="lg"] .sh-fl-feat__lbl{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-feat__item{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-feat__cta{font-size:14.56px}
-html[data-sh-type="lg"] .sh-fl-topics{font-size:14.56px}
-html[data-sh-type="lg"] .sh-fl-topics__label{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-card__eyebrow{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-card__no{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-card__title{font-size:19.04px}
-html[data-sh-type="lg"] .sh-fl-card--lead .sh-fl-card__title{font-size:29.12px}
-html[data-sh-type="lg"] .sh-fl-card__dek{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-card--lead .sh-fl-card__dek{font-size:16.8px}
-html[data-sh-type="lg"] .sh-fl-card__foot{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-most__no{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-most__title{font-size:16.8px}
-html[data-sh-type="lg"] .sh-fl-most__reads{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-unit__label{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-unit__text{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-inter__head .sh-eyebrow{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-inter__note{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-int__badge{font-size:12.88px}
-html[data-sh-type="lg"] .sh-fl-int__title{font-size:19.04px}
-html[data-sh-type="lg"] .sh-fl-int__dek{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-int__foot{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-int__go{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-arch__year{font-size:38.08px}
-html[data-sh-type="lg"] .sh-fl-arch__meta{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-arch__title{font-size:16.8px}
-html[data-sh-type="lg"] .sh-fl-arch__go{font-size:13.44px}
-html[data-sh-type="lg"] .sh-fl-close__title{font-size:22.4px}
-html[data-sh-type="lg"] .sh-fl-close__dek{font-size:15.68px}
-html[data-sh-type="lg"] .sh-fl-close__cta{font-size:14.56px}
+html[data-sh-type="lg"] .sh-fl-crumbs{font-size:15.68px}
+html[data-sh-type="lg"] .sh-fl-title{font-size:calc(clamp(40px,4.2vw,60px) * 1.12)}
+html[data-sh-type="lg"] .sh-fl-dek{font-size:20.16px}
+html[data-sh-type="lg"] .sh-fl-hero__meta{font-size:15.68px}
+html[data-sh-type="lg"] .sh-fl-hero__title{font-size:calc(clamp(26px,2.4vw,34px) * 1.12)}
+html[data-sh-type="lg"] .sh-fl-hero__dek{font-size:19.04px}
+html[data-sh-type="lg"] .sh-fl-hero__docs a{font-size:19.04px}
+html[data-sh-type="lg"] .sh-fl-hero__cta{font-size:17.92px}
+html[data-sh-type="lg"] .sh-fl-hero__also-h{font-size:17.92px}
+html[data-sh-type="lg"] .sh-fl-mini__t{font-size:19.04px}
+html[data-sh-type="lg"] .sh-fl-mini__m{font-size:14.56px}
+html[data-sh-type="lg"] .sh-fl-sec .sh-section__title{font-size:calc(clamp(24px,2.2vw,30px) * 1.12)}
+html[data-sh-type="lg"] .sh-fl-sec .sh-meta__note{font-size:15.68px}
+html[data-sh-type="lg"] .sh-fl-all{font-size:16.8px}
+html[data-sh-type="lg"] .sh-fl-grid--4 .sh-reveal__title{font-size:20.16px}
+html[data-sh-type="lg"] .sh-fl-tool__kind{font-size:15.68px}
+html[data-sh-type="lg"] .sh-fl-tool__title{font-size:21.28px}
+html[data-sh-type="lg"] .sh-fl-tool__fig{font-size:16.8px}
+html[data-sh-type="lg"] .sh-fl-tool__fig b{font-size:33.6px}
 html[data-sh-type="lg"] .sh-ho__bar-t{font-size:19.04px}
 html[data-sh-type="lg"] .sh-ho__tab{font-size:14.56px}
 html[data-sh-type="lg"] .sh-ho__tab b{font-size:12.88px}
@@ -1276,41 +1245,18 @@ html[data-sh-type="lg"] .sh-sx__y small{font-size:12.88px}
 html[data-sh-type="lg"] .sh-sx__n{font-size:13.44px}
 html[data-sh-type="lg"] .sh-sx__q{font-size:15.12px}
 html[data-sh-type="lg"] .sh-sx__q b{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-3{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-9{font-size:38.08px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-10{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-12{font-size:19.04px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-14{font-size:24.64px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-15{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-19{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-20{font-size:15.68px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-21{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-25{font-size:24.64px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-26{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-27{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-29{font-size:15.68px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-30{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-33{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-35{font-size:19.04px}
-html[data-sh-type="lg"] .sh-sections-section-map__span-36{font-size:13.44px}
-html[data-sh-type="lg"] .sh-sections-media-desks__span-1{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-media-desks__span-8{font-size:29.12px}
-html[data-sh-type="lg"] .sh-sections-media-desks__span-9{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-files-rail__span-2{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-files-rail__span-3{font-size:15.68px}
-html[data-sh-type="lg"] .sh-sections-interactive-map__p-1{font-size:14.56px}
-html[data-sh-type="lg"] .sh-sections-interactive-map__span-4{font-size:24.64px}
-html[data-sh-type="lg"] .sh-sections-interactive-map__span-5{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-interactive-map__a-1{font-size:13.44px}
-html[data-sh-type="lg"] .sh-sections-year-archive__span-5{font-size:29.12px}
-html[data-sh-type="lg"] .sh-sections-editorial-team__span-1{font-size:16.8px}
-html[data-sh-type="lg"] .sh-sections-editorial-team__span-2{font-size:15.68px}
-html[data-sh-type="lg"] .sh-sections-editorial-team__span-3{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-sections-rail__span-1{font-size:14.56px}
-html[data-sh-type="lg"] .sh-sections-sections-rail__span-2{font-size:12.88px}
-html[data-sh-type="lg"] .sh-sections-sections-closing__span-1{font-size:19.04px}
-html[data-sh-type="lg"] .sh-sections-sections-closing__span-2{font-size:14.56px}
-html[data-sh-type="lg"] .sh-sections-sections-closing__a-1{font-size:14.56px}
+html[data-sh-type="lg"] .sh-sc-crumbs{font-size:15.68px}
+html[data-sh-type="lg"] .sh-sc-title{font-size:calc(clamp(34px,3.6vw,48px) * 1.12)}
+html[data-sh-type="lg"] .sh-sc-dek{font-size:20.16px}
+html[data-sh-type="lg"] .sh-sc-desks .sh-reveal__title{font-size:23.52px}
+html[data-sh-type="lg"] .sh-sc-row__name{font-size:21.28px}
+html[data-sh-type="lg"] .sh-sc-row__t{font-size:16.8px}
+html[data-sh-type="lg"] .sh-sc-sec .sh-section__title{font-size:calc(clamp(24px,2.2vw,30px) * 1.12)}
+html[data-sh-type="lg"] .sh-sc-all{font-size:16.8px}
+html[data-sh-type="lg"] .sh-sc-media .sh-reveal__title{font-size:19.04px}
+html[data-sh-type="lg"] .sh-sc-person__pic--mark{font-size:26.88px}
+html[data-sh-type="lg"] .sh-sc-person__name{font-size:20.16px}
+html[data-sh-type="lg"] .sh-sc-person__role{font-size:15.68px}
 html[data-sh-type="lg"] .sh-shorts__title{font-size:15.68px}
 html[data-sh-type="lg"] .sh-shorts__count{font-size:12.88px}
 html[data-sh-type="lg"] .sh-shorts__close{font-size:15.68px}
@@ -1392,6 +1338,25 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
   html[data-sh-type="lg"] .sh-rep__lead-t{font-size:22.4px}
   html[data-sh-type="lg"] .sh-op__t{font-size:15.68px}
 }
+@media (max-width:767px){
+  html[data-sh-type="lg"] .sh-reveal__cat{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-reveal__title{font-size:19.04px}
+  html[data-sh-type="lg"] .sh-reveal__meta{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-fl-mini__t{font-size:18.48px}
+  html[data-sh-type="lg"] .sh-fl-grid--4 .sh-reveal__title{font-size:19.04px}
+  html[data-sh-type="lg"] .sh-fl-tool__title{font-size:18.48px}
+  html[data-sh-type="lg"] .sh-fl-tool__fig b{font-size:26.88px}
+  html[data-sh-type="lg"] .sh-ph-card__cat{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-ph-card__title{font-size:20.16px}
+  html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title,html[data-sh-type="lg"] .sh-ph-card--major .sh-ph-card__title{font-size:23.52px}
+  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__cat{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__title{font-size:18.48px}
+  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__time{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-sc-desks .sh-reveal__title{font-size:19.04px}
+  html[data-sh-type="lg"] .sh-sc-media .sh-reveal__title{font-size:16.8px}
+  html[data-sh-type="lg"] .sh-sc-row__name{font-size:19.04px}
+  html[data-sh-type="lg"] .sh-sc-row__t{font-size:15.68px}
+}
 @media (max-width:899px){
   html[data-sh-type="lg"] .sh-pswp__title{font-size:16.8px}
 }
@@ -1408,8 +1373,13 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
   html[data-sh-type="lg"] .sh-fig__value small{font-size:14.56px}
   html[data-sh-type="lg"] .sh-fig__delta{font-size:13.44px}
   html[data-sh-type="lg"] .sh-fig__label{font-size:14.56px}
-  html[data-sh-type="lg"] .sh-fl-open__no,html[data-sh-type="lg"] .sh-fl-card__no{font-size:13.44px}
-  html[data-sh-type="lg"] .sh-fl-arch__year{font-size:29.12px}
+  html[data-sh-type="lg"] .sh-fl-crumbs{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-fl-title{font-size:40.32px}
+  html[data-sh-type="lg"] .sh-fl-dek{font-size:17.92px}
+  html[data-sh-type="lg"] .sh-fl-hero__title{font-size:28px}
+  html[data-sh-type="lg"] .sh-fl-hero__dek{font-size:17.92px}
+  html[data-sh-type="lg"] .sh-fl-hero__docs a{font-size:17.92px}
+  html[data-sh-type="lg"] .sh-fl-tool__kind{font-size:14.56px}
   html[data-sh-type="lg"] .sh-ho-tag__sec{font-size:13.44px}
   html[data-sh-type="lg"] .sh-h1__t{font-size:15.68px}
   html[data-sh-type="lg"] .sh-h1__tile--start .sh-h1__t,html[data-sh-type="lg"] .sh-h1__tile--end .sh-h1__t{font-size:16.24px}
@@ -1438,9 +1408,8 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
   html[data-sh-type="lg"] .sh-sf__toggle{font-size:14.56px}
   html[data-sh-type="lg"] .sh-sf__toggle b{font-size:12.88px}
   html[data-sh-type="lg"] .sh-sx__y{font-size:16.8px}
-  html[data-sh-type="lg"] .sh-sections-section-map__span-9{font-size:29.12px}
-  html[data-sh-type="lg"] .sh-sections-section-map__span-12{font-size:16.8px}
-  html[data-sh-type="lg"] .sh-sections-media-desks__span-8{font-size:24.64px}
+  html[data-sh-type="lg"] .sh-sc-crumbs{font-size:14.56px}
+  html[data-sh-type="lg"] .sh-sc-dek{font-size:17.92px}
   html[data-sh-type="lg"] .sh-vw__ch{font-size:14.56px}
   html[data-sh-type="lg"] .sh-vx-sec__t{font-size:22.4px}
   html[data-sh-type="lg"] .sh-vx-pick--lead .sh-vx-pick__t{font-size:22.4px}
@@ -1453,15 +1422,6 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
   html[data-sh-type="lg"] .sh-vx-card__t{font-size:15.68px}
   html[data-sh-type="lg"] .sh-vx-card .sh-vx-play{font-size:11.2px}
   html[data-sh-type="lg"] .sh-vx-rank{font-size:13.44px}
-}
-@media (max-width:767px){
-  html[data-sh-type="lg"] .sh-fl-card--lead .sh-fl-card__title{font-size:22.4px}
-  html[data-sh-type="lg"] .sh-ph-card__cat{font-size:14.56px}
-  html[data-sh-type="lg"] .sh-ph-card__title{font-size:20.16px}
-  html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title,html[data-sh-type="lg"] .sh-ph-card--major .sh-ph-card__title{font-size:23.52px}
-  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__cat{font-size:14.56px}
-  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__title{font-size:18.48px}
-  html[data-sh-type="lg"] .sh-ph-card--third .sh-ph-card__time{font-size:14.56px}
 }
 @media (max-width:1023px){
   html[data-sh-type="lg"] .sh-ph-card--lead .sh-ph-card__title{font-size:23.52px}

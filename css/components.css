@@ -738,3 +738,62 @@ html[data-sh-bo-open]{overflow:hidden}
    fires an error event. The plate copies this class onto itself, which is what
    keeps it filling the same frame. */
 .sh-bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ============================================================================
+   REVEAL CARD — .sh-reveal (files.html, sections.html)
+   The card is its picture. On a pointer screen the words wait under it and rise
+   into it on hover or keyboard focus: the picture eases in (1.06), a navy veil
+   climbs from the foot (strong at the bottom, gone by the upper third), the
+   title rises, the date follows a beat later, and the card lifts 4px. Only
+   transform, opacity and box-shadow move, so nothing around it reflows.
+   An optional __cat is a blue plate in the corner that stays at rest — for a
+   card whose picture alone does not say what it is (a section, a desk).
+   On touch screens from 768px the veil and the words are simply there; under
+   768px the card is a row, a 4:3 picture beside its words.
+     <a class="sh-reveal" style="--rv-ratio:4/5">
+       <span class="sh-reveal__pic"><img></span>
+       <span class="sh-reveal__cat">…</span>                      optional
+       <span class="sh-reveal__body"><span class="sh-reveal__title">…</span><span class="sh-reveal__meta">…</span></span>
+     </a>
+   ========================================================================== */
+.sh-reveal{--rv-ease:cubic-bezier(.22,1,.36,1);position:relative;display:block;min-width:0;color:#fff;isolation:isolate}
+@media (hover:hover){.sh-reveal:hover{color:#fff}}   /* base.css a:hover would repaint the white words blue */
+.sh-reveal__pic{position:relative;display:block;overflow:hidden;aspect-ratio:var(--rv-ratio,16/9);background:var(--sh-navy-2)}
+.sh-reveal__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--rv-ease)}
+.sh-reveal__pic::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,26,51,.9) 0%,rgba(10,26,51,.62) 24%,rgba(10,26,51,.16) 50%,rgba(10,26,51,0) 66%);pointer-events:none;transition:opacity .38s var(--rv-ease)}
+.sh-reveal__cat{position:absolute;top:14px;inset-inline-start:14px;z-index:3;padding:5px 12px;background:var(--sh-blue);color:#fff;font-family:var(--sh-font);font-size:15px;font-weight:700;line-height:1.4;pointer-events:none}
+.sh-reveal__body{position:absolute;inset:auto 0 0 0;z-index:2;display:flex;flex-direction:column;gap:4px;padding:0 20px 18px;pointer-events:none}
+.sh-reveal__title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-family:var(--sh-font);font-size:20px;font-weight:800;line-height:1.4;color:#fff;text-wrap:pretty}
+.sh-reveal__meta{display:block;font-family:var(--sh-font);font-size:14px;line-height:1.5;color:var(--sh-on-dark-80);font-variant-numeric:tabular-nums}
+.sh-reveal:focus-visible{outline:2px solid var(--sh-blue);outline-offset:3px}
+
+@media (hover:hover) and (pointer:fine) and (min-width:768px){
+  .sh-reveal{transition:transform .45s var(--rv-ease),box-shadow .45s var(--rv-ease)}
+  /* at rest: the picture alone; the veil is a breath at the foot, the words wait below */
+  .sh-reveal__pic::after{opacity:.16}
+  .sh-reveal__title,.sh-reveal__meta{opacity:0;transform:translateY(16px);transition:opacity .3s var(--rv-ease),transform .42s var(--rv-ease)}
+  .sh-reveal__meta{transform:translateY(12px)}
+  /* hover and keyboard focus: one coordinated move; the stagger is on the way in only */
+  .sh-reveal:hover,.sh-reveal:focus-visible{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(10,26,51,.55)}
+  .sh-reveal:hover .sh-reveal__pic img,.sh-reveal:focus-visible .sh-reveal__pic img{transform:scale(1.06)}
+  .sh-reveal:hover .sh-reveal__pic::after,.sh-reveal:focus-visible .sh-reveal__pic::after{opacity:1}
+  .sh-reveal:hover .sh-reveal__title,.sh-reveal:focus-visible .sh-reveal__title,
+  .sh-reveal:hover .sh-reveal__meta,.sh-reveal:focus-visible .sh-reveal__meta{opacity:1;transform:none}
+  .sh-reveal:hover .sh-reveal__title,.sh-reveal:focus-visible .sh-reveal__title{transition-delay:40ms}
+  .sh-reveal:hover .sh-reveal__meta,.sh-reveal:focus-visible .sh-reveal__meta{transition-delay:110ms}
+}
+@media (max-width:767px){
+  .sh-reveal{display:grid;grid-template-columns:136px minmax(0,1fr);grid-auto-rows:auto;align-content:center;gap:2px 14px;color:var(--sh-ink)}
+  .sh-reveal__pic{grid-row:1/span 3;aspect-ratio:4/3}
+  .sh-reveal__pic::after{display:none}
+  .sh-reveal__cat{position:static;align-self:end;padding:0;background:none;color:var(--sh-blue);font-size:13px}
+  .sh-reveal__body{position:static;gap:2px;padding:0}
+  .sh-reveal__title{-webkit-line-clamp:3;font-size:17px;line-height:1.5;color:var(--sh-navy)}   /* beside a small picture a third line costs nothing */
+  .sh-reveal__meta{font-size:13px;color:var(--sh-mute)}
+}
+@media (prefers-reduced-motion:reduce){
+  /* the words still come, as a plain quick fade: no zoom, no rise, no lift, no stagger */
+  .sh-reveal,.sh-reveal__pic img{transition:none!important;transform:none!important}
+  .sh-reveal:hover,.sh-reveal:focus-visible{box-shadow:none}
+  .sh-reveal__title,.sh-reveal__meta{transform:none!important;transition:opacity .15s linear!important;transition-delay:0s!important}
+}

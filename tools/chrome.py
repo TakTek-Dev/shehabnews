@@ -22,7 +22,7 @@ import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-V = '285'
+V = '287'
 SITE = 'https://shehabnews.com/'
 ORG = 'وكالة شهاب للأنباء'
 OG_IMG = SITE + 'assets/images/og-default.jpg'
