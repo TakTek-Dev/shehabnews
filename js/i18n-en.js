@@ -910,6 +910,7 @@ window.SH_I18N_EN = {
   "المسجد الأقصى": "al-Aqsa Mosque",
   "المسجد الأقصى — القدس المحتلة": "Al-Aqsa Mosque — occupied Jerusalem",
   "المسماري لـ شهاب: استباحة غزة تضع الأمة أمام مسؤولياتها التاريخية": "Al-Mismari to Shehab: the violation of Gaza puts the nation before its historic responsibilities",
+  "المشغّل": "Player",
   "المشغّل لا يعمل من الملف مباشرة — افتح الصفحة عبر الخادم المحلي.": "The player does not run from the file directly — open the page through the local server.",
   "المشكلة من جهتنا لا من جهتك. فريقنا الفني على علم بها، وجرّب إعادة التحميل بعد لحظات.": "The problem is at our end, not yours. Our technical team knows about it. Try reloading in a moment.",
   "المشهد من الميدان": "The scene from the ground",

@@ -175,14 +175,7 @@ html[dir="ltr"] .sh-shorts__hint{transform:translateX(50%)}
 html[dir="ltr"] .sh-shorts__toast{direction:ltr}
 
 /* ---- css/pages/video-watch.css ---- */
-html[dir="ltr"] .sh-video-watch-related-videos__i-1{transform:translateX(-1px)}
-html[dir="ltr"] .sh-video-watch-related-videos__i-2{transform:translateX(-1px)}
-html[dir="ltr"] .sh-video-watch-more-videos__i-1{transform:translateX(-1px)}
-html[dir="ltr"] .sh-video-watch-signature__div-2{padding:30px 30px 30px 0}
-html[dir="ltr"] .sh-watch__switch input:checked + .sh-watch__switch-ui::after{transform:translateX(14px)}
-html[dir="ltr"] .sh-watch__next{direction:ltr}
 html[dir="ltr"] [data-mini] .sh-watch__player{inset:auto auto 16px 16px}
-html[dir="ltr"] .sh-watch__toast{direction:ltr}
 @media (max-width:640px){html[dir="ltr"] [data-mini] .sh-watch__player{inset:auto auto 12px 12px}}
 
 /* ---- hand-written: the forward arrow and the caret ---- */

@@ -101,7 +101,7 @@ JS: `ui, chrome, feed, app, responsive, widgets, brief, searchbox, push, pwa` ث
 | article | `article.html` | article | NewsArticle + BreadcrumbList | photoswipe + gallery.js + `article.js` |
 | category / tag / archive / sections / files / video / reels / shorts | نفس الأسماء | collection | CollectionPage + Breadcrumb | reels/shorts: vidstack (module) + swiper + player.js + reels.js/shorts.js |
 | coverage | `coverage.html` | liveblog | LiveBlogPosting (+ `liveBlogUpdate[]` من التحديثات) | — |
-| video-watch | `video-watch.html` | video | VideoObject | vidstack + player.js + watch.js |
+| video-watch | `video-watch.html` | video | VideoObject | vidstack + player.js + article.js + watch.js (ورقة article.css تحت video-watch.css) |
 | live | `live.html` | live | BroadcastEvent + VideoObject | vidstack + player.js + live.js |
 | photos | `photos.html` | gallery | ImageGallery | — |
 | author | `author.html` | profile | ProfilePage + Person | — |
@@ -230,7 +230,7 @@ FeatureCollection؛ كل Feature:
 ### 5.5 الفيديو
 - `<media-player data-sh-vs data-sh-sources="src1|src2|src3" …>`؛ `player.js` يجرّب بالترتيب ويبعت `sh-vs-fallback`. `data-sh-hls='{…}'` لإعدادات hls.js.
 - البث: `[data-sh-live data-sh-live-started-min="N"]`، الجدول `<li data-sh-offset="دقائق من الآن" data-sh-len="دقائق">` — في الإنتاج اطبع `data-sh-offset` محسوبًا من وقت السيرفر أو غيّر `live.js::paintSchedule` ليقرأ `datetime`.
-- المشاهدة: كل عنصر قائمة `data-sh-watch-item data-sh-src data-sh-poster data-sh-thumbs data-sh-chapters data-sh-captions data-sh-title data-sh-kicker`. الفصول والترجمة VTT من الـCMS (`chapters.ar.vtt`, `captions.ar.vtt`, `thumbs.vtt` + `thumbs.jpg` sprite).
+- المشاهدة: صفحة فيديو واحد على قواعد الخبر (`article.sh-art.sh-vw[data-sh-watch]`)، بلا قائمة تشغيل: العنوان والوصف والبايلاين والوسوم يمين، والمشغّل `[data-sh-watch-player]` داخل `[data-sh-watch-frame]` لاصق شمال، وتحته `[data-sh-watch-chapters-box]` > `ol[data-sh-watch-chapters]` يبنيه `watch.js` من مسار الفصول. المدة `[data-sh-watch-duration]`، الحفظ `[data-sh-save]` (article.js)، المشغّل المصغّر `[data-sh-watch-mini-close|back]`. بعدها باند `a.sh-art-next` للخبر المرتبط و`.sh-art-rel.sh-vw-rel` لأربع فيديوهات ذات صلة. الفصول والترجمة VTT من الـCMS (`chapters.ar.vtt`, `captions.ar.vtt`, `thumbs.vtt` + `thumbs.jpg` sprite).
 - الريلز/الشورتس: `.swiper-slide[data-sh-prog="slug"][data-sh-dek="سطر وصف"]` > `media-player.sh-vs--lite[data-sh-reel]` بـ`src` MP4 رأسي 540×960 + `poster` (نفس الرابط في `.sh-lite__poster` style). في `reels.html` كمان: لوحة `[data-sh-reels-feature]` بحقول `[data-sh-f-chip|pos|title|dek|time|len|full|play-label]` وزر `[data-sh-reels-play]` (تُملأ من الشريحة النشطة، فتُطبع بقيم أول مقطع)، وبطاقات الشبكة `a.sh-reels-grid__card[data-sh-reels-go="N"][href="shorts.html#r=N"]`. البوسترات صور حقيقية 9:16 (540×960 من الـthumbnailer).
 
 ### 5.6 الخريطة ومكتب البيانات

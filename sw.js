@@ -12,7 +12,7 @@
    locally) and opens its url on click. Update flow: the page posts
    SKIP_WAITING when the reader accepts the new version. */
 'use strict';
-var VERSION = 'sh-283';
+var VERSION = 'sh-284';
 var SHELL = [
   'index.html', 'offline.html', 'manifest.webmanifest',
   'css/fonts.css', 'css/transition.css', 'css/tokens.css', 'css/base.css', 'css/header.css', 'css/widgets.css',
