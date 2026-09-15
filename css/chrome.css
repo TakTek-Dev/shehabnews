@@ -194,3 +194,36 @@ html[data-save-data] .sh-footer__video{display:none}
 .sh-footer__submit{min-height:44px}
 .sh-footer__status{grid-column:1 / -1}
 .sh-footer__status:empty{display:none}
+
+/* ---- phones: the header, lighter */
+/* responsive.css lets the topbar wrap and keeps every masthead control; on a
+   phone that stacked the weather, the rates and the language into three rows
+   and squeezed the breaking headline to a few words. These sit in its layer
+   with a longer selector, and every declaration is !important: a layered
+   normal declaration loses to the unlayered header sheets. */
+@layer responsive{
+  @media (max-width:900px){
+    /* one row: weather and rates at the start, the language at the end */
+    html header .sh-topbar .sh-topbar__inner{height:40px!important;min-height:0!important;padding-block:0!important;flex-wrap:nowrap!important;gap:10px!important}
+    html header .sh-topbar .sh-topbar__inner > div{flex-wrap:nowrap!important;gap:8px!important;min-width:0!important}
+    html header .sh-topbar .sh-topbar__meta > span:nth-child(5){display:none!important}
+    html header .sh-topbar .sh-topbar__link{display:none!important}
+    html header .sh-topbar .sh-lang__opt{min-height:28px!important;padding:0 10px!important;font-size:12px!important}
+  }
+  @media (max-width:640px){
+    /* the masthead: the logo dead centre, live as its icon alone, no «الآن», controls one size */
+    html header .sh-header__body .sh-masthead{grid-template-columns:1fr auto 1fr!important}
+    html header .sh-masthead .sh-nowlink{display:none!important}
+    html header .sh-masthead .sh-live{width:40px!important;height:40px!important;padding:0!important;justify-content:center!important;gap:0!important}
+    html header .sh-masthead .sh-live span{display:none!important}
+    html header .sh-masthead .sh-live .sh-i{font-size:17px!important}
+    html header .sh-masthead img{height:36px!important}
+    html header .sh-header__body .sh-nav-toggle{width:40px!important;height:40px!important}
+    html header .sh-masthead .sh-search{height:40px!important}
+    html header .sh-masthead .sh-search .sh-search__btn{width:40px!important}
+    /* the ticker: no pager, the headline gets the row and up to two lines */
+    html header .sh-ticker .sh-ticker__inner{grid-template-columns:auto minmax(0,1fr)!important;min-height:52px!important}
+    html header .sh-ticker .sh-ticker__tools,html header .sh-ticker .sh-ticker__time{display:none!important}
+    html header .sh-ticker .sh-ticker__title{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;white-space:normal!important;text-overflow:clip!important;line-height:1.45!important;font-size:14px!important}
+  }
+}

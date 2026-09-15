@@ -22,7 +22,7 @@ import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-V = '294'
+V = '295'
 SITE = 'https://shehabnews.com/'
 ORG = 'وكالة شهاب للأنباء'
 OG_IMG = SITE + 'assets/images/og-default.jpg'
@@ -221,6 +221,8 @@ def build_head(page, html, old_head):
     # a page may carry its own inline style (offline.html is self-contained on
     # purpose: it is served from the cache when nothing else loads)
     for st in re.findall(r'<style>.*?</style>', old_head, re.S):
+        if 'data-sh-settling' in st:
+            continue   # the settle guard is ours (SETTLE_PRELUDE); keeping it would add a copy per run
         out.append(st)
     if typ != 'error':
         rules = {'prerender': [{'where': {'and': [{'href_matches': '/*.html'}, {'not': {'href_matches': NO_PRERENDER}}]}, 'eagerness': 'moderate'}]}

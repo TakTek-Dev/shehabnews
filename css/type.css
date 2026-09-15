@@ -2,7 +2,7 @@
    every content font-size again under html[data-sh-type="sm"] (×0.92, floor
    12px) and ="lg" (×1.12). The chrome is not here on purpose. */
 
-/* ---- sm ×0.92 (698 rules) ---- */
+/* ---- sm ×0.92 (699 rules) ---- */
 html[data-sh-type="sm"] .sh-page{font-size:12.88px}
 html[data-sh-type="sm"] .sh-more{font-size:12px}
 html[data-sh-type="sm"] .sh-section__title.sh-section__title--sm{font-size:12.88px}
@@ -658,6 +658,7 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-rep__lead-t{font-size:15.64px}
   html[data-sh-type="sm"] .sh-rep__t{font-size:12px}
   html[data-sh-type="sm"] .sh-lc__lead-t{font-size:18.4px}
+  html[data-sh-type="sm"] .sh-lc__time{font-size:12px}
   html[data-sh-type="sm"] .sh-map__row-t{font-size:14.26px}
   html[data-sh-type="sm"] .sh-map-legend{font-size:12px}
   html[data-sh-type="sm"] .leaflet-bar a,html[data-sh-type="sm"] .leaflet-touch .leaflet-bar a{font-size:20.24px}
@@ -716,7 +717,7 @@ html[data-sh-type="sm"] .sh-vx-car__btn{font-size:13.8px}
   html[data-sh-type="sm"] .sh-se-item__t{font-size:18.4px}
 }
 
-/* ---- lg ×1.12 (802 rules) ---- */
+/* ---- lg ×1.12 (803 rules) ---- */
 html[data-sh-type="lg"] .sh-page{font-size:15.68px}
 html[data-sh-type="lg"] .sh-more{font-size:13.44px}
 html[data-sh-type="lg"] .sh-doc__num.sh-doc__num--sm{font-size:12.32px}
@@ -1473,6 +1474,7 @@ html[data-sh-type="lg"] .sh-vx-car__btn{font-size:16.8px}
   html[data-sh-type="lg"] .sh-rep__lead-t{font-size:19.04px}
   html[data-sh-type="lg"] .sh-rep__t{font-size:14.56px}
   html[data-sh-type="lg"] .sh-lc__lead-t{font-size:22.4px}
+  html[data-sh-type="lg"] .sh-lc__time{font-size:13.44px}
   html[data-sh-type="lg"] .sh-live-stage__bar{font-size:12.32px}
   html[data-sh-type="lg"] .sh-map__row-t{font-size:17.36px}
   html[data-sh-type="lg"] .sh-map-legend{font-size:14px}
